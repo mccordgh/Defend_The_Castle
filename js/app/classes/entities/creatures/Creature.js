@@ -1,9 +1,9 @@
-define(['Entity'], function(Entity){
+define(['Entity', 'Tile'], function(Entity, Tile){
 
-	var DEFAULT_SPEED = 100,
+	var DEFAULT_SPEED = 256,
 			DEFAULT_HEALTH = 10,
-			DEFAULT_CREATURE_WIDTH = 64,
-			DEFAULT_CREATURE_HEIGHT = 64;
+			DEFAULT_CREATURE_WIDTH = 32,
+			DEFAULT_CREATURE_HEIGHT = 32;
 
 	var Creature = Entity.extend({
 		init: function(_handler, _x, _y, _width, _height){
@@ -18,21 +18,46 @@ define(['Entity'], function(Entity){
 			this.moveY();
 		},
 		moveX: function(){
-			this.x += this.xMove;
+			var tempX;
+			if (this.xMove > 0) {
+				tempX = parseInt((this.x + this.xMove + this.bounds.x + this.bounds.width) / Tile.TILE_WIDTH);
+				if(!this.collisionWithTile(tempX, parseInt((this.y + this.bounds.y) / Tile.TILE_HEIGHT)) && 
+					!this.collisionWithTile(tempX, parseInt((this.y + this.bounds.y + this.bounds.height) / Tile.TILE_HEIGHT))) {
+					this.x += parseInt(this.xMove);
+				}
+			} else {
+				tempX = parseInt((this.x + this.xMove + this.bounds.x) / Tile.TILE_WIDTH);
+				if(!this.collisionWithTile(tempX, parseInt((this.y + this.bounds.y) / Tile.TILE_HEIGHT)) && 
+					!this.collisionWithTile(tempX, parseInt((this.y + this.bounds.y + this.bounds.height) / Tile.TILE_HEIGHT))) {
+					this.x += parseInt(this.xMove);
+				}
+			}
 		},
 		moveY: function(){
-			this.y += this.yMove;
+			var tempY;
+			if (this.yMove > 0) {
+				tempY = parseInt((this.y + this.yMove + this.bounds.y + this.bounds.height) / Tile.TILE_HEIGHT);
+				if(!this.collisionWithTile(parseInt((this.x + this.bounds.x) / Tile.TILE_WIDTH), tempY) && 
+					!this.collisionWithTile(parseInt((this.x + this.bounds.x + this.bounds.width) / Tile.TILE_WIDTH), tempY)) {
+					this.y += parseInt(this.yMove);
+				}
+			} else {
+				tempY = parseInt((this.y + this.yMove + this.bounds.y) / Tile.TILE_HEIGHT);
+				if(!this.collisionWithTile(parseInt((this.x + this.bounds.x) / Tile.TILE_WIDTH), tempY) && 
+					!this.collisionWithTile(parseInt((this.x + this.bounds.x + this.bounds.width) / Tile.TILE_WIDTH), tempY)) {
+					this.y += parseInt(this.yMove);
+				}
+			}
 		},
-
-		//Getters
+		collisionWithTile: function(_x, _y){
+			return this.handler.getWorld().getTile(_x, _y).isSolid();
+		},
 		getHealth: function(){
 			return this.health;
 		},
 		getSpeed: function(){
 			return this.speed;
-		},
-		
-		//Setters
+		},		
 		setHealth: function(_health){
 			this.health = _health;
 		},

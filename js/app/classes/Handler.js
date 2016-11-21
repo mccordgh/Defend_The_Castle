@@ -1,6 +1,6 @@
 define(['Class'],function(Class){
 
-	var game;
+	var game, world;
 
 	var Handler = Class.extend({
 		init:function(_game){
@@ -14,7 +14,17 @@ define(['Class'],function(Class){
 		},
 		getKeyManager: function() {
 			return game.getKeyManager();
+		},
+		getGameCamera: function() {
+			return game.getGameCamera();
+		},
+		getWorld: function(){
+			return world;
+		},
+		setWorld: function(_world){
+			world = _world;
 		}
+	
 	});
 
 	return Handler;
