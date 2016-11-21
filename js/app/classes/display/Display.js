@@ -25,9 +25,10 @@ define(['Jquery', 'Class'],function($, Class){
 	//Private Method
 	function createDisplay() {
 		document.title = title;
-		var body = document.body;
-		body.innerHTML = ("<canvas id='canvas' width='" + width + "' height = '" + height + "'></canvas>");
-		graphics = document.getElementById("canvas").getContext("2d");
+		myCanvas = document.getElementById("canvas");
+		myCanvas.setAttribute("height", height);
+		myCanvas.setAttribute("width", width);
+		graphics = myCanvas.getContext("2d");
 	}
 
 	CanvasRenderingContext2D.prototype.myDrawImage = function(asset, _x, _y, _width, _height){
