@@ -10,6 +10,7 @@ requirejs.config({
 		"Display":"app/classes/display/Display",
 		"DirtTile":"app/classes/tiles/DirtTile",
 		"Entity":"app/classes/entities/Entity",
+		"EntityManager":"app/classes/entities/EntityManager",
 		"Game":"app/classes/Game",
 		"GameCamera":"app/classes/gfx/GameCamera",
 		"GameState":"app/classes/States/GameState",

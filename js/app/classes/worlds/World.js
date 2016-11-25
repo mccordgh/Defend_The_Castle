@@ -1,14 +1,26 @@
-define(['Class', 'TileLoader', 'Utils', 'Tree'], function(Class, Tile, Utils, Tree){
+define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player'], function(Class, Tile, Utils, Tree, EntityManager, Player){
 
 	var tree;
 
 	var World = Class.extend({
 		init:function(_path, _handler){
 			this.tiles = [];
-			this.loadWorld(_path);
 			this.handler = _handler;
 			_handler.setWorld(this);
-			tree = new Tree(_handler, 400, 300);
+			// tree = new Tree(_handler, 400, 300);
+			this.entityManager = new EntityManager(_handler, new Player(_handler, 20, 20));
+			this.entityManager.addEntity(new Tree(_handler, 125, 100));
+			this.entityManager.addEntity(new Tree(_handler, 150, 150));
+			this.entityManager.addEntity(new Tree(_handler, 175, 200));
+			this.entityManager.addEntity(new Tree(_handler, 200, 250));
+			this.entityManager.addEntity(new Tree(_handler, 225, 100));
+			this.entityManager.addEntity(new Tree(_handler, 250, 150));
+			this.entityManager.addEntity(new Tree(_handler, 275, 200));
+			this.loadWorld(_path);
+
+			this.entityManager.getPlayer().setX(this.spawnX);
+			this.entityManager.getPlayer().setY(this.spawnY);
+
 		},
 		loadWorld: function(_path){
 			var file = Utils.loadFileAsString(_path);
@@ -26,12 +38,11 @@ define(['Class', 'TileLoader', 'Utils', 'Tree'], function(Class, Tile, Utils, Tr
 			}
 		},
 		tick: function(_dt){
-
+			this.entityManager.tick(_dt);
 		},
 		render: function(_g){
 			var xStart = parseInt(Math.max(0, this.handler.getGameCamera().getxOffset() / Tile.TILE_WIDTH));
 			var xEnd = parseInt(Math.min(this.width, (this.handler.getGameCamera().getxOffset() + this.handler.getWidth()) / Tile.TILE_WIDTH + 1));
-
 			var yStart = parseInt(Math.max(0, this.handler.getGameCamera().getyOffset() / Tile.TILE_HEIGHT));
 			var yEnd = parseInt(Math.min(this.height, (this.handler.getGameCamera().getyOffset() + this.handler.getHeight()) / Tile.TILE_HEIGHT + 1));			
 
@@ -41,7 +52,8 @@ define(['Class', 'TileLoader', 'Utils', 'Tree'], function(Class, Tile, Utils, Tr
 				}
 			}
 
-			tree.render(_g);
+			this.entityManager.render(_g);
+			// tree.render(_g);
 		},
 		getTile: function(_x, _y){
 			return Tile.tiles[this.tiles[_x][_y]];

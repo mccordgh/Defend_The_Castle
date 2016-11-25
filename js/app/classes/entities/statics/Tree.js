@@ -4,7 +4,7 @@ define(['StaticEntity', 'Tile', 'Assets'], function(StaticEntity, Tile, Assets){
 
 	var Tree = StaticEntity.extend({
 		init: function(_handler, _x, _y){
-			this._super(_handler, _x, _y, Tile.TILE_WIDTH * 2, Tile.TILE_HEIGHT * 2);
+			this._super(_handler, _x, _y, Tile.TILE_WIDTH * 4, Tile.TILE_HEIGHT * 4);
 			this.bounds.x = 20;
 			this.bounds.y = 20;
 			this.bounds.width = 30;
