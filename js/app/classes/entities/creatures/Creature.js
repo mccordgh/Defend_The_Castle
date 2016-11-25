@@ -23,13 +23,17 @@ define(['Entity', 'Tile'], function(Entity, Tile){
 				tempX = parseInt((this.x + this.xMove + this.bounds.x + this.bounds.width) / Tile.TILE_WIDTH);
 				if(!this.collisionWithTile(tempX, parseInt((this.y + this.bounds.y) / Tile.TILE_HEIGHT)) && 
 					!this.collisionWithTile(tempX, parseInt((this.y + this.bounds.y + this.bounds.height) / Tile.TILE_HEIGHT))) {
-					this.x += parseInt(this.xMove);
+					this.x += this.xMove;
+				} else {
+					this.x = tempX * Tile.TILE_WIDTH - this.bounds.x - this.bounds.width - 1;
 				}
 			} else {
 				tempX = parseInt((this.x + this.xMove + this.bounds.x) / Tile.TILE_WIDTH);
 				if(!this.collisionWithTile(tempX, parseInt((this.y + this.bounds.y) / Tile.TILE_HEIGHT)) && 
 					!this.collisionWithTile(tempX, parseInt((this.y + this.bounds.y + this.bounds.height) / Tile.TILE_HEIGHT))) {
-					this.x += parseInt(this.xMove);
+					this.x += this.xMove;
+				} else {
+					this.x = tempX * Tile.TILE_WIDTH + Tile.TILE_WIDTH - this.bounds.x;
 				}
 			}
 		},
@@ -39,13 +43,17 @@ define(['Entity', 'Tile'], function(Entity, Tile){
 				tempY = parseInt((this.y + this.yMove + this.bounds.y + this.bounds.height) / Tile.TILE_HEIGHT);
 				if(!this.collisionWithTile(parseInt((this.x + this.bounds.x) / Tile.TILE_WIDTH), tempY) && 
 					!this.collisionWithTile(parseInt((this.x + this.bounds.x + this.bounds.width) / Tile.TILE_WIDTH), tempY)) {
-					this.y += parseInt(this.yMove);
+					this.y += this.yMove;
+				} else {
+					this.y = tempY * Tile.TILE_HEIGHT - this.bounds.y - this.bounds.height - 1;
 				}
 			} else {
 				tempY = parseInt((this.y + this.yMove + this.bounds.y) / Tile.TILE_HEIGHT);
 				if(!this.collisionWithTile(parseInt((this.x + this.bounds.x) / Tile.TILE_WIDTH), tempY) && 
 					!this.collisionWithTile(parseInt((this.x + this.bounds.x + this.bounds.width) / Tile.TILE_WIDTH), tempY)) {
-					this.y += parseInt(this.yMove);
+					this.y += this.yMove;
+				} else {
+					this.y = tempY * Tile.TILE_HEIGHT + Tile.TILE_HEIGHT - this.bounds.y;
 				}
 			}
 		},
