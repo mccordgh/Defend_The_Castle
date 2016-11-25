@@ -1,6 +1,6 @@
 define(['Entity', 'Tile'], function(Entity, Tile){
 
-	var DEFAULT_SPEED = 256,
+	var DEFAULT_SPEED = 128,
 			DEFAULT_HEALTH = 10,
 			DEFAULT_CREATURE_WIDTH = 32,
 			DEFAULT_CREATURE_HEIGHT = 32;
