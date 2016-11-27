@@ -33,7 +33,8 @@ define(['Class', 'Rectangle'], function(Class, Rectangle){
 														this.bounds.width, this.bounds.height);
 		},
 		checkEntityCollisions: function(xOffset, yOffset){
-			var candidates = this.handler.getWorld().getEntityManager().getEntities();
+			var candidates =  this.handler.getWorld().getSpatialGrid().retrieve(new Rectangle(this.x + this.bounds.x + xOffset, this.y + this.bounds.y + yOffset, this.bounds.width, this.bounds.height), this);
+
 			for(var i = 0; i < candidates.length; i++){
 				var e = candidates[i];
 				if (e != this){
