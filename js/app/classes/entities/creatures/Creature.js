@@ -14,8 +14,11 @@ define(['Entity', 'Tile'], function(Entity, Tile){
 			this.yMove = 0;
 		},
 		move: function(){
-			this.moveX();
-			this.moveY();
+			if(!(this.checkEntityCollisions(this.xMove, 0)))
+				this.moveX();
+			if(!(this.checkEntityCollisions(0, this.yMove)))
+				this.moveY();
+			
 		},
 		moveX: function(){
 			var tempX;
