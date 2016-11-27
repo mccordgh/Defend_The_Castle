@@ -1,4 +1,4 @@
-define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player'], function(Class, Tile, Utils, Tree, EntityManager, Player){
+define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'SpatialGrid'], function(Class, Tile, Utils, Tree, EntityManager, Player, SpatialGrid){
 
 	var tree;
 
@@ -9,14 +9,18 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player'], func
 			_handler.setWorld(this);
 			// tree = new Tree(_handler, 400, 300);
 			this.entityManager = new EntityManager(_handler, new Player(_handler, 20, 20));
-			this.entityManager.addEntity(new Tree(_handler, 125, 100));
-			this.entityManager.addEntity(new Tree(_handler, 150, 150));
-			this.entityManager.addEntity(new Tree(_handler, 175, 200));
-			this.entityManager.addEntity(new Tree(_handler, 200, 250));
-			this.entityManager.addEntity(new Tree(_handler, 225, 100));
-			this.entityManager.addEntity(new Tree(_handler, 250, 150));
-			this.entityManager.addEntity(new Tree(_handler, 275, 200));
 			this.loadWorld(_path);
+			
+			this.spatialGrid = new SpatialGrid(this.width * Tile.TILE_WIDTH, this.height * Tile.TILE_HEIGHT, 64);
+			
+			this.entityManager.addEntity(new Tree(_handler, 225, 100));
+			this.entityManager.addEntity(new Tree(_handler, 175, 400));
+			this.entityManager.addEntity(new Tree(_handler, 275, 200));
+			this.entityManager.addEntity(new Tree(_handler, 825, 300));
+			this.entityManager.addEntity(new Tree(_handler, 875, 300));
+			this.entityManager.addEntity(new Tree(_handler, 925, 300));
+			this.entityManager.addEntity(new Tree(_handler, 675, 500));
+			this.entityManager.addEntity(new Tree(_handler, 775, 800));
 
 			this.entityManager.getPlayer().setX(this.spawnX);
 			this.entityManager.getPlayer().setY(this.spawnY);
@@ -63,6 +67,12 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player'], func
 		},
 		getHeight: function(){
 			return this.height;
+		},
+		getEntityManager(){
+			return this.entityManager;
+		},
+		getSpatialGrid(){
+			return this.spatialGrid;
 		}
 
 	});

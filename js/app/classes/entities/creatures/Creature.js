@@ -1,7 +1,7 @@
-define(['Entity', 'Tile'], function(Entity, Tile){
+define(['Entity', 'Tile', 'Rectangle'], function(Entity, Tile, Rectangle){
 
 	var DEFAULT_SPEED = 128,
-			DEFAULT_HEALTH = 10,
+			DEFAULT_HEALTH = 100,
 			DEFAULT_CREATURE_WIDTH = 32,
 			DEFAULT_CREATURE_HEIGHT = 32;
 
@@ -14,8 +14,14 @@ define(['Entity', 'Tile'], function(Entity, Tile){
 			this.yMove = 0;
 		},
 		move: function(){
-			this.moveX();
-			this.moveY();
+			if(Math.abs(this.xMove) > 0 || Math.abs(this.yMove) > 0){
+				this.handler.getWorld().getSpatialGrid().remove(new Rectangle(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height), this);
+				if(!(this.checkEntityCollisions(this.xMove, 0)))
+					this.moveX();
+				if(!(this.checkEntityCollisions(0, this.yMove)))
+					this.moveY();
+				this.handler.getWorld().getSpatialGrid().insert(new Rectangle(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height), this);
+			}
 		},
 		moveX: function(){
 			var tempX;
@@ -71,6 +77,18 @@ define(['Entity', 'Tile'], function(Entity, Tile){
 		},
 		setSpeed: function(_speed){
 			this.speed = _speed;
+		},
+		takeDamage: function(_damage){
+			this.health -= _damage;
+			if (typeof this.healthbar != undefined)
+				this.healthbar.update();
+			if (this.health <= 0){
+				this.die();
+			}
+		},
+		die: function(){
+			this.handler.getWorld().getEntityManager().removeEntity(this);
+			console.log("YOU DIED!!!!");
 		}
 
 	});

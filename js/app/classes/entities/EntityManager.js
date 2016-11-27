@@ -1,4 +1,4 @@
-define(['Class'], function(Class){
+define(['Class', 'Rectangle'], function(Class, Rectangle){
 
 	var handler, player, entities;
 
@@ -17,6 +17,7 @@ define(['Class'], function(Class){
 			}
 		},
 		render: function(_g){
+			// handler.getWorld().getSpatialGrid().render(_g, handler);
 			entities.forEach(function(e){
 				e.render(_g);
 			});
@@ -32,6 +33,15 @@ define(['Class'], function(Class){
 		},
 		addEntity: function(e){
 			entities.push(e);
+			handler.getWorld().getSpatialGrid().insert(new Rectangle(e.x + e.bounds.x, e.y + e.bounds.y, e.bounds.width, e.bounds.height), e);
+		},
+		removeEntity: function(_entity){
+			for (let i = 0; i < entities.length; i++){
+				var e = entities[i];
+				if (e === _entity){
+					entities.splice(i, 1);
+				}
+			}
 		}
 
 	});

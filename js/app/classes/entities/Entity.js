@@ -10,7 +10,9 @@ define(['Class', 'Rectangle'], function(Class, Rectangle){
 			this.bounds = new Rectangle(0, 0, _width, _height);
 		},
 		tick: function(_dt){},
-		render: function(_g){},
+		render: function(_g){
+			throw("Entities must have a tick function!");
+		},
 
 		//Getters
 		getX: function(){
@@ -25,7 +27,26 @@ define(['Class', 'Rectangle'], function(Class, Rectangle){
 		getHeight: function(){
 			return this.height;
 		},
+		getCollisionBounds: function(xOffset, yOffset){
+			return new Rectangle(parseInt(this.x + this.bounds.x + xOffset),
+														parseInt(this.y + this.bounds.y + yOffset),
+														this.bounds.width, this.bounds.height);
+		},
+		checkEntityCollisions: function(xOffset, yOffset){
+			var candidates =  this.handler.getWorld().getSpatialGrid().retrieve(new Rectangle(this.x + this.bounds.x + xOffset, this.y + this.bounds.y + yOffset, this.bounds.width, this.bounds.height), this);
 
+			for(var i = 0; i < candidates.length; i++){
+				var e = candidates[i];
+				if (e != this){
+					// console.log(e.getCollisionBounds(0, 0));
+					// console.log(this.getCollisionBounds(xOffset, yOffset));
+					if (e.getCollisionBounds(0, 0).intersects(this.getCollisionBounds(xOffset, yOffset))){
+						return true;
+					}
+				}
+			}
+			return false;
+		},
 		//Setters
 		setX: function(_x){
 			this.x = _x;

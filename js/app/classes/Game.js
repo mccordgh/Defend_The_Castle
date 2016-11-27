@@ -13,7 +13,6 @@ define(['Class', 'Display', 'State', 'GameState', 'KeyManager', 'Handler', 'Game
 			title = _title;
 			width = _width;
 			height = _height;
-			keyManager = new KeyManager();
 		},
 		run: function(){
 			init();
@@ -53,6 +52,9 @@ define(['Class', 'Display', 'State', 'GameState', 'KeyManager', 'Handler', 'Game
 		getKeyManager: function() {
 			return keyManager;
 		},
+		getDisplay: function(){
+			return display;
+		},
 		getWidth: function() {
 			return width;
 		},
@@ -65,9 +67,10 @@ define(['Class', 'Display', 'State', 'GameState', 'KeyManager', 'Handler', 'Game
 	});
 
 	function init() {
-		display = new Display(title, width, height);
-		g = display.getGraphics();
 		handler = new Handler(_this);
+		display = new Display(title, width, height);
+		keyManager = new KeyManager();
+		g = display.getGraphics();
 		gameCamera = new GameCamera(handler, 0, 0);
 		gameState = new GameState(handler);
 		State.setState(gameState);
@@ -82,7 +85,6 @@ define(['Class', 'Display', 'State', 'GameState', 'KeyManager', 'Handler', 'Game
 
 	function render(){
 		g.clearRect(0,0,width,height);
-		
 		if(State.getState() !== null){
 				State.getState().render(g);
 			}

@@ -80,8 +80,8 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 	// player.idle = player.sheet.crop(player.width * 1, player.height * 1, player.width, player.height );
 
 	//Tree Asset
-	var tree = new Assets("tree", "res/textures/snow-expansion.png", 55, 55);
-	tree.redwood = tree.sheet.crop(304, 70, tree.width, tree.height);
+	var tree = new Assets("tree", "res/textures/snow-expansion.png", 48, 55);
+	tree.redwood = tree.sheet.crop(304, 68, tree.width, tree.height);
 
 	//Tile Asset
 	var tiles = new Assets("tiles", "res/textures/tiles.png", 32, 32);
