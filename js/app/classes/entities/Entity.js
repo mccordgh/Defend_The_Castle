@@ -38,8 +38,6 @@ define(['Class', 'Rectangle'], function(Class, Rectangle){
 			for(var i = 0; i < candidates.length; i++){
 				var e = candidates[i];
 				if (e != this){
-					// console.log(e.getCollisionBounds(0, 0));
-					// console.log(this.getCollisionBounds(xOffset, yOffset));
 					if (e.getCollisionBounds(0, 0).intersects(this.getCollisionBounds(xOffset, yOffset))){
 						return true;
 					}

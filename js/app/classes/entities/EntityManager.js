@@ -1,4 +1,4 @@
-define(['Class', 'Rectangle'], function(Class, Rectangle){
+define(['Class', 'Rectangle', 'Tile'], function(Class, Rectangle, Tile){
 
 	var handler, player, entities;
 
@@ -19,7 +19,8 @@ define(['Class', 'Rectangle'], function(Class, Rectangle){
 		render: function(_g){
 			// handler.getWorld().getSpatialGrid().render(_g, handler);
 			entities.forEach(function(e){
-				e.render(_g);
+				if (!(e.x > e.handler.getWidth() + e.handler.getGameCamera().getxOffset()) && !(e.y > e.handler.getHeight() + e.handler.getGameCamera().getyOffset()))
+					e.render(_g);
 			});
 		},
 		getPlayer: function(){

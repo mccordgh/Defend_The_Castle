@@ -1,4 +1,4 @@
-define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'SpatialGrid'], function(Class, Tile, Utils, Tree, EntityManager, Player, SpatialGrid){
+define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'SpatialGrid', 'HUD'], function(Class, Tile, Utils, Tree, EntityManager, Player, SpatialGrid, HUD){
 
 	var tree;
 
@@ -7,7 +7,6 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'Spat
 			this.tiles = [];
 			this.handler = _handler;
 			_handler.setWorld(this);
-			// tree = new Tree(_handler, 400, 300);
 			this.entityManager = new EntityManager(_handler, new Player(_handler, 20, 20));
 			this.loadWorld(_path);
 			
@@ -24,7 +23,7 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'Spat
 
 			this.entityManager.getPlayer().setX(this.spawnX);
 			this.entityManager.getPlayer().setY(this.spawnY);
-
+			this.hud = new HUD(_handler, this.entityManager.getPlayer());
 		},
 		loadWorld: function(_path){
 			var file = Utils.loadFileAsString(_path);
@@ -57,6 +56,8 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'Spat
 			}
 
 			this.entityManager.render(_g);
+			this.hud.render(_g);
+
 			// tree.render(_g);
 		},
 		getTile: function(_x, _y){

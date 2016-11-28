@@ -18,6 +18,7 @@ requirejs.config({
 		"Handler":"app/classes/Handler",
 		"HealthBar":"app/classes/entities/helpers/HealthBar",
 		"Helper":"app/classes/entities/helpers/Helper",
+		"HUD":"app/classes/entities/helpers/HUD",
 		"ImageLoader":"app/classes/gfx/ImageLoader",
 		"KeyManager":"app/classes/input/KeyManager",
 		"Launcher":"app/classes/Launcher",

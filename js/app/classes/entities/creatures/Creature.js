@@ -1,7 +1,7 @@
 define(['Entity', 'Tile', 'Rectangle'], function(Entity, Tile, Rectangle){
 
 	var DEFAULT_SPEED = 128,
-			DEFAULT_HEALTH = 100,
+			DEFAULT_HEALTH = 200,
 			DEFAULT_CREATURE_WIDTH = 32,
 			DEFAULT_CREATURE_HEIGHT = 32;
 
@@ -12,6 +12,7 @@ define(['Entity', 'Tile', 'Rectangle'], function(Entity, Tile, Rectangle){
 			this.speed = DEFAULT_SPEED;
 			this.xMove = 0;
 			this.yMove = 0;
+			this.dead = false;
 		},
 		move: function(){
 			if(Math.abs(this.xMove) > 0 || Math.abs(this.yMove) > 0){
@@ -79,11 +80,14 @@ define(['Entity', 'Tile', 'Rectangle'], function(Entity, Tile, Rectangle){
 			this.speed = _speed;
 		},
 		takeDamage: function(_damage){
-			this.health -= _damage;
-			if (typeof this.healthbar != undefined)
+			if (typeof this.healthbar != undefined && !this.dead)
+				this.health -= _damage;
 				this.healthbar.update();
 			if (this.health <= 0){
-				this.die();
+				this.dead = true;
+				// this.die();
+			// console.log(this.assets.animations.death.getCurrentAnimationFrame());
+			// if (this.assets.animations.death.getCurrentFrame() === 3)
 			}
 		},
 		die: function(){

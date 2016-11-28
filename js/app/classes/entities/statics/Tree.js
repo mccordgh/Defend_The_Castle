@@ -14,8 +14,11 @@ define(['StaticEntity', 'Tile', 'Assets'], function(StaticEntity, Tile, Assets){
 
 		},
 		render: function(_g){
-			_g.myDrawImage(assets.redwood, this.x - this.handler.getGameCamera().getxOffset(),
-				this.y - this.handler.getGameCamera().getyOffset(), this.width, this.height);
+			_g.myDrawImage(assets.redwood, 
+							this.x - this.handler.getGameCamera().getxOffset(),
+							this.y - this.handler.getGameCamera().getyOffset(), 
+							this.width, 
+							this.height);
 			// _g.fillRect(this.bounds.x - this.handler.getGameCamera().getxOffset(),
 				// this.bounds.y - this.handler.getGameCamera().getyOffset(), this.bounds.width, this.bounds.height);
 		}

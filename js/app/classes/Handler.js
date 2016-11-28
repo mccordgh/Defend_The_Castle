@@ -10,7 +10,7 @@ define(['Class'],function(Class){
 			return game.getWidth();
 		},
 		getHeight: function() {
-			return game.getHeight();
+			return game.getHeight() - 96;
 		},
 		getKeyManager: function() {
 			return game.getKeyManager();

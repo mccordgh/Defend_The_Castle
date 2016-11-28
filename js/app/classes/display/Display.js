@@ -29,6 +29,7 @@ define(['Jquery', 'Class'],function($, Class){
 		myCanvas.setAttribute("height", height);
 		myCanvas.setAttribute("width", width);
 		graphics = myCanvas.getContext("2d");
+		graphics.font = '16px arial';
 	}
 
 	CanvasRenderingContext2D.prototype.myDrawImage = function(asset, _x, _y, _width, _height){
