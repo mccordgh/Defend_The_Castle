@@ -6,6 +6,7 @@ requirejs.config({
 		//Classes
 		"Animation":"app/classes/gfx/Animation",
 		"Assets":"app/classes/gfx/Assets",
+		"Bat":"app/classes/entities/creatures/monsters/Bat",
 		"Creature":"app/classes/entities/creatures/Creature",
 		"Display":"app/classes/display/Display",
 		"DirtTile":"app/classes/tiles/DirtTile",

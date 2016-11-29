@@ -23,7 +23,7 @@ define(['Helper'], function(Helper){
 			this.fadeTime = _properties.fadeTime || 1;
 			this.opacity = _properties.opacity || 1;
 			this.border = _properties.border || {"show": true, "color": "black", "width": 3};
-			setInterval(() => { _entity.takeDamage(20);}, 2000);
+			// setInterval(() => { _entity.takeDamage(20);}, 2000);
 		},
 		render(_g){
 			if (this.fixed){

@@ -21,8 +21,8 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 									width: 182,
 									height: 17
 			});
-			// var healthbar_properties = {
-			// 	color: "#0c0",
+			// 	color: "#0c0",			// var healthbar_properties = {
+
 			// 	bgColor: "#a00",
 			// 	yOffset: 10,
 			// 	nodes: 100,

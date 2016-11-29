@@ -96,14 +96,21 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 	tiles.dirt = tiles.sheet.crop(tiles.width * 7, tiles.height * 15, tiles.width, tiles.height);
 	tiles.stone = tiles.sheet.crop(tiles.width * 39, tiles.height * 17, tiles.width, tiles.height);
 
+	//Player Portrait
 	var Portraits = new Assets("Portraits", "res/textures/player_portrait.png", 50, 50);
 	Portraits.player = Portraits.sheet.crop(0, 0, 50, 50);
 
+	//HUD
 	var hudLayout = new Assets("hudLayout", "res/textures/hud_layout.png", 896, 96);
 	hudLayout.layout = hudLayout.sheet.crop(0, 0, 896, 96);
 
+	//Item Icons
 	var icons = new Assets("icons", "res/textures/tiles.png", 32, 32);
 	icons.sword = icons.sheet.crop(tiles.width * 31, tiles.height * 28, tiles.width, tiles.height);
+
+	//Monsters
+	var monsters = new Assets("monsters", "res/textures/bat-sprite.png", 32, 32);
+	monsters.bat = monsters.sheet.crop(monsters.width * 2, 0, monsters.width, monsters.height);
 
 	return Assets;
 });

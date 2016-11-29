@@ -20,7 +20,7 @@ define(['StaticEntity', 'Tile', 'Assets'], function(StaticEntity, Tile, Assets){
 							this.width, 
 							this.height);
 			// _g.fillRect(this.bounds.x - this.handler.getGameCamera().getxOffset(),
-				// this.bounds.y - this.handler.getGameCamera().getyOffset(), this.bounds.width, this.bounds.height);
+			// 	this.bounds.y - this.handler.getGameCamera().getyOffset(), this.bounds.width, this.bounds.height);
 		}
 
 	});

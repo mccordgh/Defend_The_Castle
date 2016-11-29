@@ -1,4 +1,4 @@
-define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'SpatialGrid', 'HUD'], function(Class, Tile, Utils, Tree, EntityManager, Player, SpatialGrid, HUD){
+define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'SpatialGrid', 'HUD', "Bat"], function(Class, Tile, Utils, Tree, EntityManager, Player, SpatialGrid, HUD, Bat){
 
 	var tree;
 
@@ -12,6 +12,12 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'Spat
 			
 			this.spatialGrid = new SpatialGrid(this.width * Tile.TILE_WIDTH, this.height * Tile.TILE_HEIGHT, 64);
 			
+			this.entityManager.addEntity(new Bat(_handler, 150, 100));
+			this.entityManager.addEntity(new Bat(_handler, 500, 100));
+			this.entityManager.addEntity(new Bat(_handler, 500, 400));
+			this.entityManager.addEntity(new Bat(_handler, 50, 350));
+			this.entityManager.addEntity(new Bat(_handler, 150, 350));
+
 			this.entityManager.addEntity(new Tree(_handler, 225, 100));
 			this.entityManager.addEntity(new Tree(_handler, 175, 400));
 			this.entityManager.addEntity(new Tree(_handler, 275, 200));
