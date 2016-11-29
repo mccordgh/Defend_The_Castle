@@ -9,6 +9,7 @@ define(['StaticEntity', 'Tile', 'Assets'], function(StaticEntity, Tile, Assets){
 			this.bounds.y = 100;
 			this.bounds.width = 40;
 			this.bounds.height = 5;
+			this.type = 'static';
 		},
 		tick: function(){
 
