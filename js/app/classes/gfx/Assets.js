@@ -30,8 +30,23 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 	
 	//Create Player Assets
 	var player = new Assets("player", "res/textures/warrior_m.png", 32, 36);
+	var bat = new Assets("bat", "res/textures/bat-sprite.png", 32, 32);
+	// monsters.bat = monsters.sheet.crop(monsters.width * 2, 0, monsters.width, monsters.height);
 
 	//Build Animation Frames
+	var batframespeed = 200,
+			batwdframes = [], //walk right frames
+			batwrframes = [], //walk left frames
+			batwuframes = [], //walk up frames
+			batwlframes = [], //walk down frames
+			deathframes = [], //dead animation frames
+			batwdrow = 0, //walk up row on spritesheet
+			batwrrow = 1, //walk right row on spritesheet
+			batwurow = 2, //walk down row on spritesheet
+			batwlrow = 3, //walk left row on spritesheet
+			// deathrow = 4, //death animation row on spritesheet
+			batanimationLength = 4; //how many frames in animation
+
 	var framespeed = 200,
 			wrframes = [], //walk right frames
 			wlframes = [], //walk left frames
@@ -68,13 +83,46 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 		});
 	}
 
+	for(var i = 1; i < batanimationLength; i++){
+		batwrframes.push({
+			frame: bat.sheet.crop(bat.width * i, bat.height * batwrrow, bat.width, bat.height),
+			speed: batframespeed
+		});
+		batwdframes.push({
+			frame: bat.sheet.crop(bat.width * i, bat.height * batwdrow, bat.width, bat.height),
+			speed: batframespeed
+		});
+		batwuframes.push({
+			frame: bat.sheet.crop(bat.width * i, bat.height * batwurow, bat.width, bat.height),
+			speed: batframespeed
+		});
+		batwlframes.push({
+			frame: bat.sheet.crop(bat.width * i, bat.height * batwlrow, bat.width, bat.height),
+			speed: batframespeed
+		});
+	}
+
 	var idleframes = [
 		{frame: player.sheet.crop(0, 2 * player.height, player.width, player.height),speed: framespeed},
 		{frame: player.sheet.crop(1 * player.width, 2 * player.height, player.width, player.height),speed: framespeed},
 		{frame: player.sheet.crop(2 * player.width, 2 * player.height, player.width, player.height),speed: framespeed}
 	];
 
+	var batdeathframes = [
+		{frame: bat.sheet.crop(0,0, bat.width, bat.height),speed: batframespeed},
+		{frame: bat.sheet.crop(0, bat.width * 1, bat.width, bat.height),speed: batframespeed},
+		{frame: bat.sheet.crop(0, bat.width * 2, bat.width, bat.height),speed: batframespeed},
+		{frame: bat.sheet.crop(0, bat.width * 3, bat.width, bat.height),speed: batframespeed}
+	];
+
 	//Create Animations
+	bat.addAnimation("walk_up", new Animation(batwuframes));
+	bat.addAnimation("walk_right", new Animation(batwrframes));
+	bat.addAnimation("walk_down", new Animation(batwdframes));
+	bat.addAnimation("walk_left", new Animation(batwlframes));
+	bat.addAnimation("idle", new Animation(batwdframes));
+	bat.addAnimation("death", new Animation(batdeathframes));
+
 	player.addAnimation("walk_up", new Animation(wuframes));
 	player.addAnimation("walk_right", new Animation(wrframes));
 	player.addAnimation("walk_down", new Animation(wdframes));
@@ -108,9 +156,6 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 	var icons = new Assets("icons", "res/textures/tiles.png", 32, 32);
 	icons.sword = icons.sheet.crop(tiles.width * 31, tiles.height * 28, tiles.width, tiles.height);
 
-	//Monsters
-	var monsters = new Assets("monsters", "res/textures/bat-sprite.png", 32, 32);
-	monsters.bat = monsters.sheet.crop(monsters.width * 2, 0, monsters.width, monsters.height);
 
 	return Assets;
 });

@@ -3,7 +3,10 @@ define(['Entity', 'Tile', 'Rectangle'], function(Entity, Tile, Rectangle){
 	var DEFAULT_SPEED = 128,
 			DEFAULT_HEALTH = 200,
 			DEFAULT_CREATURE_WIDTH = 32,
-			DEFAULT_CREATURE_HEIGHT = 32;
+			DEFAULT_CREATURE_HEIGHT = 32,
+			dying = 0,
+			tempEntity = null,
+			deathInterval;
 
 	var Creature = Entity.extend({
 		init: function(_handler, _x, _y, _width, _height){
@@ -12,7 +15,7 @@ define(['Entity', 'Tile', 'Rectangle'], function(Entity, Tile, Rectangle){
 			this.speed = DEFAULT_SPEED;
 			this.xMove = 0;
 			this.yMove = 0;
-			this.dead = false;
+			this.dead = 0;
 		},
 		move: function(){
 			if(Math.abs(this.xMove) > 0 || Math.abs(this.yMove) > 0){
@@ -74,7 +77,7 @@ define(['Entity', 'Tile', 'Rectangle'], function(Entity, Tile, Rectangle){
 			return this.speed;
 		},		
 		setHealth: function(_health){
-			this.health = _health;
+			this.health = _health;sa
 		},
 		setSpeed: function(_speed){
 			this.speed = _speed;
@@ -84,17 +87,11 @@ define(['Entity', 'Tile', 'Rectangle'], function(Entity, Tile, Rectangle){
 				this.health -= _damage;
 				this.healthbar.update();
 			if (this.health <= 0){
-				this.dead = true;
-				// this.die();
+				this.assets.animations.death.tick();
+			}
 			// console.log(this.assets.animations.death.getCurrentAnimationFrame());
 			// if (this.assets.animations.death.getCurrentFrame() === 3)
-			}
-		},
-		die: function(){
-			this.handler.getWorld().getEntityManager().removeEntity(this);
-			console.log("YOU DIED!!!!");
 		}
-
 	});
 
 	Creature.DEFAULT_SPEED = DEFAULT_SPEED;

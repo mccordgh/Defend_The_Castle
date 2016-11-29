@@ -1,5 +1,7 @@
 define(['Class', 'Rectangle'], function(Class, Rectangle){
 
+var dying;
+
 	var Entity = Class.extend({
 		init: function(_handler, _x, _y, _width, _height){
 			this.x = _x;
@@ -9,7 +11,8 @@ define(['Class', 'Rectangle'], function(Class, Rectangle){
 			this.handler = _handler;
 			this.bounds = new Rectangle(0, 0, _width, _height);
 		},
-		tick: function(_dt){},
+		tick: function(_dt){
+		},
 		render: function(_g){
 			throw("Entities must have a tick function!");
 		},
@@ -37,8 +40,12 @@ define(['Class', 'Rectangle'], function(Class, Rectangle){
 
 			for(var i = 0; i < candidates.length; i++){
 				var e = candidates[i];
-				if (e != this){
+				if (e != this && !(e.health <= 0)){
 					if (e.getCollisionBounds(0, 0).intersects(this.getCollisionBounds(xOffset, yOffset))){
+						if (e.type === 'monster' && this.type === 'player'){
+							this.takeDamage(2);
+							e.takeDamage(20);
+						}
 						return true;
 					}
 				}

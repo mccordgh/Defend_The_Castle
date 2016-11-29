@@ -10,6 +10,7 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 			this.bounds.y = 0;
 			this.bounds.width = 30;
 			this.bounds.height = 35;
+			this.type = 'player';
 			this.portrait = Assets.getAssets('Portraits');
 			this.healthbar = new HealthBar(_handler, this, {
 									nodes: 100,
@@ -74,7 +75,6 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 		},
 		getCurrentAnimationFrame: function(){
 			if (this.health <= 0){
-				console.log("DEATH ANIMATION");
 				return this.assets.animations.death.getCurrentFrame();
 			}
 			if (this.yMove < 0){
