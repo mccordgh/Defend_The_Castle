@@ -12,23 +12,42 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'Spat
 			
 			this.spatialGrid = new SpatialGrid(this.width * Tile.TILE_WIDTH, this.height * Tile.TILE_HEIGHT, 64);
 			
-			this.entityManager.addEntity(new Bat(_handler, 150, 100));
-			this.entityManager.addEntity(new Bat(_handler, 500, 100));
-			this.entityManager.addEntity(new Bat(_handler, 500, 400));
-			this.entityManager.addEntity(new Bat(_handler, 50, 350));
-			this.entityManager.addEntity(new Bat(_handler, 150, 350));
+			//BAT!
+			this.entityManager.addEntity(new Bat(_handler, Tile.TILE_WIDTH * 10, Tile.TILE_HEIGHT * 10));
 
-			this.entityManager.addEntity(new Tree(_handler, 225, 100));
-			this.entityManager.addEntity(new Tree(_handler, 175, 400));
-			this.entityManager.addEntity(new Tree(_handler, 275, 200));
-			this.entityManager.addEntity(new Tree(_handler, 825, 300));
-			this.entityManager.addEntity(new Tree(_handler, 875, 300));
-			this.entityManager.addEntity(new Tree(_handler, 925, 300));
-			this.entityManager.addEntity(new Tree(_handler, 675, 500));
-			this.entityManager.addEntity(new Tree(_handler, 775, 800));
+			//TOP LEFT TREE TROVE
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH, Tile.TILE_HEIGHT));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 5, Tile.TILE_HEIGHT));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 9, Tile.TILE_HEIGHT));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH, Tile.TILE_HEIGHT * 5));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH, Tile.TILE_HEIGHT * 9));
 
+			//TOP RIGHT TREE TROVE
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 75, Tile.TILE_HEIGHT));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 71, Tile.TILE_HEIGHT));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 67, Tile.TILE_HEIGHT));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 75, Tile.TILE_HEIGHT * 5));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 75, Tile.TILE_HEIGHT * 9));
+
+			//BOTTOM RIGHT TREE TROVE
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 75, Tile.TILE_HEIGHT * 75));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 71, Tile.TILE_HEIGHT * 75));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 67, Tile.TILE_HEIGHT * 75));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 75, Tile.TILE_HEIGHT * 71));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 75, Tile.TILE_HEIGHT * 67));
+
+			//BOTTOM LEFT TREE TROVE
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH, Tile.TILE_HEIGHT * 75));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 5, Tile.TILE_HEIGHT * 75));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 9, Tile.TILE_HEIGHT * 75));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH, Tile.TILE_HEIGHT * 71));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH, Tile.TILE_HEIGHT * 67));
+
+			//PLAYER SET SPAWN
 			this.entityManager.getPlayer().setX(this.spawnX);
 			this.entityManager.getPlayer().setY(this.spawnY);
+
+			//HUD INIT
 			this.hud = new HUD(_handler, this.entityManager.getPlayer());
 		},
 		loadWorld: function(_path){
@@ -62,7 +81,7 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'Spat
 			}
 
 			this.entityManager.render(_g);
-			// this.hud.render(_g);
+			this.hud.render(_g);
 
 			// tree.render(_g);
 		},

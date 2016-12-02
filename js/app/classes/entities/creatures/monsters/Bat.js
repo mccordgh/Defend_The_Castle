@@ -12,6 +12,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			this.bounds.height = 32;
 			this.type = 'monster';
 			this.health = 80;
+			this.damage = 5;
 
 			// this.portrait = Assets.getAssets('Portraits');
 			var healthbar_properties = {

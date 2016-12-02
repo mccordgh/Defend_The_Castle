@@ -1,4 +1,4 @@
-define(['Helper'], function(Helper){
+define(['Helper', 'Assets'], function(Helper, Assets){
 
 
 	var HealthBar = Helper.extend({
@@ -6,6 +6,7 @@ define(['Helper'], function(Helper){
 			this.handler = _handler;
 			this.entity = _entity;
 			this.start = _entity.health;
+			this.assets = Assets.getAssets('healthBars');
 			this.nodes = this.totalNodes = _properties.nodes;
 			this.renderOnFull = _properties.renderOnFull || "on";
 			this.fixed = _properties.fixed || false;
@@ -27,13 +28,17 @@ define(['Helper'], function(Helper){
 		},
 		render(_g){
 			if (this.fixed){
-				_g.strokeRect(this.fixedX, this.fixedY, this.width, this.height);
+				_g.myDrawImage(this.assets.GreenBar, this.fixedX, this.fixedY + 20, this.width, this.height);
+				_g.myDrawImage(this.assets.BlueBar, this.fixedX, this.fixedY + 40, this.width, this.height);
+				// _g.strokeRect(this.fixedX, this.fixedY, this.width, this.height);
 
-				_g.fillStyle = this.bgColor;
-				_g.fillRect(this.fixedX, this.fixedY, this.width, this.height)
-				_g.fillStyle = this.color;
+				// _g.fillStyle = this.bgColor;
+				// _g.fillRect(this.fixedX, this.fixedY, this.width, this.height);
+				// _g.fillStyle = this.color;
 				let damage = this.nodes / this.totalNodes * this.width;
-				_g.fillRect((this.fixedX + this.width) - (this.width - damage), this.fixedY, this.width - damage , this.height)
+				// console.log("this.nodes / this.totalNodes * this.width", this.nodes / this.totalNodes * this.width);
+				_g.myDrawImage(this.assets.redBar, this.fixedX, this.fixedY, damage, this.height);
+				// _g.fillRect((this.fixedX + this.width) - (this.width - damage), this.fixedY, this.width - damage , this.height)
 			} else {	
 				this.opacity *= this.fadeTime;
 				_g.globalAlpha = this.opacity;

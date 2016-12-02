@@ -43,8 +43,8 @@ var dying;
 				if (e != this && !(e.health <= 0)){
 					if (e.getCollisionBounds(0, 0).intersects(this.getCollisionBounds(xOffset, yOffset))){
 						if (e.type === 'monster' && this.type === 'player'){
-							this.takeDamage(2);
-							e.takeDamage(20);
+							this.takeDamage(e.damage);
+							e.takeDamage(this.damage);
 						}
 						return true;
 					}

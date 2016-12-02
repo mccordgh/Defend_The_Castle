@@ -34,12 +34,14 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 	// monsters.bat = monsters.sheet.crop(monsters.width * 2, 0, monsters.width, monsters.height);
 
 	//Build Animation Frames
+
+	//BAT
 	var batframespeed = 200,
 			batwdframes = [], //walk right frames
 			batwrframes = [], //walk left frames
 			batwuframes = [], //walk up frames
 			batwlframes = [], //walk down frames
-			deathframes = [], //dead animation frames
+			// deathframes = [], //dead animation frames
 			batwdrow = 0, //walk up row on spritesheet
 			batwrrow = 1, //walk right row on spritesheet
 			batwurow = 2, //walk down row on spritesheet
@@ -47,6 +49,7 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 			// deathrow = 4, //death animation row on spritesheet
 			batanimationLength = 4; //how many frames in animation
 
+	//PLAYER
 	var framespeed = 200,
 			wrframes = [], //walk right frames
 			wlframes = [], //walk left frames
@@ -145,16 +148,22 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 	tiles.stone = tiles.sheet.crop(tiles.width * 39, tiles.height * 17, tiles.width, tiles.height);
 
 	//Player Portrait
-	var Portraits = new Assets("Portraits", "res/textures/player_portrait.png", 50, 50);
+	var Portraits = new Assets("Portraits", "res/textures/player_portrait.png", 48, 48);
 	Portraits.player = Portraits.sheet.crop(0, 0, 50, 50);
 
 	//HUD
-	var hudLayout = new Assets("hudLayout", "res/textures/hud_layout.png", 896, 96);
-	hudLayout.layout = hudLayout.sheet.crop(0, 0, 896, 96);
+	var hudLayout = new Assets("hudLayout", "res/textures/ui_pieces.png", 200, 70);
+	hudLayout.layout = hudLayout.sheet.crop(13, 13, hudLayout.width, hudLayout.height);
+
+	//HealthBars
+	var healthBars = new Assets("healthBars", "res/textures/ui_pieces.png", 200, 70);
+	healthBars.redBar = healthBars.sheet.crop(240, 23, 102, 9);
+	healthBars.GreenBar = healthBars.sheet.crop(240, 43, 102, 9);
+	healthBars.BlueBar = healthBars.sheet.crop(240, 63, 102, 9);
 
 	//Item Icons
-	var icons = new Assets("icons", "res/textures/tiles.png", 32, 32);
-	icons.sword = icons.sheet.crop(tiles.width * 31, tiles.height * 28, tiles.width, tiles.height);
+	var icons = new Assets("icons", "res/textures/ui_pieces.png", 185, 55);
+	icons.sword = icons.sheet.crop(14, 90, icons.width, icons.height);
 
 
 	return Assets;

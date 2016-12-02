@@ -5,14 +5,15 @@ define(['Helper', 'HealthBar', 'Assets'], function(Helper, HealthBar, Assets){
 		init: function(_handler, _player){
 			this.handler = _handler;
 			this.player = _player;
-			this.width = 896;
-			this.height = 96;
-			this.x = 0;
-			this.y = 448;
+			this.width = 926;
+			this.height = 70;
+			this.x = 50;
+			this.y = 550;
 			this.healthbar = _player.getHealthBar();
 			this.portrait = _player.portrait;
 			this.hudLayout = Assets.getAssets('hudLayout');
 			this.icons = Assets.getAssets('icons');
+			this.score = "9,999,999";
 			// this.nodes = this.totalNodes = _properties.nodes;
 			// this.renderOnFull = _properties.renderOnFull || "on";
 			// this.width = _properties.width || "75";
@@ -29,23 +30,19 @@ define(['Helper', 'HealthBar', 'Assets'], function(Helper, HealthBar, Assets){
 			// this.border = _properties.border || {"show": true, "color": "black", "width": 3};
 		},
 		render(_g){
-			//HUD background and border
-			_g.fillStyle = "#777700";
-			_g.fillRect(this.x, this.y, this.width, this.height);
-  			
-  			//Player portrait and item Icons
-  			_g.myDrawImage(this.portrait.player, this.x + 35, this.y + 25, this.portrait.width, this.portrait.height);
-  			_g.myDrawImage(this.icons.sword, this.width - 98, this.y + 35, 40, 40);
-  			
-  			//Hud layout
-  			_g.myDrawImage(this.hudLayout.layout, this.x, this.y, this.width, this.height);
+			//Player portrait and item Icons
+			_g.myDrawImage(this.portrait.player, this.x + 12, this.y + 10, this.portrait.width, this.portrait.height);
+			_g.myDrawImage(this.icons.sword, this.width - 130, this.y + 5, this.icons.width, this.icons.height);
+			
+			//Hud layout
+			_g.myDrawImage(this.hudLayout.layout, this.x, this.y, this.hudLayout.width, this.hudLayout.height);
 			
 			//Render healthbar
 			this.healthbar.render(_g);
 
-			//Text: HP / MAXHP
-  			_g.fillStyle = "white";
-  			_g.fillText(`${this.player.health} / ${this.healthbar.start}`, this.x + 165, this.y + 39);
+		//Text: Score
+			_g.fillStyle = "white";
+			_g.fillText(`Score: ${this.score}`, 834, 50);
 		},
 		update: function(){
 			// this.opacity = 1;
