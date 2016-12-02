@@ -62,7 +62,7 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'Spat
 			}
 
 			this.entityManager.render(_g);
-			this.hud.render(_g);
+			// this.hud.render(_g);
 
 			// tree.render(_g);
 		},
