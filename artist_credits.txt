@@ -4,6 +4,9 @@ opengameart.org
 	characters: Antifarea(PC)
 	tiles: Project Untumno (Chris Hamons / Medicine Storm)
 	tiles: Buch / Keith Karnage
+	HUD: Buch
 
 Thanks to:
 	Jamie Nichols for JS game engine Youtube tutorial
+
+~Buch -> http://opengameart.org/users/buch

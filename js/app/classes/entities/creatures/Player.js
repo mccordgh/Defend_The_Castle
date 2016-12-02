@@ -11,16 +11,17 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 			this.bounds.width = 30;
 			this.bounds.height = 35;
 			this.type = 'player';
+			this.damage = 25;
 			this.portrait = Assets.getAssets('Portraits');
 			this.healthbar = new HealthBar(_handler, this, {
 									nodes: 100,
 									color: "red",
 									bgColor: "green",
 									fixed: true,
-									fixedX: 104,
-									fixedY: 473,
-									width: 182,
-									height: 17
+									fixedX: 125,
+									fixedY: 558,
+									width: 104,
+									height: 12
 			});
 			// 	color: "#0c0",			// var healthbar_properties = {
 
