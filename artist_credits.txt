@@ -5,6 +5,7 @@ opengameart.org
 	tiles: Project Untumno (Chris Hamons / Medicine Storm)
 	tiles: Buch / Keith Karnage
 	HUD: Buch
+	Castle: Alucard
 
 Thanks to:
 	Jamie Nichols for JS game engine Youtube tutorial
