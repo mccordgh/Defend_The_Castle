@@ -6,10 +6,10 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 			this.assets = Assets.getAssets('player');
 			this.x = _x;
 			this.y = _y;
-			this.bounds.x = 0;
-			this.bounds.y = 0;
-			this.bounds.width = 30;
-			this.bounds.height = 35;
+			this.bounds.x = 8;
+			this.bounds.y = 14;
+			this.bounds.width = 19;
+			this.bounds.height = 20;
 			this.type = 'player';
 			this.damage = 25;
 			this.portrait = Assets.getAssets('Portraits');
@@ -56,6 +56,7 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 		render: function(_g){
 			_g.myDrawImage(this.getCurrentAnimationFrame(), this.x - this.handler.getGameCamera().getxOffset(), this.y - this.handler.getGameCamera().getyOffset(), this.assets.width, this.assets.height);
 			// this.healthbar.render(_g);
+			// _g.fillStyle = "blue";
 			// _g.fillRect(this.bounds.x + this.x - this.handler.getGameCamera().getxOffset(), this.bounds.y + this.y - this.handler.getGameCamera().getyOffset(), this.bounds.width, this.bounds.height);
 		},
 		getInput: function(_dt){

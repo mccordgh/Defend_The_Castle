@@ -1,4 +1,4 @@
-define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'SpatialGrid', 'HUD', "Bat"], function(Class, Tile, Utils, Tree, EntityManager, Player, SpatialGrid, HUD, Bat){
+define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'SpatialGrid', 'HUD', "Bat", 'Castle', 'Portal'], function(Class, Tile, Utils, Tree, EntityManager, Player, SpatialGrid, HUD, Bat, Castle, Portal){
 
 	var tree;
 
@@ -12,8 +12,21 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'Spat
 			
 			this.spatialGrid = new SpatialGrid(this.width * Tile.TILE_WIDTH, this.height * Tile.TILE_HEIGHT, 64);
 			
+			//CASTLE!
+			this.entityManager.addEntity(new Castle(_handler, Tile.TILE_WIDTH * 37, Tile.TILE_HEIGHT * 37));
+
+			//PORTALS!
+			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 6, Tile.TILE_HEIGHT * 6));
+			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 70, Tile.TILE_HEIGHT * 6));
+			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 6, Tile.TILE_HEIGHT * 70));
+			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 70, Tile.TILE_HEIGHT * 70));
+
 			//BAT!
 			this.entityManager.addEntity(new Bat(_handler, Tile.TILE_WIDTH * 10, Tile.TILE_HEIGHT * 10));
+			this.entityManager.addEntity(new Bat(_handler, Tile.TILE_WIDTH * 20, Tile.TILE_HEIGHT * 20));
+			this.entityManager.addEntity(new Bat(_handler, Tile.TILE_WIDTH * 30, Tile.TILE_HEIGHT * 30));
+			this.entityManager.addEntity(new Bat(_handler, Tile.TILE_WIDTH * 31, Tile.TILE_HEIGHT * 40));
+			this.entityManager.addEntity(new Bat(_handler, Tile.TILE_WIDTH * 50, Tile.TILE_HEIGHT * 50));
 
 			//TOP LEFT TREE TROVE
 			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH, Tile.TILE_HEIGHT));

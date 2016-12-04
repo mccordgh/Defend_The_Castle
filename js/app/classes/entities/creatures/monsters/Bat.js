@@ -6,13 +6,13 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			this.assets = Assets.getAssets("bat");
 			this.x = _x;
 			this.y = _y;
-			this.bounds.x = 16;
-			this.bounds.y = 16;
-			this.bounds.width = 32;
-			this.bounds.height = 32;
+			this.bounds.x = 22;
+			this.bounds.y = 15;
+			this.bounds.width = 21;
+			this.bounds.height = 24;
 			this.type = 'monster';
 			this.health = 80;
-			this.damage = 5;
+			this.damage = 7;
 
 			// this.portrait = Assets.getAssets('Portraits');
 			var healthbar_properties = {
@@ -61,6 +61,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			// 				this.y - this.handler.getGameCamera().getyOffset(), 
 			// 				this.width, 
 			// 				this.height);
+			// _g.fillStyle = "blue";
 			// _g.fillRect(this.bounds.x + this.x - this.handler.getGameCamera().getxOffset(), this.bounds.y + this.y - this.handler.getGameCamera().getyOffset(), this.bounds.width, this.bounds.height);
 		},
 		getInput: function(_dt){
