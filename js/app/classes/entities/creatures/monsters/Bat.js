@@ -12,7 +12,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			this.bounds.height = 24;
 			this.type = 'monster';
 			this.health = 80;
-			this.damage = 0.2;
+			this.damage = 1;
 			this.targetX = 624; //39(x) times 16(size of tiles) + 8(to make sure bat keeps moving toward target)
 			this.targetY = 624; //39(y) times 16(size of tiles) + 8(to make sure bat keeps moving toward target)
 
