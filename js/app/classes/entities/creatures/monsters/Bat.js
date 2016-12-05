@@ -12,7 +12,9 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			this.bounds.height = 24;
 			this.type = 'monster';
 			this.health = 80;
-			this.damage = 7;
+			this.damage = 0.2;
+			this.targetX = 624; //39(x) times 16(size of tiles) + 8(to make sure bat keeps moving toward target)
+			this.targetY = 624; //39(y) times 16(size of tiles) + 8(to make sure bat keeps moving toward target)
 
 			// this.portrait = Assets.getAssets('Portraits');
 			var healthbar_properties = {
@@ -35,7 +37,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 		},
 		tick: function(_dt){
 			if (this.health <= 0){
-				console.log(this.type + " DIED!", this.dead);
+				// console.log(this.type + " DIED!", this.dead);
 				this.dead++;
 				if (this.dead === 10){
 					this.dead = 666;
@@ -43,12 +45,31 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 					this.handler.getWorld().getSpatialGrid().remove(new Rectangle(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height), this);
 				}
 			}
-			// this.move();
-			// this.handler.getGameCamera().centerOnEntity(this);
-			this.assets.animations.walk_up.tick();
-			this.assets.animations.walk_right.tick();
-			this.assets.animations.walk_down.tick();
-			this.assets.animations.walk_left.tick();
+			this.xMove = 0;
+			this.yMove = 0;
+			if(this.targetY < this.y) {
+				this.yMove = -this.speed * _dt;
+			} 
+			if (this.targetY > this.y) {
+				this.yMove = this.speed * _dt;
+			}
+			if(this.targetX < this.x) {
+				this.xMove = -this.speed * _dt;
+			} 
+			if (this.targetX > this.x) {
+				this.xMove = this.speed * _dt;
+			}
+
+			this.move();
+			if (this.yMove < 0)
+				this.assets.animations.walk_up.tick();
+			if (this.yMove > 0)
+				this.assets.animations.walk_down.tick();
+			if (this.xMove > 0)
+				this.assets.animations.walk_right.tick();
+			if (this.xMove < 0)
+				this.assets.animations.walk_left.tick();
+			// this.assets.animations.idle.tick();
 			this.assets.animations.idle.tick();
 			// if (this.health <= 0)
 			// 	this.assets.animations.death.tick();
@@ -65,36 +86,23 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			// _g.fillRect(this.bounds.x + this.x - this.handler.getGameCamera().getxOffset(), this.bounds.y + this.y - this.handler.getGameCamera().getyOffset(), this.bounds.width, this.bounds.height);
 		},
 		getInput: function(_dt){
-			this.xMove = 0;
-			this.yMove = 0;
-			if(this.handler.getKeyManager().up) {
-				this.yMove = -this.speed * _dt;
-			} 
-			if (this.handler.getKeyManager().down) {
-				this.yMove = this.speed * _dt;
-			}
-			if(this.handler.getKeyManager().left) {
-				this.xMove = -this.speed * _dt;
-			} 
-			if (this.handler.getKeyManager().right) {
-				this.xMove = this.speed * _dt;
-			}
+			
 		},
 		getCurrentAnimationFrame: function(){
 			if (this.health <= 0){
 				return this.assets.animations.death.getCurrentFrame();
 			}
 			if (this.yMove < 0){
-					console.log("bat walk up");
+					// console.log("bat walk up");
 					return this.assets.animations.walk_up.getCurrentFrame();
 			} else if (this.yMove > 0){
-					console.log("bat walk down");
+					// console.log("bat walk down");
 					return this.assets.animations.walk_down.getCurrentFrame();
 			} else if (this.xMove < 0){
-					console.log("bat walk left");
+					// console.log("bat walk left");
 					return this.assets.animations.walk_left.getCurrentFrame();
 			} else if (this.xMove > 0){
-					console.log("bat walk right");
+					// console.log("bat walk right");
 					return this.assets.animations.walk_right.getCurrentFrame();
 			} else {
 					return this.assets.animations.idle.getCurrentFrame();
