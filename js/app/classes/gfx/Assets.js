@@ -135,17 +135,17 @@ for(var i = 0; i < portalanimationLength; i++){
 		});
 	}
 
-	var idleframes = [
-		{frame: player.sheet.crop(0, 2 * player.height, player.width, player.height),speed: framespeed},
-		{frame: player.sheet.crop(1 * player.width, 2 * player.height, player.width, player.height),speed: framespeed},
-		{frame: player.sheet.crop(2 * player.width, 2 * player.height, player.width, player.height),speed: framespeed}
-	];
+	// var idleframes = [
+	// 	{frame: player.sheet.crop(0, 2 * player.height, player.width, player.height),speed: framespeed},
+	// 	{frame: player.sheet.crop(1 * player.width, 2 * player.height, player.width, player.height),speed: framespeed},
+	// 	{frame: player.sheet.crop(2 * player.width, 2 * player.height, player.width, player.height),speed: framespeed}
+	// ];
 
 	player.addAnimation("walk_up", new Animation(wuframes));
 	player.addAnimation("walk_right", new Animation(wrframes));
 	player.addAnimation("walk_down", new Animation(wdframes));
 	player.addAnimation("walk_left", new Animation(wlframes));
-	player.addAnimation("idle", new Animation(idleframes));
+	// player.addAnimation("idle", new Animation(idleframes));
 	player.addAnimation("death", new Animation(deathframes));
 
 

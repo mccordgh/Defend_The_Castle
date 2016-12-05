@@ -1,17 +1,20 @@
 define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar){
 
+	var lastAnimation = "walk_down";
+
 	var Player = Creature.extend({
 		init: function(_handler, _x, _y){
 			this._super(_handler, _x, _y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
 			this.assets = Assets.getAssets('player');
 			this.x = _x;
 			this.y = _y;
-			this.bounds.x = 8;
+			this.bounds.x = 6;
 			this.bounds.y = 14;
+			this.speed = 400;
 			this.bounds.width = 19;
-			this.bounds.height = 20;
+			this.bounds.height = 24;
 			this.type = 'player';
-			this.damage = 25;
+			this.damage = 30;
 			this.portrait = Assets.getAssets('Portraits');
 			this.healthbar = new HealthBar(_handler, this, {
 									nodes: 100,
@@ -45,11 +48,15 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 			this.getInput(_dt);
 			this.move();
 			this.handler.getGameCamera().centerOnEntity(this);
-			this.assets.animations.walk_up.tick();
-			this.assets.animations.walk_right.tick();
-			this.assets.animations.walk_down.tick();
-			this.assets.animations.walk_left.tick();
-			this.assets.animations.idle.tick();
+			if (this.yMove < 0)
+				this.assets.animations.walk_up.tick();
+			if (this.yMove > 0)
+				this.assets.animations.walk_down.tick();
+			if (this.xMove > 0)
+				this.assets.animations.walk_right.tick();
+			if (this.xMove < 0)
+				this.assets.animations.walk_left.tick();
+			// this.assets.animations.idle.tick();
 			if (this.health <= 0)
 				this.assets.animations.death.tick();
 		},
@@ -80,15 +87,19 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 				return this.assets.animations.death.getCurrentFrame();
 			}
 			if (this.yMove < 0){
+					lastAnimation = "walk_up";
 					return this.assets.animations.walk_up.getCurrentFrame();
 			} else if (this.yMove > 0){
+					lastAnimation = "walk_down";
 					return this.assets.animations.walk_down.getCurrentFrame();
 			} else if (this.xMove < 0){
+					lastAnimation = "walk_left";
 					return this.assets.animations.walk_left.getCurrentFrame();
 			} else if (this.xMove > 0){
+					lastAnimation = "walk_right";
 					return this.assets.animations.walk_right.getCurrentFrame();
 			} else {
-					return this.assets.animations.idle.getCurrentFrame();
+					return this.assets.animations[lastAnimation].getCurrentFrame();
 			}
 		},
 		getHealthBar: function() {

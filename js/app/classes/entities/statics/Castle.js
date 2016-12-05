@@ -1,4 +1,4 @@
-define(['StaticEntity', 'Tile', 'Assets'], function(StaticEntity, Tile, Assets){
+define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle'], function(StaticEntity, Tile, Assets, HealthBar, Rectangle){
 
 	var assets = Assets.getAssets("castle");
 
@@ -11,10 +11,37 @@ define(['StaticEntity', 'Tile', 'Assets'], function(StaticEntity, Tile, Assets){
 			this.bounds.height = 80;
 			this.height = 80;
 			this.width = 80;
-			this.type = 'static';
+			this.type = 'castle';
+			this.health = 1000;
+			var healthbar_properties = {
+				color: "#0c0",
+				bgColor: "#a00",
+				yOffset: 10,
+				nodes: 100,
+				split: 0,
+				width: 80,
+				height: 10,
+				fadeTime: 1,
+				renderOnFull: "on",
+				border: {
+					show: false,
+					color: "#000",
+					width: 2
+				}
+			};
+			this.healthbar = new HealthBar(_handler, this, healthbar_properties);
 		},
 		tick: function(){
-
+			if (this.health <= 0){
+				console.log(this.type + " DIED!", this.dead);
+				this.dead++;
+				if (this.dead === 10){
+					console.log("removing castle");
+					this.dead = 666;
+					this.handler.getWorld().getEntityManager().removeEntity(this);
+					this.handler.getWorld().getSpatialGrid().remove(new Rectangle(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height), this);
+				}
+			}
 		},
 		render: function(_g){
 			_g.myDrawImage(assets.sprite, 
@@ -22,6 +49,8 @@ define(['StaticEntity', 'Tile', 'Assets'], function(StaticEntity, Tile, Assets){
 							this.y - this.handler.getGameCamera().getyOffset(), 
 							this.width, 
 							this.height);
+			this.healthbar.render(_g);
+
 			// _g.fillStyle = "green";
 			// _g.fillRect(this.bounds.x + this.x - this.handler.getGameCamera().getxOffset(), this.bounds.y + this.y - this.handler.getGameCamera().getyOffset(), this.bounds.width, this.bounds.height);
 		}
