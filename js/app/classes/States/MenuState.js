@@ -36,7 +36,8 @@ define(['State', 'GameState', 'KeyManager'], function(State, GameState, KeyManag
 		},
 		getInput: function(_dt){
 			if(this.handler.getKeyManager().space) {
-				State.setState(this.handler.getStateByName('main menu'));
+				var gameState = new GameState(this.handler);
+				State.setState(gameState);			
 			} 
 		}
 	});
