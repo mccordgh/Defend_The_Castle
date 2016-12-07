@@ -44,7 +44,7 @@ define(['Jquery', 'Class'],function($, Class){
 		return (height / 2);
 	};
 
-	CanvasRenderingContext2D.prototype.drawCenterText = function(_textObject){
+	CanvasRenderingContext2D.prototype.drawText = function(_textObject){
 		graphics.strokeStyle = _textObject.borderColor;
 		graphics.fillStyle = _textObject.fillColor;
 		graphics.font = `${_textObject.fontSize}px ${_textObject.font}`;
