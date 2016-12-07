@@ -1,9 +1,9 @@
-define(['Class', 'Display', 'State', 'GameState', 'KeyManager', 'Handler', 'GameCamera'], function(Class,Display,State,GameState, KeyManager, Handler, GameCamera){
+define(['Class', 'Display', 'State', 'MenuState', 'GameState', 'KeyManager', 'Handler', 'GameCamera'], function(Class,Display,State,MenuState, KeyManager, Handler, GameCamera, GameState){
 
 	var _this;
 	var running = false;
 	var title, width, height, g, display, keyManager, handler, gameCamera;
-	var gameState, menuState, settingsState;
+	var gameState, menuState, gameOverState, settingsState;
 
 
 	var Game = Class.extend({
@@ -63,6 +63,19 @@ define(['Class', 'Display', 'State', 'GameState', 'KeyManager', 'Handler', 'Game
 		},
 		getGameCamera: function() {
 			return gameCamera;
+		},
+		getStateByName: function(_name) {
+			switch (_name) {
+				case 'main menu':
+					return mainMenuState;
+					break;
+				case 'game over':
+					return gameOverState;
+					break;
+				case 'game':
+					return gameState;
+					break;
+			}
 		}
 	});
 
@@ -73,11 +86,15 @@ define(['Class', 'Display', 'State', 'GameState', 'KeyManager', 'Handler', 'Game
 		g = display.getGraphics();
 		gameCamera = new GameCamera(handler, 0, 0);
 		gameState = new GameState(handler);
-		State.setState(gameState);
+		gameOverState = new gameOverState(handler);
+		mainMenuState = new MenuState(handler);
+		State.setState(mainMenuState);
 	}
 	
 	function tick(_dt) {
 		keyManager.tick();
+			// console.log(keyManager.up);
+			// console.log(this.handler.getKeyManager());
 		if(State.getState() !== null){
 			State.getState().tick(_dt);
 		}

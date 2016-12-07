@@ -1,4 +1,4 @@
-define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle'], function(StaticEntity, Tile, Assets, HealthBar, Rectangle){
+define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverState', 'State'], function(StaticEntity, Tile, Assets, HealthBar, Rectangle, GameOverState, State){
 
 	var assets = Assets.getAssets("castle");
 
@@ -12,7 +12,7 @@ define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle'], function(St
 			this.height = 80;
 			this.width = 80;
 			this.type = 'castle';
-			this.health = 1000;
+			this.health = 10;
 			var healthbar_properties = {
 				color: "#0c0",
 				bgColor: "#a00",
@@ -40,6 +40,8 @@ define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle'], function(St
 					this.dead = 666;
 					this.handler.getWorld().getEntityManager().removeEntity(this);
 					this.handler.getWorld().getSpatialGrid().remove(new Rectangle(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height), this);
+					gameOverState = new GameOverState(this.handler);
+					State.setState(gameOverState);
 				}
 			}
 		},

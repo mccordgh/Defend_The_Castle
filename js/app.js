@@ -15,6 +15,7 @@ requirejs.config({
 		"EntityManager":"app/classes/entities/EntityManager",
 		"Game":"app/classes/Game",
 		"GameCamera":"app/classes/gfx/GameCamera",
+		"GameOverState":"app/classes/states/GameOverState",
 		"GameState":"app/classes/States/GameState",
 		"GrassTile":"app/classes/tiles/GrassTile",
 		"Handler":"app/classes/Handler",

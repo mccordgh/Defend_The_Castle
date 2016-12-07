@@ -1,4 +1,4 @@
-define(['StaticEntity', 'Tile', 'Assets'], function(StaticEntity, Tile, Assets){
+define(['StaticEntity', 'Tile', 'Assets', 'Bat', 'World'], function(StaticEntity, Tile, Assets, Bat, World){
 
 	var Portal = StaticEntity.extend({
 		init: function(_handler, _x, _y){
@@ -10,6 +10,9 @@ define(['StaticEntity', 'Tile', 'Assets'], function(StaticEntity, Tile, Assets){
 			this.height = 64;
 			this.width = 64;
 			this.type = 'static';
+			this.spawnTimer = 0;
+			this.lastSpawnTime = Date.now();
+			this.spawnSpeed = 2000;
 			this.assets = Assets.getAssets("portal");
 		},
 		tick: function(_dt){
@@ -29,6 +32,7 @@ define(['StaticEntity', 'Tile', 'Assets'], function(StaticEntity, Tile, Assets){
 			// this.assets.animations.walk_down.tick();
 			// this.assets.animations.walk_left.tick();
 			this.assets.animations.idle.tick();
+			this.tryToSpawnMonster();
 			// if (this.health <= 0)
 			// 	this.assets.animations.death.tick();
 		},
@@ -64,6 +68,31 @@ define(['StaticEntity', 'Tile', 'Assets'], function(StaticEntity, Tile, Assets){
 		// },
 		getCurrentAnimationFrame: function(){
 			return this.assets.animations.idle.getCurrentFrame();
+		},
+		tryToSpawnMonster(){
+			this.spawnTimer += Date.now() - this.lastSpawnTime;
+			this.lastSpawnTime = Date.now();
+
+			if (this.spawnTimer >= this.spawnSpeed){
+				let spawnX, spawnY;
+				
+				if (this.x >= this.handler.getWidth() / 2) {
+					spawnX = this.x - (Tile.TILE_WIDTH * 3)
+				} else {
+					spawnX = this.x + (Tile.TILE_WIDTH * 3)
+				}
+				if (this.y >= this.handler.getHeight() / 2) {
+					spawnY = this.y - (Tile.TILE_HEIGHT * 3)
+				} else {
+					spawnY = this.y + (Tile.TILE_HEIGHT * 3)
+				}
+				
+				// Spawning a BAT!
+				this.handler.getWorld().getEntityManager().addEntity(new Bat(this.handler, spawnX, spawnY));
+				this.spawnTimer = 0;
+				
+			}
+
 		}
 		// getHealthBar: function() {
 		// 	return this.healthbar;

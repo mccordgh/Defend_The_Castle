@@ -1,8 +1,9 @@
-define(['State', 'GameState', 'KeyManager'], function(State, GameState, KeyManager){
+define(['State', 'KeyManager', 'MenuState'], function(State, KeyManager, MenuState){
 
 	var fontSize;
+	console.log("MENUSTATE:", MenuState);
 
-	var MenuState = State.extend({
+	var GameOverState = State.extend({
 		init:function(_handler){
 			this._super(_handler);
 		},
@@ -12,12 +13,12 @@ define(['State', 'GameState', 'KeyManager'], function(State, GameState, KeyManag
 		},
 		render: function(_g){
       if (_g){
-				_g.fillStyle = "black";
+				_g.fillStyle = rgba(255,0,0,0.4);
 				_g.fillRect(0, 0, this.handler.getWidth(), this.handler.getHeight());
       	_g.drawCenterText({
       		borderColor: 'white',
-      		fillColor: 'red',
-      		text: 'Defend the Costle!',
+      		fillColor: 'green',
+      		text: 'Game Over!',
       		fontSize: 56,
       		font: 'serif',
       		x: function() {return _g.centerTextOnX(this.text)},
@@ -25,8 +26,8 @@ define(['State', 'GameState', 'KeyManager'], function(State, GameState, KeyManag
       	})
       	_g.drawCenterText({
       		borderColor: 'white',
-      		fillColor: 'green',
-      		text: 'Press Space Bar to start the Game!',
+      		fillColor: 'red',
+      		text: 'Press Space Bar to return to Main Menu!',
       		fontSize: 56,
       		font: 'serif',
       		x: function() {return _g.centerTextOnX(this.text)},
@@ -36,12 +37,15 @@ define(['State', 'GameState', 'KeyManager'], function(State, GameState, KeyManag
 		},
 		getInput: function(_dt){
 			if(this.handler.getKeyManager().space) {
-				State.setState(this.handler.getStateByName('main menu'));
+				console.log("from gameover MenuState", MenuState);
+				console.log("from gameover handler", this.handler)
+				let menuState = new MenuState(this.handler);
+				State.setState(menuState);
 			} 
 		}
 	});
 
 
-	return MenuState;
+	return GameOverState;
 
 });
