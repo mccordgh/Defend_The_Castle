@@ -11,7 +11,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			this.bounds.width = 21;
 			this.bounds.height = 24;
 			this.type = 'monster';
-			this.health = 50;
+			this.health = 80;
 			this.damage = 1;
 			this.targetType = 'castle';
 			var healthbar_properties = {
@@ -22,7 +22,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 				split: 0,
 				width: 75,
 				height: 6,
-				fadeTime: 1,
+				fadeTime: 0.97,
 				renderOnFull: "on",
 				border: {
 					show: false,
@@ -36,7 +36,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			if (this.health <= 0){
 				// console.log(this.type + " DIED!", this.dead);
 				this.dead++;
-				if (this.dead === 10){
+				if (this.dead === 60){
 					this.dead = 666;
 					this.handler.getWorld().getEntityManager().getPlayer().score += 1000;
 					this.handler.getWorld().getEntityManager().removeEntity(this);
@@ -61,7 +61,9 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 					this.xMove = this.speed * _dt;
 				}
 			}		
-			this.move();
+			if (this.dead === 0)
+				this.move();
+				
 			if (this.yMove < 0)
 				this.assets.animations.walk_up.tick();
 			if (this.yMove > 0)
@@ -70,10 +72,8 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 				this.assets.animations.walk_right.tick();
 			if (this.xMove < 0)
 				this.assets.animations.walk_left.tick();
-			// this.assets.animations.idle.tick();
+
 			this.assets.animations.idle.tick();
-			// if (this.health <= 0)
-			// 	this.assets.animations.death.tick();
 		},
 		render: function(_g){
 			_g.myDrawImage(this.getCurrentAnimationFrame(), this.x - this.handler.getGameCamera().getxOffset(), this.y - this.handler.getGameCamera().getyOffset(), this.width, this.height);
@@ -91,6 +91,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 		},
 		getCurrentAnimationFrame: function(){
 			if (this.health <= 0){
+				this.assets.animations.death.tick();
 				return this.assets.animations.death.getCurrentFrame();
 			}
 			if (this.yMove < 0){
