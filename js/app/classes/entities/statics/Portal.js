@@ -76,8 +76,9 @@ define(['StaticEntity', 'Tile', 'Assets', 'Bat', 'World'], function(StaticEntity
 			if (this.spawnTimer >= this.spawnSpeed){
 				let spawnX, spawnY, spawnChance;
 				spawnChance = Math.ceil(Math.random() * 4);
-
 				if (spawnChance === 4){
+					if (this.spawnSpeed > 100)
+						this.spawnSpeed -= 30;
 					if (this.x >= this.handler.getWidth() / 2) {
 						spawnX = this.x - (Tile.TILE_WIDTH * 3);
 					} else {

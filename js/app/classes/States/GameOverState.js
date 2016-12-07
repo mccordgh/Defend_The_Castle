@@ -5,6 +5,7 @@ define(['State', 'GameState', 'KeyManager'], function(State, GameState, KeyManag
 	var GameOverState = State.extend({
 		init:function(_handler){
 			this._super(_handler);
+			this.endScore = this.handler.getWorld().getEntityManager().getPlayer().score;
 		},
 		tick: function(_dt){
 			this.getInput(_dt);
@@ -31,6 +32,15 @@ define(['State', 'GameState', 'KeyManager'], function(State, GameState, KeyManag
       		font: 'serif',
       		x: function() {return _g.centerTextOnX(this.text);},
       		y: function() {return _g.centerTextOnY();},
+      	});
+      	_g.drawText({
+      		borderColor: 'white',
+      		fillColor: 'blue',
+      		text: `You acheived a score of ${this.endScore.toLocaleString()}!`,
+      		fontSize: 56,
+      		font: 'serif',
+      		x: function() {return _g.centerTextOnX(this.text);},
+      		y: function() {return _g.centerTextOnY() + (this.fontSize * 2);},
       	});
       }
 		},

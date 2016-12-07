@@ -44,10 +44,10 @@ define(['Helper', 'HealthBar', 'Assets'], function(Helper, HealthBar, Assets){
 			_g.drawText({
 				borderColor: 'black',
 				fillColor: 'white',
-				text: `Score: ${score}`,
+				text: `Score: ${score.toLocaleString()}`,
 				fontSize: 42,
 				font: 'serif',
-				x: function() {return _g.centerTextOnX(this.text)},
+				x: function() {return _g.centerTextOnX(this.text);},
 				y: function(){return 50;}
 			});
 		},
