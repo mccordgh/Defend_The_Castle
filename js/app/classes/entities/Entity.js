@@ -10,6 +10,7 @@ var dying;
 			this.height = _height;
 			this.handler = _handler;
 			this.bounds = new Rectangle(0, 0, _width, _height);
+			this.target = null;
 		},
 		tick: function(_dt){
 		},
@@ -40,13 +41,15 @@ var dying;
 
 			for(var i = 0; i < candidates.length; i++){
 				var e = candidates[i];
-				if (e != this && !(e.health <= 0)){
-					if (e.getCollisionBounds(0, 0).intersects(this.getCollisionBounds(xOffset, yOffset))){
+				if (e != this && (e.health > 0)){
+					if (e.getCollisionBounds(0, 0).intersects(this.getCollisionBounds(xOffset, yOffset))&& !(this.type === 'monster' && e.type === 'monster')){
 						if (e.type === 'monster' && this.type === 'player'){
 							e.takeDamage(this.damage);
 						}
 						if (e.type === 'castle' && this.type === 'monster'){
-							e.takeDamage(this.damage);
+							if (this.targetType)
+								if(this.targetType === 'castle')
+									e.takeDamage(this.damage);
 						}
 						return true;
 					}

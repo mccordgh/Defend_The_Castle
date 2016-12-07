@@ -11,12 +11,9 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			this.bounds.width = 21;
 			this.bounds.height = 24;
 			this.type = 'monster';
-			this.health = 80;
+			this.health = 50;
 			this.damage = 1;
-			this.targetX = 624; //39(x) times 16(size of tiles) + 8(to make sure bat keeps moving toward target)
-			this.targetY = 624; //39(y) times 16(size of tiles) + 8(to make sure bat keeps moving toward target)
-
-			// this.portrait = Assets.getAssets('Portraits');
+			this.targetType = 'castle';
 			var healthbar_properties = {
 				color: "#0c0",
 				bgColor: "#a00",
@@ -47,19 +44,22 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			}
 			this.xMove = 0;
 			this.yMove = 0;
-			if(this.targetY < this.y) {
-				this.yMove = -this.speed * _dt;
-			} 
-			if (this.targetY > this.y) {
-				this.yMove = this.speed * _dt;
-			}
-			if(this.targetX < this.x) {
-				this.xMove = -this.speed * _dt;
-			} 
-			if (this.targetX > this.x) {
-				this.xMove = this.speed * _dt;
-			}
-
+			
+			this.target = this.handler.getWorld().getEntityManager().getSingleEntity(this.targetType);		
+			if (this.target) {
+				if(this.target.y < this.y) {
+					this.yMove = -this.speed * _dt;
+				} 
+				if (this.target.y > this.y) {
+					this.yMove = this.speed * _dt;
+				}
+				if(this.target.x < this.x) {
+					this.xMove = -this.speed * _dt;
+				} 
+				if (this.target.x > this.x) {
+					this.xMove = this.speed * _dt;
+				}
+			}		
 			this.move();
 			if (this.yMove < 0)
 				this.assets.animations.walk_up.tick();

@@ -32,6 +32,21 @@ define(['Class', 'Rectangle', 'Tile'], function(Class, Rectangle, Tile){
 		getEntities: function(){
 			return entities;
 		},
+		getSingleEntity(_type) {
+			let entityObj;
+
+			entities.forEach((item, index) => {
+				if (item.type === _type) {
+					entityObj = {
+						type: item.type,
+						x: item.x,
+						y: item.y
+					};
+				}
+			});
+
+			return entityObj;
+		},
 		addEntity: function(e){
 			entities.push(e);
 			handler.getWorld().getSpatialGrid().insert(new Rectangle(e.x + e.bounds.x, e.y + e.bounds.y, e.bounds.width, e.bounds.height), e);

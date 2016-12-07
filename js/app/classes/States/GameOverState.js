@@ -35,9 +35,6 @@ define(['State', 'GameState', 'KeyManager'], function(State, GameState, KeyManag
       }
 		},
 		getInput: function(_dt){
-			if(this.handler.getKeyManager().space) {
-				window.location.reload();
-			} 
 		}
 	});
 
