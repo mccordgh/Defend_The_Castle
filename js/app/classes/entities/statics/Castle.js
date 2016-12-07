@@ -12,7 +12,7 @@ define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverSta
 			this.height = 80;
 			this.width = 80;
 			this.type = 'castle';
-			this.health = 10;
+			this.health = 1000;
 			var healthbar_properties = {
 				color: "#0c0",
 				bgColor: "#a00",
