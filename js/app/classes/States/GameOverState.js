@@ -8,7 +8,7 @@ define(['State', 'GameState', 'KeyManager'], function(State, GameState, KeyManag
 		},
 		tick: function(_dt){
 			this.getInput(_dt);
-			this.render()
+			this.render();
 		},
 		render: function(_g){
       if (_g){
@@ -20,18 +20,18 @@ define(['State', 'GameState', 'KeyManager'], function(State, GameState, KeyManag
       		text: 'Game Over!',
       		fontSize: 56,
       		font: 'serif',
-      		x: function() {return _g.centerTextOnX(this.text)},
-      		y: function() {return _g.centerTextOnY() - (this.fontSize * 2)},
-      	})
+      		x: function() {return _g.centerTextOnX(this.text);},
+      		y: function() {return _g.centerTextOnY() - (this.fontSize * 2);},
+      	});
       	_g.drawCenterText({
       		borderColor: 'white',
       		fillColor: 'green',
-      		text: 'Press Space Bar to return to Main Menu!',
+      		text: 'Press F5 to return to Main Menu!',
       		fontSize: 56,
       		font: 'serif',
-      		x: function() {return _g.centerTextOnX(this.text)},
-      		y: function() {return _g.centerTextOnY()},
-      	})
+      		x: function() {return _g.centerTextOnX(this.text);},
+      		y: function() {return _g.centerTextOnY();},
+      	});
       }
 		},
 		getInput: function(_dt){
