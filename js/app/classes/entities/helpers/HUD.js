@@ -13,7 +13,6 @@ define(['Helper', 'HealthBar', 'Assets'], function(Helper, HealthBar, Assets){
 			this.portrait = _player.portrait;
 			this.hudLayout = Assets.getAssets('hudLayout');
 			this.icons = Assets.getAssets('icons');
-			this.score = "9,999,999";
 			// this.nodes = this.totalNodes = _properties.nodes;
 			// this.renderOnFull = _properties.renderOnFull || "on";
 			// this.width = _properties.width || "75";
@@ -24,7 +23,7 @@ define(['Helper', 'HealthBar', 'Assets'], function(Helper, HealthBar, Assets){
 			// this.bgColor = _properties.bgColor;
 			// this.split = _properties.split || 0; //Gap between nodes?
 			// this.nodeWidth = this.width / this.nodes;
-			// this.nodeHeight = this.height;
+			// this.nodeHeight = this.height;	
 			// this.fadeTime = _properties.fadeTime || 1;
 			// this.opacity = _properties.opacity || 1;
 			// this.border = _properties.border || {"show": true, "color": "black", "width": 3};
@@ -39,10 +38,18 @@ define(['Helper', 'HealthBar', 'Assets'], function(Helper, HealthBar, Assets){
 			
 			//Render healthbar
 			this.healthbar.render(_g);
-
-		//Text: Score
-			_g.fillStyle = "white";
-			_g.fillText(`Score: ${this.score}`, 834, 50);
+			let score = this.handler.getWorld().getEntityManager().getPlayer().score;
+	
+			//Text: Score
+			_g.drawText({
+				borderColor: 'black',
+				fillColor: 'white',
+				text: `Score: ${score}`,
+				fontSize: 42,
+				font: 'serif',
+				x: function() {return _g.centerTextOnX(this.text)},
+				y: function(){return 50;}
+			});
 		},
 		update: function(){
 			// this.opacity = 1;

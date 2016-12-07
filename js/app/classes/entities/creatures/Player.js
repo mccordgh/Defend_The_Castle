@@ -10,11 +10,12 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 			this.y = _y;
 			this.bounds.x = 6;
 			this.bounds.y = 14;
-			this.speed = 400;
+			this.speed = 300;
 			this.bounds.width = 19;
 			this.bounds.height = 24;
 			this.type = 'player';
 			this.damage = 60;
+			this.score = 0;
 			this.portrait = Assets.getAssets('Portraits');
 			this.healthbar = new HealthBar(_handler, this, {
 									nodes: 100,

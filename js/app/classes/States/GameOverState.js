@@ -14,7 +14,7 @@ define(['State', 'GameState', 'KeyManager'], function(State, GameState, KeyManag
       if (_g){
 				_g.fillStyle = "red";
 				_g.fillRect(0, 0, this.handler.getWidth(), this.handler.getHeight());
-      	_g.drawCenterText({
+      	_g.drawText({
       		borderColor: 'white',
       		fillColor: 'black',
       		text: 'Game Over!',
@@ -23,7 +23,7 @@ define(['State', 'GameState', 'KeyManager'], function(State, GameState, KeyManag
       		x: function() {return _g.centerTextOnX(this.text);},
       		y: function() {return _g.centerTextOnY() - (this.fontSize * 2);},
       	});
-      	_g.drawCenterText({
+      	_g.drawText({
       		borderColor: 'white',
       		fillColor: 'green',
       		text: 'Press F5 to return to Main Menu!',
