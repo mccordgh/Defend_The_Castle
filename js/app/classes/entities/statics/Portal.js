@@ -12,7 +12,7 @@ define(['StaticEntity', 'Tile', 'Assets', 'Bat', 'World'], function(StaticEntity
 			this.type = 'static';
 			this.spawnTimer = 0;
 			this.lastSpawnTime = Date.now();
-			this.spawnSpeed = 2000;
+			this.spawnSpeed = 5000;
 			this.assets = Assets.getAssets("portal");
 		},
 		tick: function(_dt){
