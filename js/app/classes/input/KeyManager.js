@@ -7,11 +7,12 @@ define(['Class'], function(Class){
 
 		},
 		tick: function(){
-		this.up = keys[87];
-		this.down = keys[83];
-		this.left = keys[65];
-		this.right = keys[68];
-	}
+			this.up = keys[87];
+			this.down = keys[83];
+			this.left = keys[65];
+			this.right = keys[68];
+			this.space = keys[32];
+		}
 	});
 
 	window.onkeydown = function(e){

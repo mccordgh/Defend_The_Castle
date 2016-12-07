@@ -2,7 +2,7 @@ define(['State', 'GameState', 'KeyManager'], function(State, GameState, KeyManag
 
 	var fontSize;
 
-	var MenuState = State.extend({
+	var GameOverState = State.extend({
 		init:function(_handler){
 			this._super(_handler);
 		},
@@ -12,12 +12,12 @@ define(['State', 'GameState', 'KeyManager'], function(State, GameState, KeyManag
 		},
 		render: function(_g){
       if (_g){
-				_g.fillStyle = "black";
+				_g.fillStyle = "red";
 				_g.fillRect(0, 0, this.handler.getWidth(), this.handler.getHeight());
       	_g.drawCenterText({
       		borderColor: 'white',
-      		fillColor: 'red',
-      		text: 'Defend the Costle!',
+      		fillColor: 'black',
+      		text: 'Game Over!',
       		fontSize: 56,
       		font: 'serif',
       		x: function() {return _g.centerTextOnX(this.text)},
@@ -26,7 +26,7 @@ define(['State', 'GameState', 'KeyManager'], function(State, GameState, KeyManag
       	_g.drawCenterText({
       		borderColor: 'white',
       		fillColor: 'green',
-      		text: 'Press Space Bar to start the Game!',
+      		text: 'Press Space Bar to return to Main Menu!',
       		fontSize: 56,
       		font: 'serif',
       		x: function() {return _g.centerTextOnX(this.text)},
@@ -36,13 +36,12 @@ define(['State', 'GameState', 'KeyManager'], function(State, GameState, KeyManag
 		},
 		getInput: function(_dt){
 			if(this.handler.getKeyManager().space) {
-				var gameState = new GameState(this.handler);
-				State.setState(gameState);			
+				window.location.reload();
 			} 
 		}
 	});
 
 
-	return MenuState;
+	return GameOverState;
 
 });

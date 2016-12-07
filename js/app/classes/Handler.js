@@ -23,6 +23,9 @@ define(['Class'],function(Class){
 		},
 		setWorld: function(_world){
 			world = _world;
+		},
+		getStateByName: function(_name){
+			return game.getStateByName(_name);
 		}
 	
 	});
