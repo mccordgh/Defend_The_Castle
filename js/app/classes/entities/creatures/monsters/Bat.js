@@ -38,7 +38,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 				this.dead++;
 				if (this.dead === 10){
 					this.dead = 666;
-					this.handler.getWorld().getEntityManager().getPlayer().score += 50;
+					this.handler.getWorld().getEntityManager().getPlayer().score += 1000;
 					this.handler.getWorld().getEntityManager().removeEntity(this);
 					this.handler.getWorld().getSpatialGrid().remove(new Rectangle(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height), this);
 				}
