@@ -6,7 +6,7 @@ define(['Helper', 'Assets'], function(Helper, Assets){
 			this.handler = _handler;
 			this.entity = _entity;
 			this.start = _entity.health;
-			this.assets = Assets.getAssets('healthBars');
+			this.assets = Assets.getAssets('hudLayout');
 			this.nodes = this.totalNodes = _properties.nodes;
 			this.renderOnFull = _properties.renderOnFull || "on";
 			this.fixed = _properties.fixed || false;
@@ -18,6 +18,7 @@ define(['Helper', 'Assets'], function(Helper, Assets){
 			this.yOffset = _properties.yOffset || 10;
 			this.color = _properties.color;
 			this.bgColor = _properties.bgColor;
+			this.title = _properties.title;
 			this.split = _properties.split || 0; //Gap between nodes
 			this.nodeWidth = this.width / this.nodes;
 			this.nodeHeight = this.height;
@@ -28,17 +29,36 @@ define(['Helper', 'Assets'], function(Helper, Assets){
 		},
 		render(_g){
 				if (this.fixed){
-					_g.myDrawImage(this.assets.GreenBar, this.fixedX, this.fixedY + 20, this.width, this.height);
-					_g.myDrawImage(this.assets.BlueBar, this.fixedX, this.fixedY + 40, this.width, this.height);
-					// _g.strokeRect(this.fixedX, this.fixedY, this.width, this.height);
+		
+					//Drawing healthbar partial transparent background frame
+					// _g.globalAlpha = 0.4;
+					// _g.fillStyle = "black";
+					// _g.fillRect(this.fixedX - 5, this.fixedY - 35, this.width + 10, this.height + 40);
+					// _g.globalAlpha = 1;
 
-					// _g.fillStyle = this.bgColor;
-					// _g.fillRect(this.fixedX, this.fixedY, this.width, this.height);
-					// _g.fillStyle = this.color;
+					//Drawing healthbar Title
+					// _g.fillStyle = "white";
+					let tempX = this.fixedX;
+					let tempY = this.fixedY - 10;
+					_g.drawText({
+						border: true,
+						borderHeight: 90,
+						additionalWidth: this.width,
+						borderColor: 'black',
+						fillColor: 'white',
+						text: "Castle Health:",
+						fontSize: 32,
+						x: function() {return tempX;},
+						y: function(){return tempY;}
+					});
+
+					//Drawing healthbar empty meter and red meter proportionate with amount of damage total taken
 					let damage = this.nodes / this.totalNodes * this.width;
-					// console.log("this.nodes / this.totalNodes * this.width", this.nodes / this.totalNodes * this.width);
-					_g.myDrawImage(this.assets.redBar, this.fixedX, this.fixedY, damage, this.height);
-					// _g.fillRect((this.fixedX + this.width) - (this.width - damage), this.fixedY, this.width - damage , this.height)
+					if (damage < 10)
+						damage = 10;
+					_g.myDrawImage(this.assets.emptyBar, this.fixedX, this.fixedY, this.width, this.height);
+					_g.myDrawImage(this.assets.redBar, this.fixedX + 5, this.fixedY + 5, damage - 10, this.height - 10);
+					// _g.fillRect((this.fixedX + this.width) - (this.width - damage), this.fixedY, this.width - damage , this.height);
 				} else {	
 					if (this.nodes < this.totalNodes) {
 						this.opacity *= this.fadeTime;

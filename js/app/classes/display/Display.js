@@ -45,9 +45,23 @@ define(['Jquery', 'Class'],function($, Class){
 	};
 
 	CanvasRenderingContext2D.prototype.drawText = function(_textObject){
+		graphics.font = `${_textObject.fontSize}px VT323`;
+		let borderWidth = _textObject.additionalWidth || graphics.measureText(_textObject.text).width;
+		if (_textObject.border) {
+			// let score = this.handler.getWorld().getEntityManager().getPlayer().score,
+			// 		tempX = 10,
+			// 		tempY = this.handler.getHeight() - 20,
+			// 		scoreLength = _g.measureText(`Score: ${score.toLocaleString()}`).width;
+			// console.log("scoreLength", scoreLength);
+			//Drawing score partial transparent background frame
+			graphics.globalAlpha = 0.4;
+			graphics.fillStyle = "black";
+			graphics.fillRect(_textObject.x() - 10, _textObject.y() - _textObject.fontSize, borderWidth + 20, _textObject.borderHeight);
+			graphics.globalAlpha = 1;
+		}
+
 		graphics.strokeStyle = _textObject.borderColor;
 		graphics.fillStyle = _textObject.fillColor;
-		graphics.font = `${_textObject.fontSize}px ${_textObject.font}`;
 		graphics.strokeText(_textObject.text, _textObject.x(), _textObject.y());
 		graphics.fillText(_textObject.text,  _textObject.x(), _textObject.y());
 	};

@@ -29,26 +29,22 @@ define(['Helper', 'HealthBar', 'Assets'], function(Helper, HealthBar, Assets){
 			// this.border = _properties.border || {"show": true, "color": "black", "width": 3};
 		},
 		render(_g){
-			//Player portrait and item Icons
-			// _g.myDrawImage(this.portrait.player, this.x + 12, this.y + 10, this.portrait.width, this.portrait.height);
-			// _g.myDrawImage(this.icons.sword, this.width - 130, this.y + 5, this.icons.width, this.icons.height);
-			
-			//Hud layout
-			// _g.myDrawImage(this.hudLayout.layout, this.x, this.y, this.hudLayout.width, this.hudLayout.height);
-			
-			//Render healthbar
-			// this.healthbar.render(_g);
-			let score = this.handler.getWorld().getEntityManager().getPlayer().score;
-	
+			//needed variables for score
+			let score = this.handler.getWorld().getEntityManager().getPlayer().score,
+					tempX = 10,
+					tempY = this.handler.getHeight() - 20;
+
 			//Text: Score
 			_g.drawText({
+				border: true,
+				borderHeight: 100,
 				borderColor: 'black',
 				fillColor: 'white',
 				text: `Score: ${score.toLocaleString()}`,
 				fontSize: 42,
 				font: 'serif',
-				x: function() {return _g.centerTextOnX(this.text);},
-				y: function(){return 50;}
+				x: function() {return tempX;},
+				y: function(){return tempY;}
 			});
 		},
 		update: function(){
