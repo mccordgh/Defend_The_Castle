@@ -12,7 +12,7 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 			this.bounds.y = 14;
 			this.speed = 200;
 			this.bounds.width = 19;
-			this.bounds.height = 24;
+			this.bounds.height = 26;
 			this.type = 'player';
 			this.damage = 60;
 			this.score = 0;

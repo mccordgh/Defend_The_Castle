@@ -14,24 +14,35 @@ define(['Class', 'Tile'], function(Class, Tile){
 			this.checkBlankSpace();
 		},
 		slowCenterOnEntity: function(entity){
-			let startX = this.handler.getWorld().getEntityManager().getPlayer().x,
-					startY = this.handler.getWorld().getEntityManager().getPlayer().y,
+			let startX = xOffset,
+					startY = yOffset,
 					goalX = entity.getX() - handler.getWidth() / 2 + entity.getWidth() / 2,
 					goalY = entity.getY() - handler.getHeight() / 2 + entity.getHeight() / 2;
 
-				if(goalY < startY) {
-					yOffset -= 1;
+				console.log({
+					xOffset: xOffset,
+					startX: startX,
+					goalX: goalX,
+					yOffset: yOffset,
+					startY: startY,
+					goalY: goalY
+				});
+
+				if(startY > goalY && yOffset > goalY) {
+					yOffset -= 5;
 				} 
-				if (goalY > startY) {
-					yOffset += 1;
+				if (goalY > startY && yOffset < goalY) {
+					yOffset += 5;
 				}
-				if(goalX < startX) {
-					xOffset -= 1;
+				if(startX > goalX && xOffset > goalX) {
+					xOffset -= 5;
 				} 
-				if (goalX > startX) {
-					xOffset += 1;
+				if (goalX > startX && xOffset < goalX) {
+					xOffset += 5;
 				}
 
+				console.log("compare:", yOffset, goalY);
+				console.log("compare:", xOffset, goalX);
 			// xOffset = entity.getX() - handler.getWidth() / 2 + entity.getWidth() / 2;
 			// yOffset = entity.getY() - handler.getHeight() / 2 + entity.getHeight() / 2;
 			this.checkBlankSpace();
