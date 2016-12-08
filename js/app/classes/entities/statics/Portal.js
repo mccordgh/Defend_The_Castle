@@ -12,7 +12,8 @@ define(['StaticEntity', 'Tile', 'Assets', 'Bat', 'World'], function(StaticEntity
 			this.type = 'static';
 			this.spawnTimer = 0;
 			this.lastSpawnTime = Date.now();
-			this.spawnSpeed = 200;
+			this.spawnSpeed = 3000;
+			this.spawnPercent = 0.25;
 			this.assets = Assets.getAssets("portal");
 			this.spawnTries = 0;
 		},
@@ -77,11 +78,15 @@ define(['StaticEntity', 'Tile', 'Assets', 'Bat', 'World'], function(StaticEntity
 
 				if (this.spawnTimer >= this.spawnSpeed){
 					let spawnX, spawnY, spawnChance;
-					spawnChance = Math.ceil(Math.random() * 4);
+					spawnChance = Math.random();
+					console.log("spawnChance", spawnChance);
+					console.log("this.spawnPercent", this.spawnPercent);
+					console.log("this.spawnTries", this.spawnTries);
 					this.spawnTries++;
-					if (spawnChance === 4 || this.spawnTries === 4){
+					if (spawnChance < this.spawnPercent || this.spawnTries === 4){
 						if (this.spawnSpeed > 100)
 							this.spawnSpeed -= 30;
+							this.spawnPercent += 0.01;
 						this.spawnTries = 0;
 						if (this.x >= this.handler.getWidth() / 2) {
 							spawnX = this.x - (Tile.TILE_WIDTH * 3);

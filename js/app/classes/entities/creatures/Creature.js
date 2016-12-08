@@ -1,6 +1,6 @@
 define(['Entity', 'Tile', 'Rectangle'], function(Entity, Tile, Rectangle){
 
-	var DEFAULT_SPEED = 50,
+	var DEFAULT_SPEED = 70,
 			DEFAULT_HEALTH = 200,
 			DEFAULT_CREATURE_WIDTH = 32,
 			DEFAULT_CREATURE_HEIGHT = 32,

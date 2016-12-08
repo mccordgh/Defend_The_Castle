@@ -11,7 +11,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			this.bounds.width = 21;
 			this.bounds.height = 24;
 			this.type = 'monster';
-			this.health = 80;
+			this.health = 50;
 			this.damage = 1;
 			this.targetType = 'castle';
 			var healthbar_properties = {
@@ -34,10 +34,10 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 		},
 		tick: function(_dt){
 			if (this.health <= 0){
+				this.handler.getWorld().getEntityManager().getPlayer().score += 10;
 				this.dead++;
 				if (this.dead === 60){
 					this.dead = 666;
-					this.handler.getWorld().getEntityManager().getPlayer().score += 999;
 					this.handler.getWorld().getEntityManager().removeEntity(this);
 					this.handler.getWorld().getSpatialGrid().remove(new Rectangle(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height), this);
 				}

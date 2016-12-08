@@ -8,11 +8,11 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 			this.assets = Assets.getAssets('player');
 			this.x = _x;
 			this.y = _y;
-			this.bounds.x = 6;
-			this.bounds.y = 14;
+			this.bounds.x = 11;
+			this.bounds.y = 18;
 			this.speed = 200;
-			this.bounds.width = 19;
-			this.bounds.height = 26;
+			this.bounds.width = 12;
+			this.bounds.height = 18;
 			this.type = 'player';
 			this.damage = 60;
 			this.score = 0;
