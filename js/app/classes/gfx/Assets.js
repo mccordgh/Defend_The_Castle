@@ -164,22 +164,22 @@ for(let i = 0; i < portalanimationLength; i++){
 	tiles.stone = tiles.sheet.crop(tiles.width * 39, tiles.height * 17, tiles.width, tiles.height);
 
 	//Player Portrait
-	var Portraits = new Assets("Portraits", "res/textures/player_portrait.png", 48, 48);
-	Portraits.player = Portraits.sheet.crop(0, 0, 50, 50);
+	// var Portraits = new Assets("Portraits", "res/textures/player_portrait.png", 48, 48);
+	// Portraits.player = Portraits.sheet.crop(0, 0, 50, 50);
 
 	//HUD
-	var hudLayout = new Assets("hudLayout", "res/textures/ui_pieces.png", 200, 70);
-	hudLayout.layout = hudLayout.sheet.crop(13, 13, hudLayout.width, hudLayout.height);
-
+	var hudLayout = new Assets("hudLayout", "res/textures/sleekbars.png", 127, 31);
+	hudLayout.emptyBar = hudLayout.sheet.crop(0, 0, hudLayout.width, hudLayout.height);
+	hudLayout.redBar = hudLayout.sheet.crop(5, hudLayout.height + 5, hudLayout.width - 10, hudLayout.height - 10);
 	//HealthBars
-	var healthBars = new Assets("healthBars", "res/textures/ui_pieces.png", 200, 70);
-	healthBars.redBar = healthBars.sheet.crop(240, 23, 102, 9);
-	healthBars.GreenBar = healthBars.sheet.crop(240, 43, 102, 9);
-	healthBars.BlueBar = healthBars.sheet.crop(240, 63, 102, 9);
+	// var healthBars = new Assets("healthBars", "res/textures/ui_pieces.png", 200, 70);
+	// healthBars.redBar = healthBars.sheet.crop(240, 23, 102, 9);
+	// healthBars.GreenBar = healthBars.sheet.crop(240, 43, 102, 9);
+	// healthBars.BlueBar = healthBars.sheet.crop(240, 63, 102, 9);
 
 	//Item Icons
-	var icons = new Assets("icons", "res/textures/ui_pieces.png", 185, 55);
-	icons.sword = icons.sheet.crop(14, 90, icons.width, icons.height);
+	// var icons = new Assets("icons", "res/textures/ui_pieces.png", 185, 55);
+	// icons.sword = icons.sheet.crop(14, 90, icons.width, icons.height);
 
 	var castle = new Assets("castle", "res/textures/castle.png", 160, 160);
 	castle.sprite = castle.sheet.crop(0, 0, castle.width, castle.height);

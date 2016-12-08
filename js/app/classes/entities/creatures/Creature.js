@@ -1,6 +1,6 @@
 define(['Entity', 'Tile', 'Rectangle'], function(Entity, Tile, Rectangle){
 
-	var DEFAULT_SPEED = 100,
+	var DEFAULT_SPEED = 50,
 			DEFAULT_HEALTH = 200,
 			DEFAULT_CREATURE_WIDTH = 32,
 			DEFAULT_CREATURE_HEIGHT = 32,
@@ -69,7 +69,7 @@ define(['Entity', 'Tile', 'Rectangle'], function(Entity, Tile, Rectangle){
 		},
 		collisionWithTile: function(_x, _y){
 			return this.handler.getWorld().getTile(_x, _y).isSolid();
-		},
+		}, 
 		getHealth: function(){
 			return this.health;
 		},
@@ -77,13 +77,13 @@ define(['Entity', 'Tile', 'Rectangle'], function(Entity, Tile, Rectangle){
 			return this.speed;
 		},		
 		setHealth: function(_health){
-			this.health = _health;sa
+			this.health = _health;
 		},
 		setSpeed: function(_speed){
 			this.speed = _speed;
 		},
 		takeDamage: function(_damage){
-			if (typeof this.healthbar != undefined && !this.dead)
+			if (typeof this.healthbar !== undefined && !this.dead)
 				this.health -= _damage;
 				this.healthbar.update();
 			if (this.health <= 0){

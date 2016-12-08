@@ -13,6 +13,29 @@ define(['Class', 'Tile'], function(Class, Tile){
 			yOffset = entity.getY() - handler.getHeight() / 2 + entity.getHeight() / 2;
 			this.checkBlankSpace();
 		},
+		slowCenterOnEntity: function(entity){
+			let startX = this.handler.getWorld().getEntityManager().getPlayer().x,
+					startY = this.handler.getWorld().getEntityManager().getPlayer().y,
+					goalX = entity.getX() - handler.getWidth() / 2 + entity.getWidth() / 2,
+					goalY = entity.getY() - handler.getHeight() / 2 + entity.getHeight() / 2;
+
+				if(goalY < startY) {
+					yOffset -= 1;
+				} 
+				if (goalY > startY) {
+					yOffset += 1;
+				}
+				if(goalX < startX) {
+					xOffset -= 1;
+				} 
+				if (goalX > startX) {
+					xOffset += 1;
+				}
+
+			// xOffset = entity.getX() - handler.getWidth() / 2 + entity.getWidth() / 2;
+			// yOffset = entity.getY() - handler.getHeight() / 2 + entity.getHeight() / 2;
+			this.checkBlankSpace();
+		},
 		move: function(_xAmt, _yAmt){
 			xOffset += _xAmt;
 			yOffset += _yAmt;
