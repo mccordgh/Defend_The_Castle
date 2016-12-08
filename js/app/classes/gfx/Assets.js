@@ -89,7 +89,7 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 			portframesY = 10, //Y on spritesheet
 			portalanimationLength = 4; //how many frames in animation
 
-for(var i = 0; i < portalanimationLength; i++){
+for(let i = 0; i < portalanimationLength; i++){
 		portalframes.push({
 			frame: portal.sheet.crop(portal.width * (i + portframesX), portal.height * portframesY, portal.width, portal.height),
 			speed: portframespeed
@@ -183,6 +183,22 @@ for(var i = 0; i < portalanimationLength; i++){
 
 	var castle = new Assets("castle", "res/textures/castle.png", 160, 160);
 	castle.sprite = castle.sheet.crop(0, 0, castle.width, castle.height);
+
+	//CASTLE animation
+	var castleExplode = new Assets("castleExplode", "res/textures/tiles.png", DEFAULT_WIDTH,  DEFAULT_HEIGHT);
+	var castleExplodeFramespeed = 300,
+			castleExplodeFrames = [], //castle idle spin frames
+			castleExplodeFramesX = 20, //X on spritesheet
+			castleExplodeFramesY = 10, //Y on spritesheet
+			castleanimationLength = 3; //how many frames in animation
+
+for(let i = 0; i < castleanimationLength; i++){
+		castleExplodeFrames.push({
+			frame: castleExplode.sheet.crop(castleExplode.width * (i + castleExplodeFramesX), castleExplode.height * castleExplodeFramesY, castleExplode.width, castleExplode.height),
+			speed: castleExplodeFramespeed
+		});
+	}
+	castle.addAnimation("explode", new Animation(castleExplodeFrames));
 
 	return Assets;
 });

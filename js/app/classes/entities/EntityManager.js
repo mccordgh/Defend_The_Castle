@@ -58,6 +58,14 @@ define(['Class', 'Rectangle', 'Tile'], function(Class, Rectangle, Tile){
 					entities.splice(i, 1);
 				}
 			}
+		},
+		removeAllMonsters: function(){
+			for (let i = 0; i < entities.length; i++){
+				var e = entities[i];
+				if (e.type === 'monster'){
+					entities.splice(i, 1);
+				}
+			}
 		}
 
 	});

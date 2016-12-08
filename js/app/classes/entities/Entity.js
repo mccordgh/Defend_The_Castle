@@ -47,7 +47,7 @@ var dying;
 							e.takeDamage(this.damage);
 						}
 						if (e.type === 'castle' && this.type === 'monster'){
-							if (this.targetType)
+							if (this.targetType && this.dead < 1)
 								if(this.targetType === 'castle')
 									e.takeDamage(this.damage);
 						}

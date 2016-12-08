@@ -12,7 +12,7 @@ define(['StaticEntity', 'Tile', 'Assets', 'Bat', 'World'], function(StaticEntity
 			this.type = 'static';
 			this.spawnTimer = 0;
 			this.lastSpawnTime = Date.now();
-			this.spawnSpeed = 2000;
+			this.spawnSpeed = 1000;
 			this.assets = Assets.getAssets("portal");
 			this.spawnTries = 0;
 		},
@@ -71,32 +71,33 @@ define(['StaticEntity', 'Tile', 'Assets', 'Bat', 'World'], function(StaticEntity
 			return this.assets.animations.idle.getCurrentFrame();
 		},
 		tryToSpawnMonster(){
-			this.spawnTimer += Date.now() - this.lastSpawnTime;
-			this.lastSpawnTime = Date.now();
+			if (!this.handler.getWorld().getRoundOver()) {
+				this.spawnTimer += Date.now() - this.lastSpawnTime;
+				this.lastSpawnTime = Date.now();
 
-			if (this.spawnTimer >= this.spawnSpeed){
-				let spawnX, spawnY, spawnChance;
-				spawnChance = Math.ceil(Math.random() * 4);
-				this.spawnTries++;
-				if (spawnChance === 4 || this.spawnTries === 4){
-					if (this.spawnSpeed > 100)
-						this.spawnSpeed -= 30;
-					this.spawnTries = 0;
-					if (this.x >= this.handler.getWidth() / 2) {
-						spawnX = this.x - (Tile.TILE_WIDTH * 3);
-					} else {
-						spawnX = this.x + (Tile.TILE_WIDTH * 3);
-					}
-					if (this.y >= this.handler.getHeight() / 2) {
-						spawnY = this.y - (Tile.TILE_HEIGHT * 3);
-					} else {
-						spawnY = this.y + (Tile.TILE_HEIGHT * 3);
-					}
-				}				
-				// Spawning a BAT!
-				this.handler.getWorld().getEntityManager().addEntity(new Bat(this.handler, spawnX, spawnY));
-				this.spawnTimer = 0;
-				
+				if (this.spawnTimer >= this.spawnSpeed){
+					let spawnX, spawnY, spawnChance;
+					spawnChance = Math.ceil(Math.random() * 4);
+					this.spawnTries++;
+					if (spawnChance === 4 || this.spawnTries === 4){
+						if (this.spawnSpeed > 100)
+							this.spawnSpeed -= 30;
+						this.spawnTries = 0;
+						if (this.x >= this.handler.getWidth() / 2) {
+							spawnX = this.x - (Tile.TILE_WIDTH * 3);
+						} else {
+							spawnX = this.x + (Tile.TILE_WIDTH * 3);
+						}
+						if (this.y >= this.handler.getHeight() / 2) {
+							spawnY = this.y - (Tile.TILE_HEIGHT * 3);
+						} else {
+							spawnY = this.y + (Tile.TILE_HEIGHT * 3);
+						}
+					}				
+					// Spawning a BAT!
+					this.handler.getWorld().getEntityManager().addEntity(new Bat(this.handler, spawnX, spawnY));
+					this.spawnTimer = 0;
+				}
 			}
 
 		}
