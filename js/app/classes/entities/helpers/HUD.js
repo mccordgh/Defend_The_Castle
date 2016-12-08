@@ -30,14 +30,14 @@ define(['Helper', 'HealthBar', 'Assets'], function(Helper, HealthBar, Assets){
 		},
 		render(_g){
 			//Player portrait and item Icons
-			_g.myDrawImage(this.portrait.player, this.x + 12, this.y + 10, this.portrait.width, this.portrait.height);
-			_g.myDrawImage(this.icons.sword, this.width - 130, this.y + 5, this.icons.width, this.icons.height);
+			// _g.myDrawImage(this.portrait.player, this.x + 12, this.y + 10, this.portrait.width, this.portrait.height);
+			// _g.myDrawImage(this.icons.sword, this.width - 130, this.y + 5, this.icons.width, this.icons.height);
 			
 			//Hud layout
-			_g.myDrawImage(this.hudLayout.layout, this.x, this.y, this.hudLayout.width, this.hudLayout.height);
+			// _g.myDrawImage(this.hudLayout.layout, this.x, this.y, this.hudLayout.width, this.hudLayout.height);
 			
 			//Render healthbar
-			this.healthbar.render(_g);
+			// this.healthbar.render(_g);
 			let score = this.handler.getWorld().getEntityManager().getPlayer().score;
 	
 			//Text: Score

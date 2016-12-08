@@ -46,20 +46,22 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 			// this.healthbar = new HealthBar(_handler, this, healthbar_properties);
 		},
 		tick: function(_dt){
-			this.getInput(_dt);
-			this.move();
-			this.handler.getGameCamera().centerOnEntity(this);
-			if (this.yMove < 0)
-				this.assets.animations.walk_up.tick();
-			if (this.yMove > 0)
-				this.assets.animations.walk_down.tick();
-			if (this.xMove > 0)
-				this.assets.animations.walk_right.tick();
-			if (this.xMove < 0)
-				this.assets.animations.walk_left.tick();
-			// this.assets.animations.idle.tick();
-			if (this.health <= 0)
-				this.assets.animations.death.tick();
+			if (!this.handler.getWorld().getRoundOver()) {
+				this.getInput(_dt);
+				this.move();
+				this.handler.getGameCamera().centerOnEntity(this);
+				if (this.yMove < 0)
+					this.assets.animations.walk_up.tick();
+				if (this.yMove > 0)
+					this.assets.animations.walk_down.tick();
+				if (this.xMove > 0)
+					this.assets.animations.walk_right.tick();
+				if (this.xMove < 0)
+					this.assets.animations.walk_left.tick();
+				// this.assets.animations.idle.tick();
+				if (this.health <= 0)
+					this.assets.animations.death.tick();
+			}
 		},
 		render: function(_g){
 			_g.myDrawImage(this.getCurrentAnimationFrame(), this.x - this.handler.getGameCamera().getxOffset(), this.y - this.handler.getGameCamera().getyOffset(), this.assets.width, this.assets.height);

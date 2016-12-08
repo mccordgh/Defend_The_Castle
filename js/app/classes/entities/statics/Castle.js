@@ -13,6 +13,7 @@ define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverSta
 			this.width = 80;
 			this.type = 'castle';
 			this.health = 1000;
+
 			var healthbar_properties = {
 				color: "#0c0",
 				bgColor: "#a00",
@@ -33,10 +34,8 @@ define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverSta
 		},
 		tick: function(){
 			if (this.health <= 0){
-				console.log(this.type + " DIED!", this.dead);
 				this.dead++;
-				if (this.dead === 10){
-					console.log("removing castle");
+				if (this.dead === 100){
 					this.dead = 666;
 					this.handler.getWorld().getEntityManager().removeEntity(this);
 					this.handler.getWorld().getSpatialGrid().remove(new Rectangle(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height), this);
@@ -46,13 +45,25 @@ define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverSta
 			}
 		},
 		render: function(_g){
-			_g.myDrawImage(assets.sprite, 
-							this.x - this.handler.getGameCamera().getxOffset(),
-							this.y - this.handler.getGameCamera().getyOffset(), 
-							this.width, 
-							this.height);
-			this.healthbar.render(_g);
+			if (this.health <= 0){
+				assets.animations.explode.tick();
+				this.handler.getWorld().setRoundOver(true);
+				this.handler.getWorld().getEntityManager().removeAllMonsters();
+				_g.myDrawImage(assets.animations.explode.getCurrentFrame(), 
+								this.x - this.handler.getGameCamera().getxOffset(),
+								this.y - this.handler.getGameCamera().getyOffset(), 
+								this.width, 
+								this.height);
+				this.healthbar.render(_g);
 
+			} else {
+				_g.myDrawImage(assets.sprite, 
+								this.x - this.handler.getGameCamera().getxOffset(),
+								this.y - this.handler.getGameCamera().getyOffset(), 
+								this.width, 
+								this.height);
+				this.healthbar.render(_g);
+			}
 			// _g.fillStyle = "green";
 			// _g.fillRect(this.bounds.x + this.x - this.handler.getGameCamera().getxOffset(), this.bounds.y + this.y - this.handler.getGameCamera().getyOffset(), this.bounds.width, this.bounds.height);
 		}
