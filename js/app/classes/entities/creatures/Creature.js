@@ -89,8 +89,6 @@ define(['Entity', 'Tile', 'Rectangle'], function(Entity, Tile, Rectangle){
 			if (this.health <= 0){
 				this.assets.animations.death.tick();
 			}
-			// console.log(this.assets.animations.death.getCurrentAnimationFrame());
-			// if (this.assets.animations.death.getCurrentFrame() === 3)
 		}
 	});
 

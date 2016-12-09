@@ -8,7 +8,6 @@ define(['Class', 'Display', 'State', 'MenuState', 'KeyManager', 'Handler', 'Game
 
 	var Game = Class.extend({
 		init:function(_title, _width, _height){
-
 			_this = this;
 			title = _title;
 			width = _width;
@@ -80,8 +79,6 @@ define(['Class', 'Display', 'State', 'MenuState', 'KeyManager', 'Handler', 'Game
 	
 	function tick(_dt) {
 		keyManager.tick();
-			// console.log(keyManager.up);
-			// console.log(this.handler.getKeyManager());
 		if(State.getState() !== null){
 			State.getState().tick(_dt);
 		}

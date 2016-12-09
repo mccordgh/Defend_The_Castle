@@ -49,7 +49,6 @@ define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverSta
 								this.y - this.handler.getGameCamera().getyOffset(), 
 								this.width, 
 								this.height);
-				// this.healthbar.render(_g);
 			} else {
 				_g.myDrawImage(assets.sprite, 
 								this.x - this.handler.getGameCamera().getxOffset(),
@@ -58,8 +57,10 @@ define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverSta
 								this.height);
 				this.healthbar.render(_g);
 			}
+			// ****** DRAW BOUNDING BOX DON'T DELETE!!
 			// _g.fillStyle = "green";
 			// _g.fillRect(this.bounds.x + this.x - this.handler.getGameCamera().getxOffset(), this.bounds.y + this.y - this.handler.getGameCamera().getyOffset(), this.bounds.width, this.bounds.height);
+			// ****** DRAW BOUNDING BOX DON'T DELETE!!
 		}
 
 	});

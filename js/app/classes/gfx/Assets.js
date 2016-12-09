@@ -1,6 +1,7 @@
 define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,ImageLoader,SpriteSheet, Animation){
 
 	var DEFAULT_WIDTH = 32, DEFAULT_HEIGHT = 32;
+	// const CURRENT_PATH = window.location.href;
 	var assets = {};
 
 	var Assets = Class.extend({
@@ -26,12 +27,10 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 			return assets[_name];
 	};
 
+	//***** DECLARING ASSETS TEMPLATE
 	//var X = new Assets(name, url, width, height);
-	
-	// monsters.bat = monsters.sheet.crop(monsters.width * 2, 0, monsters.width, monsters.height);
 
-	//Build Animation Frames
-
+	//****** Build Animation Frames
 	//BAT
 	var bat = new Assets("bat", "res/textures/bat-sprite.png", DEFAULT_WIDTH,  DEFAULT_HEIGHT );
 	var batframespeed = 200,

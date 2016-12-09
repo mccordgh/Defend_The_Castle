@@ -41,10 +41,6 @@ define(['Class', 'Tile'], function(Class, Tile){
 					xOffset += 5;
 				}
 
-				console.log("compare:", yOffset, goalY);
-				console.log("compare:", xOffset, goalX);
-			// xOffset = entity.getX() - handler.getWidth() / 2 + entity.getWidth() / 2;
-			// yOffset = entity.getY() - handler.getHeight() / 2 + entity.getHeight() / 2;
 			this.checkBlankSpace();
 		},
 		move: function(_xAmt, _yAmt){

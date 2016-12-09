@@ -23,8 +23,10 @@ define(['StaticEntity', 'Tile', 'Assets'], function(StaticEntity, Tile, Assets){
 							this.width, 
 							this.height);
 
-			// _g.fillStyle = "blue";
-			// _g.fillRect(this.bounds.x + this.x - this.handler.getGameCamera().getxOffset(), this.bounds.y + this.y - this.handler.getGameCamera().getyOffset(), this.bounds.width, this.bounds.height);
+		// ****** DRAW BOUNDING BOX DON'T DELETE!!
+		// _g.fillStyle = "blue";
+		// _g.fillRect(this.bounds.x + this.x - this.handler.getGameCamera().getxOffset(), this.bounds.y + this.y - this.handler.getGameCamera().getyOffset(), this.bounds.width, this.bounds.height);
+		// ****** DRAW BOUNDING BOX DON'T DELETE!!
 		}
 
 	});

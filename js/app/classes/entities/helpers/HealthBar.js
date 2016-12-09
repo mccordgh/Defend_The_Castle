@@ -37,7 +37,6 @@ define(['Helper', 'Assets'], function(Helper, Assets){
 					// _g.globalAlpha = 1;
 
 					//Drawing healthbar Title
-					// _g.fillStyle = "white";
 					let tempX = this.fixedX;
 					let tempY = this.fixedY - 10;
 					_g.drawText({
@@ -58,7 +57,6 @@ define(['Helper', 'Assets'], function(Helper, Assets){
 						damage = 10;
 					_g.myDrawImage(this.assets.emptyBar, this.fixedX, this.fixedY, this.width, this.height);
 					_g.myDrawImage(this.assets.redBar, this.fixedX + 5, this.fixedY + 5, damage - 10, this.height - 10);
-					// _g.fillRect((this.fixedX + this.width) - (this.width - damage), this.fixedY, this.width - damage , this.height);
 				} else {	
 					if (this.nodes < this.totalNodes) {
 						this.opacity *= this.fadeTime;
