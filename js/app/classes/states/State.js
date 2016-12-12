@@ -11,10 +11,7 @@ define(['Class'],function(Class){
         },
         render:function(_g){
             throw("Every state needs a render");
-        },
-        click:function(){
-            throw("Every state need a click");
-        },
+        }
     });
     State.getState = function(){
         return currentState;
