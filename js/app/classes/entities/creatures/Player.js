@@ -73,16 +73,25 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 		getInput: function(_dt){
 			this.xMove = 0;
 			this.yMove = 0;
-			if(this.handler.getKeyManager().up) {
+			if(this.handler.getKeyManager().a){
+				console.log("A: Attack!!");
+			}
+			if(this.handler.getKeyManager().j){
+				console.log("J: Attack!!");
+			}
+			if(this.handler.getKeyManager().space){
+				console.log("SPACE: JUMP!!");
+			}
+			if(this.handler.getKeyManager().up || this.handler.getKeyManager().upArrow) {
 				this.yMove = -this.speed * _dt;
 			} 
-			if (this.handler.getKeyManager().down) {
+			if (this.handler.getKeyManager().down || this.handler.getKeyManager().downArrow) {
 				this.yMove = this.speed * _dt;
 			}
-			if(this.handler.getKeyManager().left) {
+			if(this.handler.getKeyManager().left || this.handler.getKeyManager().leftArrow) {
 				this.xMove = -this.speed * _dt;
 			} 
-			if (this.handler.getKeyManager().right) {
+			if (this.handler.getKeyManager().right || this.handler.getKeyManager().rightArrow) {
 				this.xMove = this.speed * _dt;
 			}
 		},
