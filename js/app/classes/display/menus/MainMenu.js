@@ -1,9 +1,14 @@
 define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(MenuState, GameState, KeyManager, Assets, State){
 
-	var fontSize = 0, countSinceInput = 11, choicePosition = 0;
+	const CURRENT_PATH = window.location.href;
+	var fontSize = 0, countSinceInput = 11, choicePosition = 0, leaderboardsLoaded = false;
 
 	var MainMenu = MenuState.extend({
 		init:function(_handler){
+			var oReq = new XMLHttpRequest();
+			oReq.addEventListener("load", loadBoardsListener);
+			oReq.open("GET", CURRENT_PATH + "/res/leaderboard/leaderboard.json");
+			oReq.send();
 			this.assets = Assets.getAssets('title');
 			this.choices = ['play', 'leaderboards', 'credits'];
 			this.handler = _handler;
@@ -57,6 +62,9 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 						break;		
 				}
 			} 
+		},
+		loadBoardsListener(data) {
+		  console.log("~~" + data);
 		}
 	});
 
