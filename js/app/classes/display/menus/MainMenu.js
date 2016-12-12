@@ -18,13 +18,16 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 		render: function(_g){
       if (_g){
       	//black background
-				_g.fillStyle = "black";
+				_g.fillStyle = "#333";
 				_g.fillRect(0, 0, this.handler.getWidth(), this.handler.getHeight());
 
 				//title screen
 				_g.myDrawImage(this.assets.mainMenu, 0, 0, 1024, 640);
 				//draw cursor
-				_g.myDrawImage(this.assets.pointer, 260, 425 + (choicePosition * 65), 32, 32);
+				_g.myDrawImage(this.assets.pointer, 260, 400 + (choicePosition * 65), 32, 32);
+
+				_g.strokeStyle = "#666";
+				_g.strokeRect(0, 0, this.handler.getWidth(), this.handler.getHeight());
       }
 		},
 		getInput: function(_dt){
