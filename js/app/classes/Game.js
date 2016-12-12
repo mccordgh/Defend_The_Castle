@@ -1,4 +1,4 @@
-define(['Class', 'Display', 'State', 'MenuState', 'KeyManager', 'Handler', 'GameCamera'], function(Class,Display,State,MenuState, KeyManager, Handler, GameCamera){
+define(['Class', 'Display', 'State', 'MainMenu', 'KeyManager', 'Handler', 'GameCamera'], function(Class,Display,State,MainMenu, KeyManager, Handler, GameCamera){
 
 	var _this;
 	var running = false;
@@ -73,8 +73,8 @@ define(['Class', 'Display', 'State', 'MenuState', 'KeyManager', 'Handler', 'Game
 		gameCamera = new GameCamera(handler, 0, 0);
 		// gameState = new GameState(handler);
 		// State.setState(gameState);
-		menuState = new MenuState(handler);
-		State.setState(menuState);
+		mainMenu = new MainMenu(handler);
+		State.setState(mainMenu);
 	}
 	
 	function tick(_dt) {

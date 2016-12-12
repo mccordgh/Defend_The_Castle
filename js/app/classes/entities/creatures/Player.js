@@ -73,8 +73,8 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 		getInput: function(_dt){
 			this.xMove = 0;
 			this.yMove = 0;
-			if(this.handler.getKeyManager().a){
-				console.log("A: Attack!!");
+			if(this.handler.getKeyManager().f){
+				console.log("F: Attack!!");
 			}
 			if(this.handler.getKeyManager().j){
 				console.log("J: Attack!!");

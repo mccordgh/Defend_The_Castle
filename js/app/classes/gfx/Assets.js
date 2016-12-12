@@ -29,6 +29,10 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 	//***** DECLARING ASSETS TEMPLATE
 	//var X = new Assets(name, url, width, height);
 	//****** Build Animation Frames
+	//Title Screen
+	var titleScreenAssets = new Assets("title", CURRENT_PATH + "res/textures/dtc_title.png", 1024, 672);
+	titleScreenAssets.mainMenu = titleScreenAssets.sheet.crop(0, 0, 1024, 640);
+	titleScreenAssets.pointer = titleScreenAssets.sheet.crop(0, 641, 32, 32);
 	//BAT
 	var bat = new Assets("bat", CURRENT_PATH + "res/textures/bat-sprite.png", DEFAULT_WIDTH,  DEFAULT_HEIGHT );
 	var batframespeed = 200,
@@ -109,7 +113,7 @@ for(let i = 0; i < portalanimationLength; i++){
 			deathrow = 4, //death animation row on spritesheet
 			animationLength = 3; //how many frames in animation
 
-	for(var i = 0; i < animationLength; i++){
+	for(let i = 0; i < animationLength; i++){
 		wuframes.push({
 			frame: player.sheet.crop(player.width * i, player.height * wurow, player.width, player.height),
 			speed: framespeed

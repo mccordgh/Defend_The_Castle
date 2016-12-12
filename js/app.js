@@ -25,6 +25,7 @@ requirejs.config({
 		"ImageLoader":"app/classes/gfx/ImageLoader",
 		"KeyManager":"app/classes/input/KeyManager",
 		"Launcher":"app/classes/Launcher",
+		"MainMenu":"app/classes/display/menus/MainMenu",
 		"MenuState":"app/classes/states/MenuState",
 		"Player":"app/classes/entities/creatures/Player",
 		"Portal":"app/classes/entities/statics/Portal",
