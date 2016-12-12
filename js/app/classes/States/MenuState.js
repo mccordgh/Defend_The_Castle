@@ -1,6 +1,6 @@
 define(['State', 'GameState', 'KeyManager'], function(State, GameState, KeyManager){
 
-	var fontSize;
+	var fontSize = 0;
 
 	var MenuState = State.extend({
 		init:function(_handler){
