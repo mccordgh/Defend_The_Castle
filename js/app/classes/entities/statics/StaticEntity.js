@@ -9,11 +9,6 @@ define(['Entity'], function(Entity){
 			if (typeof this.healthbar != undefined && !this.dead)
 				this.health -= _damage;
 				this.healthbar.update();
-			// if (this.health <= 0){
-			// 	this.assets.animations.death.tick();
-			// }
-			// console.log(this.assets.animations.death.getCurrentAnimationFrame());
-			// if (this.assets.animations.death.getCurrentFrame() === 3)
 		}
 
 

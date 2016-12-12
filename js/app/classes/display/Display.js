@@ -22,7 +22,6 @@ define(['Jquery', 'Class'],function($, Class){
 		}
 	});
 
-	//Private Method
 	function createDisplay() {
 		document.title = title;
 		myCanvas = document.getElementById("canvas");
@@ -48,11 +47,6 @@ define(['Jquery', 'Class'],function($, Class){
 		graphics.font = `${_textObject.fontSize}px VT323`;
 		let borderWidth = _textObject.additionalWidth || graphics.measureText(_textObject.text).width;
 		if (_textObject.border) {
-			// let score = this.handler.getWorld().getEntityManager().getPlayer().score,
-			// 		tempX = 10,
-			// 		tempY = this.handler.getHeight() - 20,
-			// 		scoreLength = _g.measureText(`Score: ${score.toLocaleString()}`).width;
-			// console.log("scoreLength", scoreLength);
 			//Drawing score partial transparent background frame
 			graphics.globalAlpha = 0.4;
 			graphics.fillStyle = "black";
@@ -65,8 +59,6 @@ define(['Jquery', 'Class'],function($, Class){
 		graphics.strokeText(_textObject.text, _textObject.x(), _textObject.y());
 		graphics.fillText(_textObject.text,  _textObject.x(), _textObject.y());
 	};
-
-	
 
 	return Display;
 

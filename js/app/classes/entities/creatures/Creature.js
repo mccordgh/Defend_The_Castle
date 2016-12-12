@@ -1,6 +1,6 @@
 define(['Entity', 'Tile', 'Rectangle'], function(Entity, Tile, Rectangle){
 
-	var DEFAULT_SPEED = 70,
+	var DEFAULT_SPEED = 35,
 			DEFAULT_HEALTH = 200,
 			DEFAULT_CREATURE_WIDTH = 32,
 			DEFAULT_CREATURE_HEIGHT = 32,
@@ -89,8 +89,6 @@ define(['Entity', 'Tile', 'Rectangle'], function(Entity, Tile, Rectangle){
 			if (this.health <= 0){
 				this.assets.animations.death.tick();
 			}
-			// console.log(this.assets.animations.death.getCurrentAnimationFrame());
-			// if (this.assets.animations.death.getCurrentFrame() === 3)
 		}
 	});
 

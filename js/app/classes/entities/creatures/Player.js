@@ -65,9 +65,10 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 		},
 		render: function(_g){
 			_g.myDrawImage(this.getCurrentAnimationFrame(), this.x - this.handler.getGameCamera().getxOffset(), this.y - this.handler.getGameCamera().getyOffset(), this.assets.width, this.assets.height);
-			// this.healthbar.render(_g);
+			// ****** DRAW BOUNDING BOX DON'T DELETE!!
 			// _g.fillStyle = "blue";
 			// _g.fillRect(this.bounds.x + this.x - this.handler.getGameCamera().getxOffset(), this.bounds.y + this.y - this.handler.getGameCamera().getyOffset(), this.bounds.width, this.bounds.height);
+			// ****** DRAW BOUNDING BOX DON'T DELETE!!
 		},
 		getInput: function(_dt){
 			this.xMove = 0;

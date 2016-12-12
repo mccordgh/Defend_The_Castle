@@ -17,8 +17,6 @@ var dying;
 		render: function(_g){
 			throw("Entities must have a tick function!");
 		},
-
-		//Getters
 		getX: function(){
 			return this.x;
 		},
@@ -41,8 +39,8 @@ var dying;
 
 			for(var i = 0; i < candidates.length; i++){
 				var e = candidates[i];
-				if (e != this && (e.health > 0)){
-					if (e.getCollisionBounds(0, 0).intersects(this.getCollisionBounds(xOffset, yOffset))&& !(this.type === 'monster' && e.type === 'monster')){
+				if (e != this && e.health > 0 || e.health === undefined){
+					if (e.getCollisionBounds(0, 0).intersects(this.getCollisionBounds(xOffset, yOffset)) && !(this.type === 'monster' && e.type === 'monster')){
 						if (e.type === 'monster' && this.type === 'player'){
 							e.takeDamage(this.damage);
 						}
@@ -57,7 +55,6 @@ var dying;
 			}
 			return false;
 		},
-		//Setters
 		setX: function(_x){
 			this.x = _x;
 		},

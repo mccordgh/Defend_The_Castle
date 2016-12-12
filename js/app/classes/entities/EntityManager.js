@@ -1,8 +1,7 @@
 define(['Class', 'Rectangle', 'Tile'], function(Class, Rectangle, Tile){
 
 	var handler, player, entities;
-
-
+	
 	var EntityManager = Class.extend({
 		init: function(_handler, _player){
 			handler = _handler;
@@ -17,7 +16,6 @@ define(['Class', 'Rectangle', 'Tile'], function(Class, Rectangle, Tile){
 			}
 		},
 		render: function(_g){
-			// handler.getWorld().getSpatialGrid().render(_g, handler);
 			entities.forEach(function(e){
 				if (!(e.x > e.handler.getWidth() + e.handler.getGameCamera().getxOffset()) && !(e.y > e.handler.getHeight() + e.handler.getGameCamera().getyOffset()))
 					e.render(_g);

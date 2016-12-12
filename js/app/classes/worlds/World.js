@@ -1,7 +1,7 @@
 define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'SpatialGrid', 'HUD', "Bat", 'Castle', 'Portal', 'Assets'], function(Class, Tile, Utils, Tree, EntityManager, Player, SpatialGrid, HUD, Bat, Castle, Portal, Assets){
 
-	var tree, 
-			roundOver = false;
+	const CURRENT_PATH = window.location.href;
+	var tree,	roundOver = false;
 
 	var World = Class.extend({
 		init:function(_path, _handler){
@@ -9,7 +9,7 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'Spat
 			this.handler = _handler;
 			_handler.setWorld(this);
 			this.entityManager = new EntityManager(_handler, new Player(_handler, 20, 20));
-			this.loadWorld(_path);
+			this.loadWorld( CURRENT_PATH + _path);
 			
 			this.spatialGrid = new SpatialGrid(this.width * Tile.TILE_WIDTH, this.height * Tile.TILE_HEIGHT, 64);
 			
