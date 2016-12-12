@@ -1,5 +1,6 @@
-define(['Jquery', 'Class'],function($, Class){
+define(['Jquery', 'Class', 'Assets'],function($, Class, Assets){
 	//Private Variables
+	var myFont = Assets.getAssets('pixelFont')
 
 	var Display = Class.extend({
 		init:function(_title, _width, _height){
@@ -33,6 +34,20 @@ define(['Jquery', 'Class'],function($, Class){
 
 	CanvasRenderingContext2D.prototype.myDrawImage = function(asset, _x, _y, _width, _height){
 		this.drawImage(asset.sheet, asset.x, asset.y, asset.width, asset.height, _x, _y, _width, _height);
+	};
+	
+	CanvasRenderingContext2D.prototype.myDrawText = function(_x, _y, _text){
+		text = _text.toLowerCase().split("");
+		// console.log("text", text);
+		let textStartX = 0;
+		for (let i = 0; i < text.length; i++){
+			let myAsset = myFont[text[i]];
+			// console.log("myFont[text[i]]",myFont[text[i]] );
+			graphics.myDrawImage(myAsset, _x + textStartX, _y, myAsset.width, myAsset.height);
+			textStartX = textStartX + myAsset.width + 2;
+			// console.log("myAsset.sheet", myAsset.sheet);
+			
+		}
 	};
 	
 	CanvasRenderingContext2D.prototype.centerTextOnX = function(_text){
