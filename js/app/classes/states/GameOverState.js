@@ -13,8 +13,8 @@ define(['State', 'GameState', 'KeyManager'], function(State, GameState, KeyManag
 		},
 		render: function(_g){
       if (_g){
-				_g.fillStyle = "black";
-				_g.fillRect(0, 0, this.handler.getWidth(), this.handler.getHeight());
+		_g.fillStyle = "black";
+		_g.fillRect(0, 0, this.handler.getWidth(), this.handler.getHeight());
       	_g.drawText({
       		borderColor: 'white',
       		fillColor: 'black',
