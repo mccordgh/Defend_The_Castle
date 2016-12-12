@@ -16,8 +16,9 @@ define(['Class'], function(Class){
 			this.right = keys[68];
 			this.rightArrow = keys[39];
 			this.space = keys[32];
-			this.a = keys[65];
+			this.f = keys[70];
 			this.j = keys[74];
+			this.enter = keys[13];
 		}
 	});
 
@@ -26,6 +27,7 @@ define(['Class'], function(Class){
 	};
 
 	window.onkeyup = function(e){
+		// console.log("e.keyCode", e.keyCode);
 		keys[e.keyCode] = false;
 	};
 
