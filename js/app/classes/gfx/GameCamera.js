@@ -19,14 +19,14 @@ define(['Class', 'Tile'], function(Class, Tile){
 					goalX = entity.getX() - handler.getWidth() / 2 + entity.getWidth() / 2,
 					goalY = entity.getY() - handler.getHeight() / 2 + entity.getHeight() / 2;
 
-				console.log({
-					xOffset: xOffset,
-					startX: startX,
-					goalX: goalX,
-					yOffset: yOffset,
-					startY: startY,
-					goalY: goalY
-				});
+				// console.log({
+				// 	xOffset: xOffset,
+				// 	startX: startX,
+				// 	goalX: goalX,
+				// 	yOffset: yOffset,
+				// 	startY: startY,
+				// 	goalY: goalY
+				// });
 
 				if(startY > goalY && yOffset > goalY) {
 					yOffset -= 5;

@@ -1,8 +1,7 @@
 define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,ImageLoader,SpriteSheet, Animation){
 
-	var DEFAULT_WIDTH = 32, DEFAULT_HEIGHT = 32;
-	// const CURRENT_PATH = window.location.href;
-	var assets = {};
+	const CURRENT_PATH = window.location.href;
+	var DEFAULT_WIDTH = 32, DEFAULT_HEIGHT = 32, assets = {};
 
 	var Assets = Class.extend({
 		init:function(_name, _path, _width, _height){
@@ -29,10 +28,9 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 
 	//***** DECLARING ASSETS TEMPLATE
 	//var X = new Assets(name, url, width, height);
-
 	//****** Build Animation Frames
 	//BAT
-	var bat = new Assets("bat", "res/textures/bat-sprite.png", DEFAULT_WIDTH,  DEFAULT_HEIGHT );
+	var bat = new Assets("bat", CURRENT_PATH + "res/textures/bat-sprite.png", DEFAULT_WIDTH,  DEFAULT_HEIGHT );
 	var batframespeed = 200,
 			batwdframes = [], //walk right frames
 			batwrframes = [], //walk left frames
@@ -80,7 +78,7 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 	bat.addAnimation("death", new Animation(batdeathframes));
 
 	//PORTAL
-	var portal = new Assets("portal", "res/textures/tiles.png", DEFAULT_WIDTH,  DEFAULT_HEIGHT);
+	var portal = new Assets("portal",  CURRENT_PATH + "res/textures/tiles.png", DEFAULT_WIDTH,  DEFAULT_HEIGHT);
 	// portal.sprite = portal.sheet.crop(portal.width * 30, portal.height * 10, portal.width, portal.height);
 	var portframespeed = 200,
 			portalframes = [], //portal idle spin frames
@@ -97,7 +95,7 @@ for(let i = 0; i < portalanimationLength; i++){
 	portal.addAnimation("idle", new Animation(portalframes));
 
 	//PLAYER
-	var player = new Assets("player", "res/textures/warrior_m.png", DEFAULT_WIDTH,  36);
+	var player = new Assets("player",  CURRENT_PATH + "res/textures/warrior_m.png", DEFAULT_WIDTH,  36);
 	var framespeed = 200,
 			wrframes = [], //walk right frames
 			wlframes = [], //walk left frames
@@ -153,11 +151,11 @@ for(let i = 0; i < portalanimationLength; i++){
 	// player.idle = player.sheet.crop(player.width * 1, player.height * 1, player.width, player.height );
 
 	//Tree Asset
-	var tree = new Assets("tree", "res/textures/snow-expansion.png", 48, 55);
+	var tree = new Assets("tree",  CURRENT_PATH + "res/textures/snow-expansion.png", 48, 55);
 	tree.redwood = tree.sheet.crop(304, 68, tree.width, tree.height);
 
 	//Tile Asset
-	var tiles = new Assets("tiles", "res/textures/tiles.png", DEFAULT_WIDTH, DEFAULT_HEIGHT);
+	var tiles = new Assets("tiles",  CURRENT_PATH + "res/textures/tiles.png", DEFAULT_WIDTH, DEFAULT_HEIGHT);
 	tiles.grass = tiles.sheet.crop(tiles.width * 1, tiles.height * 15, tiles.width, tiles.height);
 	tiles.dirt = tiles.sheet.crop(tiles.width * 7, tiles.height * 15, tiles.width, tiles.height);
 	tiles.stone = tiles.sheet.crop(tiles.width * 39, tiles.height * 17, tiles.width, tiles.height);
@@ -167,7 +165,7 @@ for(let i = 0; i < portalanimationLength; i++){
 	// Portraits.player = Portraits.sheet.crop(0, 0, 50, 50);
 
 	//HUD
-	var hudLayout = new Assets("hudLayout", "res/textures/sleekbars.png", 127, 31);
+	var hudLayout = new Assets("hudLayout",  CURRENT_PATH + "res/textures/sleekbars.png", 127, 31);
 	hudLayout.emptyBar = hudLayout.sheet.crop(0, 0, hudLayout.width, hudLayout.height);
 	hudLayout.redBar = hudLayout.sheet.crop(5, hudLayout.height + 5, hudLayout.width - 10, hudLayout.height - 10);
 	//HealthBars
@@ -180,11 +178,11 @@ for(let i = 0; i < portalanimationLength; i++){
 	// var icons = new Assets("icons", "res/textures/ui_pieces.png", 185, 55);
 	// icons.sword = icons.sheet.crop(14, 90, icons.width, icons.height);
 
-	var castle = new Assets("castle", "res/textures/castle.png", 160, 160);
+	var castle = new Assets("castle",  CURRENT_PATH + "res/textures/castle.png", 160, 160);
 	castle.sprite = castle.sheet.crop(0, 0, castle.width, castle.height);
 
 	//CASTLE animation
-	var castleExplode = new Assets("castleExplode", "res/textures/tiles.png", DEFAULT_WIDTH,  DEFAULT_HEIGHT);
+	var castleExplode = new Assets("castleExplode",  CURRENT_PATH + "res/textures/tiles.png", DEFAULT_WIDTH,  DEFAULT_HEIGHT);
 	var castleExplodeFramespeed = 300,
 			castleExplodeFrames = [], //castle idle spin frames
 			castleExplodeFramesX = 20, //X on spritesheet
