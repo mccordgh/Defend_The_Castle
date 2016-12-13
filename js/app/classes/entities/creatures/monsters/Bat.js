@@ -33,7 +33,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 		},
 		tick: function(_dt){
 			if (this.health <= 0){
-				this.handler.getWorld().getEntityManager().getPlayer().score += 11;
+				this.handler.getWorld().getEntityManager().getPlayer().score += 12;
 				this.dead++;
 				if (this.dead === 60){
 					this.dead = 666;

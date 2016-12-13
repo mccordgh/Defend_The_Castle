@@ -16,7 +16,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
         dataType: 'json',
         success: function(data){
           leaderBoard = data;
-          setLeaderBoards(leaderBoard);
+          setLeaderBoards(leaderBoard); 
           console.log("success:", data);
         },
         error: function(data){
@@ -78,7 +78,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 			      		_g.drawText({
 			      		borderColor: 'orange',
 			      		fillColor: 'white',
-			      		text: `${i}${spaces}: ${leaderBoard[i].rank} : ${leaderBoard[i].name} : ${leaderBoard[i].score.toLocaleString()}`,
+			      		text: `${i + 1}${spaces}: ${leaderBoard[i].rank} : ${leaderBoard[i].name} : ${leaderBoard[i].score.toLocaleString()}`,
 			      		fontSize: 48,
 			      		font: 'serif',
 			      		x: function() {return 200;},

@@ -1,7 +1,7 @@
 define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState, KeyManager, Assets){
 
   const CURRENT_PATH = window.location.href;
-	var fontSize, timeCounter = 0, endRank, LBPosition, endScore = null;
+	var fontSize, timeCounter = 0, endRank, LBPosition, endScore = null, LBInfo = "Getting Leaderboard information...";
 
 	var GameOverState = State.extend({
 		init:function(_handler){
@@ -42,6 +42,17 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
         font: 'serif',
         x: function() {return 50;},
         y: function() {return 350;},
+        });
+
+        //tell them if they made leaderboard or not
+        _g.drawText({
+        borderColor: 'orange',
+        fillColor: 'white',
+        text: LBinfo,
+        fontSize: 52,
+        font: 'serif',
+        x: function() {return 50;},
+        y: function() {return 400;},
         });
 
         if (timeCounter > 90) {
@@ -103,10 +114,9 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
       }
     });
     if (breakPosition < 11){
-      let newName = "BUBBA";
-      // while (newName === "" || newName.length > 11) {
-      //   newName = prompt(`You've made the leaderboard at position #${breakPosition + 1}! Please enter your name, warrior, in 10 characters or less. No Numbers or Special Characers`);
-      // }
+      while (newName === "" || newName.length > 11) {
+        newName = prompt(`You've made the leaderboard at position #${breakPosition + 1}! Please enter your name, warrior, in 10 characters or less. No Numbers or Special Characers`);
+      }
       let firstHalf = leaderboards.slice(0, breakPosition);
       let newGuy = {
         name: newName,
@@ -122,9 +132,13 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
         type: "PUT",
         data: JSON.stringify(tempLB),
         dataType: 'json'
+      })
+      .done(() => {
+        LBInfo = "You placed on the leaderboards at rank: #" + breakPosition + 1;
       });
     } else {
       //DIDNT MAKE LEADERBOARDS. SCORE TOO LOW
+        LBInfo = "You didn't place on the leaderboards... Better luck next time, warrior!";
     }
   }
 
