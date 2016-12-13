@@ -97,10 +97,10 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
       }
     });
     if (breakPosition < 11){
-      let newName = "";
-      while (newName === "" || newName.length > 11) {
-        newName = prompt(`You've made the leaderboard at position #${breakPosition + 1}! Please enter your name, warrior, in 10 characters or less. No Numbers or Special Characers`);
-      }
+      let newName = "MATTY";
+      // while (newName === "" || newName.length > 11) {
+      //   newName = prompt(`You've made the leaderboard at position #${breakPosition + 1}! Please enter your name, warrior, in 10 characters or less. No Numbers or Special Characers`);
+      // }
       let firstHalf = leaderboards.slice(0, breakPosition);
       let newGuy = {
         name: newName,
@@ -113,10 +113,12 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
       //SAVING NEW LEADERBOARD
       // $.ajax({
       //   dataType: "json",
-      //   type: "PUT",
+      //   method: "PUT",
+      //   crossDomain: true,
       //   data: {
       //         "leaderboards": tempLB
       //         },
+      //   isLocal: true,
       //   url: CURRENT_PATH + "res/leaderboard/leaderboard.json",
       //   success: function(data){
       //     console.log("leader board success:", data);

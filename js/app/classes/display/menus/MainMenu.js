@@ -12,7 +12,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
       //Load Leaderboards
       $.ajax({
         dataType: "json",
-        url: CURRENT_PATH + "res/leaderboard/leaderboard.json",
+        url: "http://mccordinator.com/projects/defend_the_castle/res/leaderboard.json",
         success: function(data){
           // console.log("success:", data);
         },
