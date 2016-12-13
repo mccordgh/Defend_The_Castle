@@ -12,7 +12,7 @@ define(['StaticEntity', 'Tile', 'Assets', 'Bat', 'World'], function(StaticEntity
 			this.type = 'static';
 			this.spawnTimer = 0;
 			this.lastSpawnTime = Date.now();
-			this.spawnSpeed = 100;
+			this.spawnSpeed = 5000;
 			this.spawnPercent = 0.25;
 			this.assets = Assets.getAssets("portal");
 			this.spawnTries = 0;
