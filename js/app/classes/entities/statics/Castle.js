@@ -6,9 +6,9 @@ define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverSta
 		init: function(_handler, _x, _y){
 			this._super(_handler, _x, _y, Tile.TILE_WIDTH * 4, Tile.TILE_HEIGHT * 4);
 			this.bounds.x = 0;
-			this.bounds.y = 35;
+			this.bounds.y = 0;
 			this.bounds.width = 80;
-			this.bounds.height = 45;
+			this.bounds.height = 80;
 			this.height = 81;
 			this.width = 80;
 			this.type = 'castle';

@@ -16,7 +16,6 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 			this.type = 'player';
 			this.damage = 60;
 			this.score = 0;
-			this.attacking = false;
 			this.weapon = Assets.getAssets('sword');
 			// this.portrait = Assets.getAssets('Portraits');
 			// this.healthbar = new HealthBar(_handler, this, {
@@ -66,37 +65,38 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 			}
 		},
 		render: function(_g){
-			//DRAW SWORD BEFORE PLAYER IF ATTACKING UP OR LEFT
-			if (this.attacking && lastAnimation === 'walk_up'){
+			//DRAW SWORD BEFORE PLAYER IF WALKING UP OR LEFT
+			if (lastAnimation === 'walk_up'){
 				_g.myDrawImage(this.weapon.walk_up, this.x - this.handler.getGameCamera().getxOffset() + 11, this.y - this.handler.getGameCamera().getyOffset() - 9, this.assets.width, this.assets.height);				
 			}
-			if (this.attacking && lastAnimation === 'walk_left'){
+			if (lastAnimation === 'walk_left'){
 				_g.myDrawImage(this.weapon.walk_left, this.x - this.handler.getGameCamera().getxOffset() - 15, this.y - this.handler.getGameCamera().getyOffset() + 5, this.assets.width, this.assets.height);				
 			}
 			
 			//Draw PLAYER
 			_g.myDrawImage(this.getCurrentAnimationFrame(), this.x - this.handler.getGameCamera().getxOffset(), this.y - this.handler.getGameCamera().getyOffset(), this.assets.width, this.assets.height);
 
-			//DRAW SWORD AFTER PLAYER IF ATTACKING DOWN OR RIGHT
-			if (this.attacking && lastAnimation === 'walk_down'){
+			//DRAW SWORD AFTER PLAYER IF WALKING DOWN OR RIGHT
+			if (lastAnimation === 'walk_down'){
 				_g.myDrawImage(this.weapon.walk_down, this.x - this.handler.getGameCamera().getxOffset() - 10, this.y - this.handler.getGameCamera().getyOffset() + 25, this.assets.width, this.assets.height);				
 			}
-			if (this.attacking && lastAnimation === 'walk_right'){
+			if (lastAnimation === 'walk_right'){
 				_g.myDrawImage(this.weapon.walk_right, this.x - this.handler.getGameCamera().getxOffset() + 14, this.y - this.handler.getGameCamera().getyOffset() + 9, this.assets.width, this.assets.height);				
 			}
 			
-			if (this.attacking){
-				attackCounter++;
-				console.log("increment");
-				if (attackCounter >= 15){
-					console.log("resetting attack counter and lastAttackCounter");
-					attackCounter = 0;
-					lastAttackCounter = 0;
-					this.attacking = false;
-				}
-			}
+			// if (this.attacking){
+			// 	attackCounter++;
+			// 	console.log("increment");
+			// 	if (attackCounter >= 15){
+			// 		console.log("resetting attack counter and lastAttackCounter");
+			// 		attackCounter = 0;
+			// 		lastAttackCounter = 0;
+			// 		this.attacking = false;
+			// 	}
+			// }
 
-			lastAttackCounter++;
+			// lastAttackCounter++;
+			
 			// ****** DRAW BOUNDING BOX DON'T DELETE!!
 			_g.fillStyle = "blue";
 			_g.fillRect(this.bounds.x + this.x - this.handler.getGameCamera().getxOffset(), this.bounds.y + this.y - this.handler.getGameCamera().getyOffset(), this.bounds.width, this.bounds.height);
@@ -105,9 +105,9 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 		getInput: function(_dt){
 			this.xMove = 0;
 			this.yMove = 0;
-			if((this.handler.getKeyManager().f || this.handler.getKeyManager().j) && lastAttackCounter > 30){
-				this.attacking = true;
-			}
+			// if((this.handler.getKeyManager().f || this.handler.getKeyManager().j) && lastAttackCounter > 30){
+			// 	this.attacking = true;
+			// }
 			if(this.handler.getKeyManager().space){
 				console.log("SPACE: JUMP!!");
 			}
@@ -125,9 +125,9 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 			}
 		},
 		getCurrentAnimationFrame: function(){
-			if (this.health <= 0){
-				return this.assets.animations.death.getCurrentFrame();
-			}
+			// if (this.health <= 0){
+			// 	return this.assets.animations.death.getCurrentFrame();
+			// }
 			if (this.yMove < 0){
 					lastAnimation = "walk_up";
 					return this.assets.animations.walk_up.getCurrentFrame();
