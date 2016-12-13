@@ -33,7 +33,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 
       this.assets = Assets.getAssets('title');
       this.choices = ['play', 'leaderboards', 'credits'];
-			this.view = 'leaderboards';
+			this.view = 'menu';
 		},
 		tick: function(_dt){
 			countSinceInput++;
