@@ -11,23 +11,39 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
       handlerRef = _handler;
       //Load Leaderboards
       $.ajax({
-        dataType: "json",
-        url: "http://mccordinator.com/projects/defend_the_castle/res/leaderboard.json",
+        url: 'https://defend-the-castle.firebaseio.com/leaderboards.json',
+        type: "GET",
+        dataType: 'json',
         success: function(data){
-          // console.log("success:", data);
+          leaderBoard = data;
+          setLeaderBoards(leaderBoard);
+          console.log("success:", data);
         },
         error: function(data){
           console.log("error!!!:", data);
         }
       }).done(function(data) {
-        
-        let TMPleaderBoard = data.leaderboards;
-        // TMPleaderBoard.forEach((item, index) =>{
-        //   TMPleaderBoard[index].id = index + 1;
-        // });
-        leaderBoard = TMPleaderBoard;
-        setLeaderBoards(leaderBoard);
+          console.log("done", data);
       });
+
+      // // $.ajax({
+      // //   dataType: "json",
+      // //   url: "http://mccordinator.com/projects/defend_the_castle/res/leaderboard.json",
+      // //   success: function(data){
+      // //     // console.log("success:", data);
+      // //   },
+      // //   error: function(data){
+      // //     console.log("error!!!:", data);
+      // //   }
+      // // }).done(function(data) {
+        
+      //   let TMPleaderBoard = data.leaderboards;
+      //   // TMPleaderBoard.forEach((item, index) =>{
+      //   //   TMPleaderBoard[index].id = index + 1;
+      //   // });
+      //   leaderBoard = TMPleaderBoard;
+      //   setLeaderBoards(leaderBoard);
+      // });
 
       //Load Credits
       credits = getCredits();
