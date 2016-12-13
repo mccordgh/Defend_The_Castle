@@ -1,7 +1,8 @@
 define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState, KeyManager, Assets){
 
   const CURRENT_PATH = window.location.href;
-	var fontSize, timeCounter = 0, endRank, LBPosition, endScore = null;
+	var fontSize, timeCounter = 0, endRank, LBPosition, endScore = null, LBinfo = "Getting Leaderboard information...", LBinfo2 = "";
+  var rankIcons = Assets.getAssets('rankIcons');
 
 	var GameOverState = State.extend({
 		init:function(_handler){
@@ -40,11 +41,33 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
         text: `Rank: ${endRank}`,
         fontSize: 52,
         font: 'serif',
-        x: function() {return 50;},
+        x: function() {return 110;},
         y: function() {return 350;},
         });
 
-        if (timeCounter > 60) {
+        _g.myDrawImage(rankIcons[endRank], 48, 312, 48, 48);
+        
+        //tell them if they made leaderboard or not
+        _g.drawText({
+        borderColor: 'orange',
+        fillColor: 'white',
+        text: LBinfo,
+        fontSize: 52,
+        font: 'serif',
+        x: function() {return 50;},
+        y: function() {return 400;},
+        });
+        _g.drawText({
+        borderColor: 'orange',
+        fillColor: 'white',
+        text: LBinfo2,
+        fontSize: 52,
+        font: 'serif',
+        x: function() {return 50;},
+        y: function() {return 450;},
+        });
+
+        if (timeCounter > 90) {
            _g.drawText({
           borderColor: 'orange',
            fillColor: 'white',
@@ -66,22 +89,24 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
 
   function getRankByScore(_score){
     console.log("_score", _score);
-    let rankPosition = Math.floor(_score / 200000);
-    if (rankPosition > 5)
-      rankPosition = 5;
+    let rankPosition = Math.floor(_score / 150000);
+    if (rankPosition > 6)
+      rankPosition = 6;
     switch (rankPosition){
       case 0:
         return 'Squire';
       case 1:
         return 'Knight';
       case 2:
-        return 'Knight Captain';
+        return 'Captain';
       case 3:
         return 'Baron';
       case 4:
         return 'Duke';
       case 5:
         return 'Lord';
+      case 6:
+        return 'Emporer';
       default:
         console.log("default rank");
         return 'error -> default';
@@ -90,16 +115,19 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
 
   function getLeaderBoardPosition(_endScore, _handlerRef){
     let leaderboards = _handlerRef.getLeaderBoards();
+    let newName = "";
     let breakPosition = 11;
     leaderboards.forEach((item, index) => {
       if (item.score < _endScore && breakPosition === 11){
         breakPosition = index;
       }
+      if (item.score === _endScore && breakPosition === 11){
+        breakPosition = index + 1;
+      }
     });
     if (breakPosition < 11){
-      let newName = "";
-      while (newName === "" || newName.length > 11) {
-        newName = prompt(`You've made the leaderboard at position #${breakPosition + 1}! Please enter your name, warrior, in 10 characters or less. No Numbers or Special Characers`);
+      while (newName === "" || newName.length > 10) {
+        newName = prompt(`You fought bravely! Please enter your name, warrior, in 10 CHARACTERS OR LESS.`);
       }
       let firstHalf = leaderboards.slice(0, breakPosition);
       let newGuy = {
@@ -111,25 +139,20 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
       let tempLB = firstHalf.concat(newGuy).concat(secondHalf);
       console.log("tempLB", tempLB);
       //SAVING NEW LEADERBOARD
-      // $.ajax({
-      //   dataType: "json",
-      //   type: "PUT",
-      //   data: {
-      //         "leaderboards": tempLB
-      //         },
-      //   url: CURRENT_PATH + "res/leaderboard/leaderboard.json",
-      //   success: function(data){
-      //     console.log("leader board success:", data);
-      //   },
-      //   error: function(data){
-      //     console.log("leader board error!!!:", data);
-      //   }
-      // }).done(function(data) {
-      //   console.log("leader board saved?");
-      // });
-
+      $.ajax({
+        url: 'https://defend-the-castle.firebaseio.com/leaderboards/.json',
+        type: "PUT",
+        data: JSON.stringify(tempLB),
+        dataType: 'json'
+      })
+      .done(() => {
+        LBinfo = "You placed on the leaderboards at";
+        LBinfo2 = "position #" + breakPosition;
+      });
     } else {
       //DIDNT MAKE LEADERBOARDS. SCORE TOO LOW
+        LBinfo = "You didn't place on the leaderboards...";
+        LBinfo2 = "Better luck next time, warrior!";
     }
   }
 

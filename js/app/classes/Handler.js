@@ -1,6 +1,6 @@
 define(['Class'],function(Class){
 
-	var game, world, leaderBoards;
+	var game, world, leaderBoards = [];
 
 	var Handler = Class.extend({
 		init:function(_game){
