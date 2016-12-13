@@ -73,29 +73,12 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 	var gameOverAssets = new Assets('gameOver', CURRENT_PATH + "res/textures/gameover.png", 499, 182);
 	gameOverAssets.logo = gameOverAssets.sheet.crop(24, 46, 467, 119);
 
-	var sword = new Assets('sword', CURRENT_PATH + "res/textures/sword.png", 2215, 1907);
-	var swordframespeed = 200,
-			swordRightframes = [], //sword swinging right frames
-			swordLeftframes = [], //sword swinging left frames
-			swordRightrow = 0, //walk up row on spritesheet
-			swordLeftrow = 1, //walk right row on spritesheet
-			swordAnimationLength = 4; //how many frames in animation
-
-	for(var i = 1; i < swordAnimationLength; i++){
-		swordRightframes.push({
-			frame: bat.sheet.crop(bat.width * i, bat.height * batwrrow, bat.width, bat.height),
-			speed: batframespeed
-		});
-		swordLeftframes.push({
-			frame: bat.sheet.crop(bat.width * i, bat.height * batwdrow, bat.width, bat.height),
-			speed: batframespeed
-		});
-	}
-
-	sword.addAnimation("swing_right", new Animation(swordRightframes));
-	sword.addAnimation("swing_left", new Animation(swordLeftframes));
-
-
+	//Player Sword
+	var sword = new Assets('sword', CURRENT_PATH + "res/textures/4swords.png", 1160, 689);
+	sword.walk_up = sword.sheet.crop(0, 0, 230, 689);
+	sword.walk_down = sword.sheet.crop(227, 0, 230, 689);
+	sword.walk_left = sword.sheet.crop(465, 54, 696, 244);
+	sword.walk_right = sword.sheet.crop(461, 311, 696, 244);
 
 	//BAT
 	var bat = new Assets("bat", CURRENT_PATH + "res/textures/bat-sprite.png", DEFAULT_WIDTH,  DEFAULT_HEIGHT );

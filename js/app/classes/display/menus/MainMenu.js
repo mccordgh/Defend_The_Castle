@@ -3,6 +3,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 	const CURRENT_PATH = window.location.href;
 	var fontSize = 0, countSinceInput = 11, choicePosition = 0, leaderboardsLoaded = false;
 	var leaderBoard = [], credits = [], handlerRef;
+  var sword = Assets.getAssets('sword');
 
 	var MainMenu = MenuState.extend({
 		init:function(_handler){
@@ -112,8 +113,11 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 	      		break;
 	      	
 	      	case 'test':
-						// console.log("this.assets.LBLogo", this.assets.LBLogo);
-						// _g.myDrawImage(this.assets.LBLogo, 250, 10, this.assets.LBLogo.width, this.assets.LBLogo.height);
+						// console.log("sword", sword);
+      //       _g.myDrawImage(sword.up, 100, 100, 32, 64);
+      //       _g.myDrawImage(sword.down, 150, 100, 32, 64);
+      //       _g.myDrawImage(sword.right, 100, 200, 64, 32);
+      //       _g.myDrawImage(sword.left, 150, 300, 64, 32);
 	      		break;
 	      	
 	      	default:
