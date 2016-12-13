@@ -1,6 +1,6 @@
 define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar){
 
-	var lastAnimation = "walk_down", attackCounter = 0, lastAttackCounter = 0;
+	var lastAnimation = "walk_right", attackCounter = 0, lastAttackCounter = 0;
 
 	var Player = Creature.extend({
 		init: function(_handler, _x, _y){
@@ -8,9 +8,9 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 			this.assets = Assets.getAssets('player');
 			this.x = _x;
 			this.y = _y;
+			this.speed = 200;
 			this.bounds.x = 11;
 			this.bounds.y = 18;
-			this.speed = 200;
 			this.bounds.width = 12;
 			this.bounds.height = 18;
 			this.type = 'player';
@@ -67,10 +67,18 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 		render: function(_g){
 			//DRAW SWORD BEFORE PLAYER IF WALKING UP OR LEFT
 			if (lastAnimation === 'walk_up'){
-				_g.myDrawImage(this.weapon.walk_up, this.x - this.handler.getGameCamera().getxOffset() + 11, this.y - this.handler.getGameCamera().getyOffset() - 9, this.assets.width, this.assets.height);				
+				this.bounds.x = -6;
+				this.bounds.y = -32;
+				this.bounds.width = 25;
+				this.bounds.height = 50;
+				_g.myDrawImage(this.weapon.walk_up, this.x - this.handler.getGameCamera().getxOffset() - 9, this.y - this.handler.getGameCamera().getyOffset() - 33, 32, 64);				
 			}
 			if (lastAnimation === 'walk_left'){
-				_g.myDrawImage(this.weapon.walk_left, this.x - this.handler.getGameCamera().getxOffset() - 15, this.y - this.handler.getGameCamera().getyOffset() + 5, this.assets.width, this.assets.height);				
+				this.bounds.x = -37;
+				this.bounds.y = 15;
+				this.bounds.width = 50;
+				this.bounds.height = 25;
+				_g.myDrawImage(this.weapon.walk_left, this.x - this.handler.getGameCamera().getxOffset() - 40, this.y - this.handler.getGameCamera().getyOffset() + 11, 64, 32);				
 			}
 			
 			//Draw PLAYER
@@ -78,10 +86,18 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 
 			//DRAW SWORD AFTER PLAYER IF WALKING DOWN OR RIGHT
 			if (lastAnimation === 'walk_down'){
-				_g.myDrawImage(this.weapon.walk_down, this.x - this.handler.getGameCamera().getxOffset() - 10, this.y - this.handler.getGameCamera().getyOffset() + 25, this.assets.width, this.assets.height);				
+				this.bounds.x = -5;
+				this.bounds.y = 35;
+				this.bounds.width = 25;
+				this.bounds.height = 50;
+				_g.myDrawImage(this.weapon.walk_down, this.x - this.handler.getGameCamera().getxOffset() - 9, this.y - this.handler.getGameCamera().getyOffset() + 25, 32, 64);				
 			}
 			if (lastAnimation === 'walk_right'){
-				_g.myDrawImage(this.weapon.walk_right, this.x - this.handler.getGameCamera().getxOffset() + 14, this.y - this.handler.getGameCamera().getyOffset() + 9, this.assets.width, this.assets.height);				
+				this.bounds.x = 19;
+				this.bounds.y = 15;
+				this.bounds.width = 50;
+				this.bounds.height = 25;
+				_g.myDrawImage(this.weapon.walk_right, this.x - this.handler.getGameCamera().getxOffset() + 7, this.y - this.handler.getGameCamera().getyOffset() + 11, 64, 32);				
 			}
 			
 			// if (this.attacking){
@@ -98,8 +114,8 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 			// lastAttackCounter++;
 			
 			// ****** DRAW BOUNDING BOX DON'T DELETE!!
-			_g.fillStyle = "blue";
-			_g.fillRect(this.bounds.x + this.x - this.handler.getGameCamera().getxOffset(), this.bounds.y + this.y - this.handler.getGameCamera().getyOffset(), this.bounds.width, this.bounds.height);
+			// _g.fillStyle = "blue";
+			// _g.fillRect(this.bounds.x + this.x - this.handler.getGameCamera().getxOffset(), this.bounds.y + this.y - this.handler.getGameCamera().getyOffset(), this.bounds.width, this.bounds.height);
 			// ****** DRAW BOUNDING BOX DON'T DELETE!!
 		},
 		getInput: function(_dt){

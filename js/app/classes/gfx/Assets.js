@@ -75,10 +75,10 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 
 	//Player Sword
 	var sword = new Assets('sword', CURRENT_PATH + "res/textures/4swords.png", 1160, 689);
-	sword.walk_up = sword.sheet.crop(0, 0, 230, 689);
-	sword.walk_down = sword.sheet.crop(227, 0, 230, 689);
-	sword.walk_left = sword.sheet.crop(465, 54, 696, 244);
-	sword.walk_right = sword.sheet.crop(461, 311, 696, 244);
+	sword.walk_up = sword.sheet.crop(0, 0, 42, 128);
+	sword.walk_down = sword.sheet.crop(43, 0, 43, 128);
+	sword.walk_left = sword.sheet.crop(87, 15, 128, 43);
+	sword.walk_right = sword.sheet.crop(87, 61, 128, 43);
 
 	//BAT
 	var bat = new Assets("bat", CURRENT_PATH + "res/textures/bat-sprite.png", DEFAULT_WIDTH,  DEFAULT_HEIGHT );
@@ -166,15 +166,15 @@ for(let i = 0; i < portalanimationLength; i++){
 			speed: framespeed
 		});
 		wrframes.push({
-			frame: player.sheet.crop(player.width * i, player.height * wrrow, player.width, player.height),
+			frame: player.sheet.crop(player.width * i, player.height * wrrow + 1, player.width, player.height),
 			speed: framespeed
 		});
 		wdframes.push({
-			frame: player.sheet.crop(player.width * i, player.height * wdrow, player.width, player.height),
+			frame: player.sheet.crop(player.width * i, player.height * wdrow + 1, player.width, player.height),
 			speed: framespeed
 		});
 		wlframes.push({
-			frame: player.sheet.crop(player.width * i, player.height * wlrow, player.width, player.height),
+			frame: player.sheet.crop(player.width * i, player.height * wlrow + 1, player.width, player.height),
 			speed: framespeed
 		});
 		deathframes.push({
