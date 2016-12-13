@@ -31,33 +31,33 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 
 	//PIXEL FONT FOR A-Z
 	//letters are 42x68	
-	var pixelFont = new Assets("pixelFont", CURRENT_PATH + "res/textures/pixel_font_a_to_z.png", 1362, 182);
-	pixelFont.a = pixelFont.sheet.crop(31, 43, 25, 35);
-	pixelFont.b = pixelFont.sheet.crop(57, 43, 24, 35);
-	pixelFont.c = pixelFont.sheet.crop(82, 43, 24, 35);
-	pixelFont.d = pixelFont.sheet.crop(107, 43, 24, 35);
-	pixelFont.e = pixelFont.sheet.crop(132, 43, 25, 35);
-	pixelFont.f = pixelFont.sheet.crop(157, 43, 24, 35);
-	pixelFont.g = pixelFont.sheet.crop(184, 43, 24, 35);
-	pixelFont.h = pixelFont.sheet.crop(210, 43, 26, 35);
-	pixelFont.i = pixelFont.sheet.crop(236, 43, 16, 35);
-	pixelFont.j = pixelFont.sheet.crop(253, 43, 24, 35);
-	pixelFont.k = pixelFont.sheet.crop(278, 43, 24, 35);
-	pixelFont.l = pixelFont.sheet.crop(303, 43, 24, 35);
-	pixelFont.m = pixelFont.sheet.crop(328, 43, 41, 35);
-	pixelFont.n = pixelFont.sheet.crop(370, 43, 24, 35);
-	pixelFont.o = pixelFont.sheet.crop(395, 43, 24, 35);
-	pixelFont.p = pixelFont.sheet.crop(420, 43, 24, 35);
-	pixelFont.q = pixelFont.sheet.crop(445, 43, 24, 37);
-	pixelFont.r = pixelFont.sheet.crop(470, 43, 25, 35);
-	pixelFont.s = pixelFont.sheet.crop(496, 43, 28, 35);
-	pixelFont.t = pixelFont.sheet.crop(522, 43, 25, 35);
-	pixelFont.u = pixelFont.sheet.crop(548, 43, 25, 35);
-	pixelFont.v = pixelFont.sheet.crop(574, 43, 26, 35);
-	pixelFont.w = pixelFont.sheet.crop(600, 43, 41, 35);
-	pixelFont.x = pixelFont.sheet.crop(642, 43, 24, 35);
-	pixelFont.y = pixelFont.sheet.crop(667, 43, 24, 35);
-	pixelFont.z = pixelFont.sheet.crop(692, 43, 24, 35);
+	// var pixelFont = new Assets("pixelFont", CURRENT_PATH + "res/textures/pixel_font_a_to_z.png", 1362, 182);
+	// pixelFont.a = pixelFont.sheet.crop(31, 43, 25, 35);
+	// pixelFont.b = pixelFont.sheet.crop(57, 43, 24, 35);
+	// pixelFont.c = pixelFont.sheet.crop(82, 43, 24, 35);
+	// pixelFont.d = pixelFont.sheet.crop(107, 43, 24, 35);
+	// pixelFont.e = pixelFont.sheet.crop(132, 43, 25, 35);
+	// pixelFont.f = pixelFont.sheet.crop(157, 43, 24, 35);
+	// pixelFont.g = pixelFont.sheet.crop(184, 43, 24, 35);
+	// pixelFont.h = pixelFont.sheet.crop(210, 43, 26, 35);
+	// pixelFont.i = pixelFont.sheet.crop(236, 43, 16, 35);
+	// pixelFont.j = pixelFont.sheet.crop(253, 43, 24, 35);
+	// pixelFont.k = pixelFont.sheet.crop(278, 43, 24, 35);
+	// pixelFont.l = pixelFont.sheet.crop(303, 43, 24, 35);
+	// pixelFont.m = pixelFont.sheet.crop(328, 43, 41, 35);
+	// pixelFont.n = pixelFont.sheet.crop(370, 43, 24, 35);
+	// pixelFont.o = pixelFont.sheet.crop(395, 43, 24, 35);
+	// pixelFont.p = pixelFont.sheet.crop(420, 43, 24, 35);
+	// pixelFont.q = pixelFont.sheet.crop(445, 43, 24, 37);
+	// pixelFont.r = pixelFont.sheet.crop(470, 43, 25, 35);
+	// pixelFont.s = pixelFont.sheet.crop(496, 43, 28, 35);
+	// pixelFont.t = pixelFont.sheet.crop(522, 43, 25, 35);
+	// pixelFont.u = pixelFont.sheet.crop(548, 43, 25, 35);
+	// pixelFont.v = pixelFont.sheet.crop(574, 43, 26, 35);
+	// pixelFont.w = pixelFont.sheet.crop(600, 43, 41, 35);
+	// pixelFont.x = pixelFont.sheet.crop(642, 43, 24, 35);
+	// pixelFont.y = pixelFont.sheet.crop(667, 43, 24, 35);
+	// pixelFont.z = pixelFont.sheet.crop(692, 43, 24, 35);
 
 
 	//Title Screen
@@ -68,6 +68,34 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 	titleScreenAssets.LBLogo = titleScreenAssets.sheet.crop(309, 476, 410, 47);
 	//Credits Logo
 	titleScreenAssets.creditsLogo = titleScreenAssets.sheet.crop(309, 540, 214, 47);
+
+	//Game Over Assets
+	var gameOverAssets = new Assets('gameOver', CURRENT_PATH + "res/textures/gameover.png", 499, 182);
+	gameOverAssets.logo = gameOverAssets.sheet.crop(24, 46, 467, 119);
+
+	var sword = new Assets('sword', CURRENT_PATH + "res/textures/sword.png", 2215, 1907);
+	var swordframespeed = 200,
+			swordRightframes = [], //sword swinging right frames
+			swordLeftframes = [], //sword swinging left frames
+			swordRightrow = 0, //walk up row on spritesheet
+			swordLeftrow = 1, //walk right row on spritesheet
+			swordAnimationLength = 4; //how many frames in animation
+
+	for(var i = 1; i < swordAnimationLength; i++){
+		swordRightframes.push({
+			frame: bat.sheet.crop(bat.width * i, bat.height * batwrrow, bat.width, bat.height),
+			speed: batframespeed
+		});
+		swordLeftframes.push({
+			frame: bat.sheet.crop(bat.width * i, bat.height * batwdrow, bat.width, bat.height),
+			speed: batframespeed
+		});
+	}
+
+	sword.addAnimation("swing_right", new Animation(swordRightframes));
+	sword.addAnimation("swing_left", new Animation(swordLeftframes));
+
+
 
 	//BAT
 	var bat = new Assets("bat", CURRENT_PATH + "res/textures/bat-sprite.png", DEFAULT_WIDTH,  DEFAULT_HEIGHT );

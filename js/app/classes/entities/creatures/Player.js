@@ -15,7 +15,7 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 			this.bounds.height = 18;
 			this.type = 'player';
 			this.damage = 60;
-			this.score = 0;
+			this.score = 600900;
 			// this.portrait = Assets.getAssets('Portraits');
 			// this.healthbar = new HealthBar(_handler, this, {
 			// 						nodes: 100,

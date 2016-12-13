@@ -2,30 +2,37 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 
 	const CURRENT_PATH = window.location.href;
 	var fontSize = 0, countSinceInput = 11, choicePosition = 0, leaderboardsLoaded = false;
-	var leaderBoard = [], credits = [];
+	var leaderBoard = [], credits = [], handlerRef;
 
 	var MainMenu = MenuState.extend({
 		init:function(_handler){
-			//Load Leaderboards
-			$.ajax({
-			  dataType: "json",
-			  url: CURRENT_PATH + "res/leaderboard/leaderboard.json",
-			  success: function(data){
-			  	// console.log("success:", data);
-			  },
-			  error: function(data){
-			  	console.log("error!!!:", data);
-			  }
-			}).done(function(data) {
-			  leaderBoard = data.leaderboards;
-			});
+      this.handler = _handler;
+      handlerRef = _handler;
+      //Load Leaderboards
+      $.ajax({
+        dataType: "json",
+        url: CURRENT_PATH + "res/leaderboard/leaderboard.json",
+        success: function(data){
+          // console.log("success:", data);
+        },
+        error: function(data){
+          console.log("error!!!:", data);
+        }
+      }).done(function(data) {
+        
+        let TMPleaderBoard = data.leaderboards;
+        // TMPleaderBoard.forEach((item, index) =>{
+        //   TMPleaderBoard[index].id = index + 1;
+        // });
+        leaderBoard = TMPleaderBoard;
+        setLeaderBoards(leaderBoard);
+      });
 
-			//Load Credits
-			credits = getCredits();
+      //Load Credits
+      credits = getCredits();
 
-			this.assets = Assets.getAssets('title');
-			this.choices = ['play', 'leaderboards', 'credits'];
-			this.handler = _handler;
+      this.assets = Assets.getAssets('title');
+      this.choices = ['play', 'leaderboards', 'credits'];
 			this.view = 'menu';
 		},
 		tick: function(_dt){
@@ -45,7 +52,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 	      		let spaces = "xxx";
 		      	for (let i = 0; i < leaderBoard.length; i++){
 			      		let yDraw = 125 + (i * 46);
-			      		if (i < 9) {
+			      		if (i < 10) {
 			      			spaces = "  ";
 			      		} else {
 			      			spaces = " ";
@@ -54,7 +61,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 			      		_g.drawText({
 			      		borderColor: 'orange',
 			      		fillColor: 'white',
-			      		text: `${leaderBoard[i].id}${spaces}: ${leaderBoard[i].rank} : ${leaderBoard[i].name} : ${leaderBoard[i].score}`,
+			      		text: `${i}${spaces}: ${leaderBoard[i].rank} : ${leaderBoard[i].name} : ${leaderBoard[i].score.toLocaleString()}`,
 			      		fontSize: 48,
 			      		font: 'serif',
 			      		x: function() {return 200;},
@@ -171,6 +178,11 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 			'     engine Youtube tutorial'
 		];
 	}
+
+  function setLeaderBoards(_LB){
+    console.log("handlerRef", handlerRef);
+    handlerRef.setLeaderBoards(leaderBoard);
+  }
 
 	return MainMenu;
 

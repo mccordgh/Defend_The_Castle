@@ -1,6 +1,6 @@
 define(['Class'],function(Class){
 
-	var game, world;
+	var game, world, leaderBoards;
 
 	var Handler = Class.extend({
 		init:function(_game){
@@ -26,6 +26,12 @@ define(['Class'],function(Class){
 		},
 		getStateByName: function(_name){
 			return game.getStateByName(_name);
+		},
+		getLeaderBoards(){
+			return leaderBoards;
+		},
+		setLeaderBoards(_LB){
+			leaderBoards = _LB;
 		}
 	
 	});
