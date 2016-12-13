@@ -1,7 +1,8 @@
 define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState, KeyManager, Assets){
 
   const CURRENT_PATH = window.location.href;
-	var fontSize, timeCounter = 0, endRank, LBPosition, endScore = null, LBInfo = "Getting Leaderboard information...";
+	var fontSize, timeCounter = 0, endRank, LBPosition, endScore = null, LBinfo = "Getting Leaderboard information...", LBinfo2 = "";
+  var rankIcons = Assets.getAssets('rankIcons');
 
 	var GameOverState = State.extend({
 		init:function(_handler){
@@ -40,10 +41,12 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
         text: `Rank: ${endRank}`,
         fontSize: 52,
         font: 'serif',
-        x: function() {return 50;},
+        x: function() {return 110;},
         y: function() {return 350;},
         });
 
+        _g.myDrawImage(rankIcons[endRank], 48, 312, 48, 48);
+        
         //tell them if they made leaderboard or not
         _g.drawText({
         borderColor: 'orange',
@@ -53,6 +56,15 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
         font: 'serif',
         x: function() {return 50;},
         y: function() {return 400;},
+        });
+        _g.drawText({
+        borderColor: 'orange',
+        fillColor: 'white',
+        text: LBinfo2,
+        fontSize: 52,
+        font: 'serif',
+        x: function() {return 50;},
+        y: function() {return 450;},
         });
 
         if (timeCounter > 90) {
@@ -86,7 +98,7 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
       case 1:
         return 'Knight';
       case 2:
-        return 'Knight Captain';
+        return 'Captain';
       case 3:
         return 'Baron';
       case 4:
@@ -103,7 +115,7 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
 
   function getLeaderBoardPosition(_endScore, _handlerRef){
     let leaderboards = _handlerRef.getLeaderBoards();
-    console.log("leaderboards", leaderboards);
+    let newName = "";
     let breakPosition = 11;
     leaderboards.forEach((item, index) => {
       if (item.score < _endScore && breakPosition === 11){
@@ -114,8 +126,8 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
       }
     });
     if (breakPosition < 11){
-      while (newName === "" || newName.length > 11) {
-        newName = prompt(`You've made the leaderboard at position #${breakPosition + 1}! Please enter your name, warrior, in 10 characters or less. No Numbers or Special Characers`);
+      while (newName === "" || newName.length > 10) {
+        newName = prompt(`You fought bravely! Please enter your name, warrior, in 10 CHARACTERS OR LESS.`);
       }
       let firstHalf = leaderboards.slice(0, breakPosition);
       let newGuy = {
@@ -134,11 +146,13 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
         dataType: 'json'
       })
       .done(() => {
-        LBInfo = "You placed on the leaderboards at rank: #" + breakPosition + 1;
+        LBinfo = "You placed on the leaderboards at";
+        LBinfo2 = "position #" + breakPosition;
       });
     } else {
       //DIDNT MAKE LEADERBOARDS. SCORE TOO LOW
-        LBInfo = "You didn't place on the leaderboards... Better luck next time, warrior!";
+        LBinfo = "You didn't place on the leaderboards...";
+        LBinfo2 = "Better luck next time, warrior!";
     }
   }
 

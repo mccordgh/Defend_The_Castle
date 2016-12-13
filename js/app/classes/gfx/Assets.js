@@ -29,6 +29,16 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 	//***** DECLARING ASSETS TEMPLATE
 	//var X = new Assets(name, url, width, height);
 
+	//RANK ICONS
+	var rankIcons = new Assets('rankIcons', CURRENT_PATH + "res/textures/LB_icons.png", 96, 96);
+	rankIcons.Squire = rankIcons.sheet.crop(0, 96, 96, 96);
+	rankIcons.Knight = rankIcons.sheet.crop(96, 96, 96, 96);
+	rankIcons.Captain = rankIcons.sheet.crop(192, 96, 96, 96);
+	rankIcons.Baron = rankIcons.sheet.crop(0, 0, 96, 96);
+	rankIcons.Duke = rankIcons.sheet.crop(96, 0, 96, 96);
+	rankIcons.Lord = rankIcons.sheet.crop(192, 0, 96, 96);
+	rankIcons.Emporer = rankIcons.sheet.crop(288, 0, 96, 96);
+
 	//PIXEL FONT FOR A-Z
 	//letters are 42x68	
 	// var pixelFont = new Assets("pixelFont", CURRENT_PATH + "res/textures/pixel_font_a_to_z.png", 1362, 182);

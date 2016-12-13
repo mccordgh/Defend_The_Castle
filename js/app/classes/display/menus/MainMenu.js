@@ -3,7 +3,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 	const CURRENT_PATH = window.location.href;
 	var fontSize = 0, countSinceInput = 11, choicePosition = 0, leaderboardsLoaded = false;
 	var leaderBoard = [], credits = [], handlerRef;
-  var sword = Assets.getAssets('sword');
+  var rankIcons = Assets.getAssets('rankIcons');
 
 	var MainMenu = MenuState.extend({
 		init:function(_handler){
@@ -16,33 +16,16 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
         dataType: 'json',
         success: function(data){
           leaderBoard = data;
-          setLeaderBoards(leaderBoard); 
-          console.log("success:", data);
+          setLeaderBoards(leaderBoard);
+          leaderboardsLoaded = true; 
+          // console.log("success:", data);
         },
         error: function(data){
           console.log("error!!!:", data);
         }
-      }).done(function(data) {
-          console.log("done", data);
       });
-
-      // // $.ajax({
-      // //   dataType: "json",
-      // //   url: "http://mccordinator.com/projects/defend_the_castle/res/leaderboard.json",
-      // //   success: function(data){
-      // //     // console.log("success:", data);
-      // //   },
-      // //   error: function(data){
-      // //     console.log("error!!!:", data);
-      // //   }
-      // // }).done(function(data) {
-        
-      //   let TMPleaderBoard = data.leaderboards;
-      //   // TMPleaderBoard.forEach((item, index) =>{
-      //   //   TMPleaderBoard[index].id = index + 1;
-      //   // });
-      //   leaderBoard = TMPleaderBoard;
-      //   setLeaderBoards(leaderBoard);
+      // .done(function(data) {
+      //     // console.log("done", data);
       // });
 
       //Load Credits
@@ -50,12 +33,11 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 
       this.assets = Assets.getAssets('title');
       this.choices = ['play', 'leaderboards', 'credits'];
-			this.view = 'menu';
+			this.view = 'leaderboards';
 		},
 		tick: function(_dt){
-			// console.log("countSinceInput", countSinceInput);
 			countSinceInput++;
-			if (countSinceInput > 10)
+			if (countSinceInput > 6)
 				this.getInput(_dt);
 			this.render();
 		},
@@ -67,23 +49,36 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 	      switch(this.view){
 	      	case 'leaderboards':
 	      		let spaces = "xxx";
-		      	for (let i = 0; i < leaderBoard.length; i++){
-			      		let yDraw = 125 + (i * 46);
-			      		if (i < 10) {
+            for (let i = 0; i < leaderBoard.length; i++){
+                let nameSpaces = (" ").repeat(10 - leaderBoard[i].name.length);
+			      		let yDraw = 100 + (i * 54);
+			      		if (i < 9) {
 			      			spaces = "  ";
 			      		} else {
 			      			spaces = " ";
 			      		}
-								_g.myDrawImage(this.assets.LBLogo, 280, 20, this.assets.LBLogo.width, this.assets.LBLogo.height);
-			      		_g.drawText({
-			      		borderColor: 'orange',
-			      		fillColor: 'white',
-			      		text: `${i + 1}${spaces}: ${leaderBoard[i].rank} : ${leaderBoard[i].name} : ${leaderBoard[i].score.toLocaleString()}`,
-			      		fontSize: 48,
-			      		font: 'serif',
-			      		x: function() {return 200;},
-			      		y: function() {return yDraw;},
-			      		});
+								_g.myDrawImage(this.assets.LBLogo, 280, 10, this.assets.LBLogo.width, this.assets.LBLogo.height);
+                _g.drawText({
+                borderColor: 'orange',
+                fillColor: 'white',
+                text: `${i + 1}${spaces}> `,
+                fontSize: 48,
+                font: 'serif',
+                x: function() {return 200;},
+                y: function() {return yDraw;},
+                });
+
+                _g.myDrawImage(rankIcons[leaderBoard[i].rank], 290, yDraw - 38, 48, 48);
+
+                _g.drawText({
+                borderColor: 'orange',
+                fillColor: 'white',
+                text: `> ${leaderBoard[i].name}${nameSpaces} > ${leaderBoard[i].score.toLocaleString()}`,
+                fontSize: 48,
+                font: 'serif',
+                x: function() {return 350;},
+                y: function() {return yDraw;},
+                });
 		      	}
 		      	_g.drawText({
 		      	borderColor: 'orange',
@@ -92,7 +87,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 		      	fontSize: 48,
 		      	font: 'serif',
 		      	x: function() {return 100;},
-		      	y: function() {return 600;},
+		      	y: function() {return 630;},
 		      	});
 	      		break;
 
@@ -129,11 +124,21 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 	      		break;
 	      	
 	      	case 'test':
-						// console.log("sword", sword);
-      //       _g.myDrawImage(sword.up, 100, 100, 32, 64);
-      //       _g.myDrawImage(sword.down, 150, 100, 32, 64);
-      //       _g.myDrawImage(sword.right, 100, 200, 64, 32);
-      //       _g.myDrawImage(sword.left, 150, 300, 64, 32);
+            // rankIcons.Squire = rankIcons.sheet.crop(0, 96, 96, 96);
+            // rankIcons.Knight = rankIcons.sheet.crop(96, 96, 96, 96);
+            // rankIcons.Captain = rankIcons.sheet.crop(192, 96, 96, 96);
+            // rankIcons.Baron = rankIcons.sheet.crop(0, 0, 96, 96);
+            // rankIcons.Duke = rankIcons.sheet.crop(96, 0, 96, 96);
+            // rankIcons.Lord = rankIcons.sheet.crop(192, 0, 96, 96);
+            // rankIcons.Emporer = rankIcons.sheet.crop(288, 0, 96, 96);
+            _g.myDrawImage( rankIcons.Squire, 50, 50, 48, 48);
+            _g.myDrawImage( rankIcons.Knight, 100, 50, 48, 48);
+            _g.myDrawImage( rankIcons.Captain, 150, 50, 48, 48);
+            _g.myDrawImage( rankIcons.Baron, 50, 150, 48, 48);
+            _g.myDrawImage( rankIcons.Duke, 100, 150, 48, 48);
+            _g.myDrawImage( rankIcons.Lord, 150, 150, 48, 48);
+            _g.myDrawImage( rankIcons.Emporer, 200, 150, 48, 48);
+
 	      		break;
 	      	
 	      	default:
@@ -171,7 +176,11 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 							State.setState(gameState);	
 							break;		
 						case 'leaderboards':
+              if (leaderboardsLoaded){
 							this.view = 'leaderboards';
+              } else {
+                alert ("Leader Boards are still loading. Give it a few more seconds or refresh the page!");
+              }
 							break;		
 						case 'credits':
 							this.view = 'credits';
