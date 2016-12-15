@@ -14,7 +14,7 @@ define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverSta
 			this.type = 'castle';
 			this.health = 2000;
 			let tempX = this.handler.getWidth() / 2 - 100,
-					tempY = this.handler.getHeight() - 40;
+					tempY = 40;
 			var hb_properties = {
 				nodes: 100,
 				fixed: true,

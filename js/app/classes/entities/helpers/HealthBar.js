@@ -45,7 +45,7 @@ define(['Helper', 'Assets'], function(Helper, Assets){
 						additionalWidth: this.width,
 						borderColor: 'black',
 						fillColor: 'white',
-						text: "Castle Health:",
+						text: "Castle Strength:",
 						fontSize: 32,
 						x: function() {return tempX;},
 						y: function(){return tempY;}
