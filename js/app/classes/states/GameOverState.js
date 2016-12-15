@@ -89,7 +89,7 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
 
   function getRankByScore(_score){
     console.log("_score", _score);
-    let rankPosition = Math.floor(_score / 150000);
+    let rankPosition = Math.floor(_score / 50000);
     if (rankPosition > 6)
       rankPosition = 6;
     switch (rankPosition){

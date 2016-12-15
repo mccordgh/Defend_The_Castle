@@ -23,7 +23,7 @@ define(['Helper', 'HealthBar', 'Assets'], function(Helper, HealthBar, Assets){
 			//Text: Score
 			_g.drawText({
 				border: true,
-				borderHeight: 100,
+				borderHeight: 80,
 				borderColor: 'black',
 				fillColor: 'white',
 				text: `Score: ${score.toLocaleString()}`,
