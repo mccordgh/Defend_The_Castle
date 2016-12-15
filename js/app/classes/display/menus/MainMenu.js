@@ -61,7 +61,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
                 _g.drawText({
                 borderColor: 'orange',
                 fillColor: 'white',
-                text: `${i + 1}${spaces}> `,
+                text: `${spaces}${i + 1}`,
                 fontSize: 48,
                 font: 'serif',
                 x: function() {return 200;},
@@ -73,7 +73,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
                 _g.drawText({
                 borderColor: 'orange',
                 fillColor: 'white',
-                text: `> ${leaderBoard[i].name}${nameSpaces} > ${leaderBoard[i].score.toLocaleString()}`,
+                text: `${leaderBoard[i].name}${nameSpaces}  ${leaderBoard[i].score.toLocaleString()}`,
                 fontSize: 48,
                 font: 'serif',
                 x: function() {return 350;},
@@ -131,13 +131,13 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
             // rankIcons.Duke = rankIcons.sheet.crop(96, 0, 96, 96);
             // rankIcons.Lord = rankIcons.sheet.crop(192, 0, 96, 96);
             // rankIcons.Emporer = rankIcons.sheet.crop(288, 0, 96, 96);
-            _g.myDrawImage( rankIcons.Squire, 50, 50, 48, 48);
-            _g.myDrawImage( rankIcons.Knight, 100, 50, 48, 48);
-            _g.myDrawImage( rankIcons.Captain, 150, 50, 48, 48);
-            _g.myDrawImage( rankIcons.Baron, 50, 150, 48, 48);
-            _g.myDrawImage( rankIcons.Duke, 100, 150, 48, 48);
-            _g.myDrawImage( rankIcons.Lord, 150, 150, 48, 48);
-            _g.myDrawImage( rankIcons.Emporer, 200, 150, 48, 48);
+            // _g.myDrawImage( rankIcons.Squire, 50, 50, 48, 48);
+            // _g.myDrawImage( rankIcons.Knight, 100, 50, 48, 48);
+            // _g.myDrawImage( rankIcons.Captain, 150, 50, 48, 48);
+            // _g.myDrawImage( rankIcons.Baron, 50, 150, 48, 48);
+            // _g.myDrawImage( rankIcons.Duke, 100, 150, 48, 48);
+            // _g.myDrawImage( rankIcons.Lord, 150, 150, 48, 48);
+            // _g.myDrawImage( rankIcons.Emporer, 200, 150, 48, 48);
 
 	      		break;
 	      	

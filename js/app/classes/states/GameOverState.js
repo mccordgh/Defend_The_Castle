@@ -146,8 +146,8 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
         dataType: 'json'
       })
       .done(() => {
-        LBinfo = "You placed on the leaderboards at";
-        LBinfo2 = "position #" + breakPosition;
+        LBinfo = "You've placed on the leaderboards!";
+        LBinfo2 = "";
       });
     } else {
       //DIDNT MAKE LEADERBOARDS. SCORE TOO LOW
