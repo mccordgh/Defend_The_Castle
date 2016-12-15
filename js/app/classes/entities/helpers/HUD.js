@@ -17,13 +17,13 @@ define(['Helper', 'HealthBar', 'Assets'], function(Helper, HealthBar, Assets){
 		render(_g){
 			//needed variables for score
 			let score = this.handler.getWorld().getEntityManager().getPlayer().score,
-					tempX = 10,
-					tempY = this.handler.getHeight() - 20;
+					tempX = 20,
+					tempY = 45;
 
 			//Text: Score
 			_g.drawText({
 				border: true,
-				borderHeight: 80,
+				borderHeight: 85,
 				borderColor: 'black',
 				fillColor: 'white',
 				text: `Score: ${score.toLocaleString()}`,
