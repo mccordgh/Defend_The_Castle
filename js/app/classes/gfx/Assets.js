@@ -220,6 +220,7 @@ for(let i = 0; i < portalanimationLength; i++){
 	tiles.grass = tiles.sheet.crop(tiles.width * 1, tiles.height * 15, tiles.width, tiles.height);
 	tiles.dirt = tiles.sheet.crop(tiles.width * 7, tiles.height * 15, tiles.width, tiles.height);
 	tiles.stone = tiles.sheet.crop(tiles.width * 39, tiles.height * 17, tiles.width, tiles.height);
+	tiles.water = tiles.sheet.crop(tiles.width * 49, tiles.height * 21, tiles.width, tiles.height);
 
 	//Player Portrait
 	// var Portraits = new Assets("Portraits", "res/textures/player_portrait.png", 48, 48);

@@ -33,7 +33,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 
       this.assets = Assets.getAssets('title');
       this.choices = ['play', 'leaderboards', 'credits'];
-			this.view = 'menu';
+			this.view = 'test';
 		},
 		tick: function(_dt){
 			countSinceInput++;
@@ -124,21 +124,8 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 	      		break;
 	      	
 	      	case 'test':
-            // rankIcons.Squire = rankIcons.sheet.crop(0, 96, 96, 96);
-            // rankIcons.Knight = rankIcons.sheet.crop(96, 96, 96, 96);
-            // rankIcons.Captain = rankIcons.sheet.crop(192, 96, 96, 96);
-            // rankIcons.Baron = rankIcons.sheet.crop(0, 0, 96, 96);
-            // rankIcons.Duke = rankIcons.sheet.crop(96, 0, 96, 96);
-            // rankIcons.Lord = rankIcons.sheet.crop(192, 0, 96, 96);
-            // rankIcons.Emporer = rankIcons.sheet.crop(288, 0, 96, 96);
-            // _g.myDrawImage( rankIcons.Squire, 50, 50, 48, 48);
-            // _g.myDrawImage( rankIcons.Knight, 100, 50, 48, 48);
-            // _g.myDrawImage( rankIcons.Captain, 150, 50, 48, 48);
-            // _g.myDrawImage( rankIcons.Baron, 50, 150, 48, 48);
-            // _g.myDrawImage( rankIcons.Duke, 100, 150, 48, 48);
-            // _g.myDrawImage( rankIcons.Lord, 150, 150, 48, 48);
-            // _g.myDrawImage( rankIcons.Emporer, 200, 150, 48, 48);
-
+            let tiles = Assets.getAssets('tiles');
+            _g.myDrawImage(tiles.water, 100, 100, 32, 32);
 	      		break;
 	      	
 	      	default:

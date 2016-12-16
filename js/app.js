@@ -39,6 +39,7 @@ requirejs.config({
 		"TileLoader":"app/classes/tiles/TileLoader",
 		"Tree":"app/classes/entities/statics/Tree",
 		"Utils":"app/classes/utils/Utils",
+		"WaterTile":"app/classes/tiles/WaterTile",
 		"World":"app/classes/worlds/World"
 	}
 });
