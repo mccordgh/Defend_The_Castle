@@ -17,17 +17,17 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'Spat
 			this.entityManager.addEntity(new Castle(_handler, Tile.TILE_WIDTH * 37, Tile.TILE_HEIGHT * 37));
 
 			//PORTALS!
-			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 6, Tile.TILE_HEIGHT * 6));
-			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 70, Tile.TILE_HEIGHT * 6));
-			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 6, Tile.TILE_HEIGHT * 70));
-			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 70, Tile.TILE_HEIGHT * 70));
+			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 12, Tile.TILE_HEIGHT * 12));
+			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 72, Tile.TILE_HEIGHT * 12));
+			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 12, Tile.TILE_HEIGHT * 72));
+			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 72, Tile.TILE_HEIGHT * 72));
 
 			//TOP LEFT TREE TROVE
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH, Tile.TILE_HEIGHT));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 5, Tile.TILE_HEIGHT));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 9, Tile.TILE_HEIGHT));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH, Tile.TILE_HEIGHT * 5));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH, Tile.TILE_HEIGHT * 9));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 6, Tile.TILE_HEIGHT * 6));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 10, Tile.TILE_HEIGHT * 6));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 9, Tile.TILE_HEIGHT));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH, Tile.TILE_HEIGHT * 9));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH, Tile.TILE_HEIGHT * 9));
 
 			//TOP RIGHT TREE TROVE
 			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 75, Tile.TILE_HEIGHT));
