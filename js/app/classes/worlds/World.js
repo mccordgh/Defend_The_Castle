@@ -25,9 +25,9 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'Spat
 			//TOP LEFT TREE TROVE
 			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 6, Tile.TILE_HEIGHT * 6));
 			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 10, Tile.TILE_HEIGHT * 6));
-			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 9, Tile.TILE_HEIGHT));
-			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH, Tile.TILE_HEIGHT * 9));
-			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH, Tile.TILE_HEIGHT * 9));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 14, Tile.TILE_HEIGHT * 6));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 6, Tile.TILE_HEIGHT * 10));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 6, Tile.TILE_HEIGHT * 14));
 
 			//TOP RIGHT TREE TROVE
 			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 75, Tile.TILE_HEIGHT));

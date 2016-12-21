@@ -5,8 +5,8 @@ define(['StaticEntity', 'Tile', 'Assets', 'Bat', 'World'], function(StaticEntity
 			this._super(_handler, _x, _y, Tile.TILE_WIDTH * 4, Tile.TILE_HEIGHT * 4);
 			this.bounds.x = 0;
 			this.bounds.y = 0;
-			this.bounds.width = 64;
-			this.bounds.height = 64;
+			this.bounds.width = 0;
+			this.bounds.height = 0;
 			this.height = 64;
 			this.width = 64;
 			this.type = 'static';
@@ -45,20 +45,20 @@ define(['StaticEntity', 'Tile', 'Assets', 'Bat', 'World'], function(StaticEntity
 							this.spawnSpeed -= 15;
 							// this.spawnPercent += 0.02;
 						this.spawnTries = 0;
-						if (this.x >= this.handler.getWidth() / 2) {
-							spawnX = this.x - (Tile.TILE_WIDTH * 3);
-						} else {
-							spawnX = this.x + (Tile.TILE_WIDTH * 3);
-						}
-						if (this.y >= this.handler.getHeight() / 2) {
-							spawnY = this.y - (Tile.TILE_HEIGHT * 3);
-						} else {
-							spawnY = this.y + (Tile.TILE_HEIGHT * 3);
-						}
+						// if (this.x >= this.handler.getWidth() / 2) {
+						// 	spawnX = this.x - (Tile.TILE_WIDTH * 3);
+						// } else {
+						// 	spawnX = this.x + (Tile.TILE_WIDTH * 3);
+						// }
+						// if (this.y >= this.handler.getHeight() / 2) {
+						// 	spawnY = this.y - (Tile.TILE_HEIGHT * 3);
+						// } else {
+						// 	spawnY = this.y + (Tile.TILE_HEIGHT * 3);
+						// }
+						// Spawning a BAT!
+						this.handler.getWorld().getEntityManager().addEntity(new Bat(this.handler, this.x, this.y));
+						this.spawnTimer = 0;
 					}				
-					// Spawning a BAT!
-					this.handler.getWorld().getEntityManager().addEntity(new Bat(this.handler, spawnX, spawnY));
-					this.spawnTimer = 0;
 				}
 			}
 
