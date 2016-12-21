@@ -16,7 +16,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
         dataType: 'json',
         success: function(data){
           leaderBoard = data;
-          setLeaderBoards(leaderBoard);
+          // setLeaderBoards(leaderBoard);
           leaderboardsLoaded = true; 
           // console.log("success:", data);
         },
@@ -195,10 +195,9 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 		];
 	}
 
-  function setLeaderBoards(_LB){
-    console.log("handlerRef", handlerRef);
-    handlerRef.setLeaderBoards(leaderBoard);
-  }
+  // function setLeaderBoards(_LB){
+  //   handlerRef.setLeaderBoards(leaderBoard);
+  // }
 
 	return MainMenu;
 
