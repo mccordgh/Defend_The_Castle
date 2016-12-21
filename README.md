@@ -8,7 +8,7 @@
 
 
 ## Project Goals
-1. Create a game that would run in a web browser independent of a third party game engine.
+1. Create a game from scratch, that can run in a web browser independent of a third party game engine.
 2. Become more familiar with classes and prototypal inheritance.
 3. Attain a better feel for how a game engine works under the hood.
 
