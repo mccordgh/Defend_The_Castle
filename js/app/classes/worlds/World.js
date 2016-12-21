@@ -14,13 +14,13 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'Spat
 			this.spatialGrid = new SpatialGrid(this.width * Tile.TILE_WIDTH, this.height * Tile.TILE_HEIGHT, 64);
 			
 			//CASTLE!
-			this.entityManager.addEntity(new Castle(_handler, Tile.TILE_WIDTH * 42, Tile.TILE_HEIGHT * 42));
+			this.entityManager.addEntity(new Castle(_handler, Tile.TILE_WIDTH * 47, Tile.TILE_HEIGHT * 42));
 
 			//PORTALS!
 			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 12, Tile.TILE_HEIGHT * 12));
-			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 74, Tile.TILE_HEIGHT * 12));
+			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 84, Tile.TILE_HEIGHT * 12));
 			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 12, Tile.TILE_HEIGHT * 74));
-			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 74, Tile.TILE_HEIGHT * 74));
+			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 84, Tile.TILE_HEIGHT * 74));
 
 			//TOP LEFT TREE TROVE
 			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 7, Tile.TILE_HEIGHT * 7));
@@ -30,18 +30,18 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'Spat
 			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 7, Tile.TILE_HEIGHT * 15));
 
 			//TOP RIGHT TREE TROVE
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 79, Tile.TILE_HEIGHT * 7));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 75, Tile.TILE_HEIGHT * 7));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 71, Tile.TILE_HEIGHT * 7));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 79, Tile.TILE_HEIGHT * 11));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 79, Tile.TILE_HEIGHT * 15));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 89, Tile.TILE_HEIGHT * 7));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 85, Tile.TILE_HEIGHT * 7));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 81, Tile.TILE_HEIGHT * 7));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 89, Tile.TILE_HEIGHT * 11));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 89, Tile.TILE_HEIGHT * 15));
 
 			//BOTTOM RIGHT TREE TROVE
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 79, Tile.TILE_HEIGHT * 79));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 75, Tile.TILE_HEIGHT * 79));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 71, Tile.TILE_HEIGHT * 79));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 79, Tile.TILE_HEIGHT * 75));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 79, Tile.TILE_HEIGHT * 71));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 89, Tile.TILE_HEIGHT * 79));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 85, Tile.TILE_HEIGHT * 79));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 81, Tile.TILE_HEIGHT * 79));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 89, Tile.TILE_HEIGHT * 75));
+			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 89, Tile.TILE_HEIGHT * 71));
 
 			//BOTTOM LEFT TREE TROVE
 			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 7, Tile.TILE_HEIGHT * 71));
@@ -84,7 +84,8 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'Spat
 
 				for(y = yStart; y < yEnd; y++){
 					for(x = xStart; x < xEnd; x++){
-						this.getTile(x, y).render(_g, x * Tile.TILE_WIDTH - this.handler.getGameCamera().getxOffset(), y * Tile.TILE_HEIGHT -  this.handler.getGameCamera().getyOffset());
+						if (this.getTile(x,y) !== undefined)
+							this.getTile(x, y).render(_g, x * Tile.TILE_WIDTH - this.handler.getGameCamera().getxOffset(), y * Tile.TILE_HEIGHT -  this.handler.getGameCamera().getyOffset());
 					}
 				}
 

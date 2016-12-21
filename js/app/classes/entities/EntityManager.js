@@ -26,30 +26,30 @@ define(['Class', 'Rectangle', 'Tile'], function(Class, Rectangle, Tile){
 				let scaleX = 0, scaleY = 0, marker;
 				let offScreen = false;
 
-				_g.font = `64px VT323`;
-				_g.fillStyle = "pink";
+				_g.font = `72px VT323`;
+				_g.fillStyle = "red";
 
 				if (e.x > checkRight){
-					scaleX = e.handler.getWidth() - 30;
+					scaleX = e.handler.getWidth() - 35;
 					scaleY = e.y - e.handler.getGameCamera().getyOffset();
 					offScreen = true;
 					marker = ">";
 				}
 				if (e.y > checkBottom){
 					scaleX = e.x - e.handler.getGameCamera().getxOffset();;
-					scaleY = e.handler.getHeight() - 20;
+					scaleY = e.handler.getHeight() - 25;
 					offScreen = true;
 					marker = "V";
 				}
 				if (e.x < checkLeft){
-					scaleX = 5;
+					scaleX = 10;
 					scaleY = e.y - e.handler.getGameCamera().getyOffset();;
 					offScreen = true;
 					marker = "<";
 				}
 				if (e.y < checkTop) {
 					scaleX = e.x - e.handler.getGameCamera().getxOffset();
-					scaleY = 40 ;
+					scaleY = 45;
 					offScreen = true;
 					marker = "^";
 				}
