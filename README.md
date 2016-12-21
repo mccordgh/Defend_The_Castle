@@ -1,6 +1,4 @@
-# Defend the Castle
-
-## [Github Pages Hosting](https://mccordgh.github.io/project_NSS_game/)
+# [Defend the Castle](https://mccordgh.github.io/project_NSS_game/)
 
 ## Instructions
 1. Defend the Castle from the attacking bats
