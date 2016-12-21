@@ -5,8 +5,8 @@ define(['StaticEntity', 'Tile', 'Assets', 'Bat', 'World'], function(StaticEntity
 			this._super(_handler, _x, _y, Tile.TILE_WIDTH * 4, Tile.TILE_HEIGHT * 4);
 			this.bounds.x = 0;
 			this.bounds.y = 0;
-			this.bounds.width = 64;
-			this.bounds.height = 64;
+			this.bounds.width = 0;
+			this.bounds.height = 0;
 			this.height = 64;
 			this.width = 64;
 			this.type = 'static';

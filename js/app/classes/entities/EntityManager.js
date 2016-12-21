@@ -16,8 +16,48 @@ define(['Class', 'Rectangle', 'Tile'], function(Class, Rectangle, Tile){
 			}
 		},
 		render: function(_g){
+			//Iterate through every entity, check whether they are currently in the camera view.
+			//If they are then draw them, if not and they are a monster draw offscreen monster pointer
 			entities.forEach(function(e){
-				if (!(e.x > e.handler.getWidth() + e.handler.getGameCamera().getxOffset()) && !(e.y > e.handler.getHeight() + e.handler.getGameCamera().getyOffset()))
+				let checkRight = e.handler.getWidth() + e.handler.getGameCamera().getxOffset();
+				let checkBottom = e.handler.getHeight() + e.handler.getGameCamera().getyOffset();
+				let checkLeft = e.handler.getGameCamera().getxOffset() - e.width;
+				let checkTop = e.handler.getGameCamera().getyOffset() - e.height;
+				let scaleX = 0, scaleY = 0, marker;
+				let offScreen = false;
+
+				_g.font = `72px VT323`;
+				_g.fillStyle = "red";
+
+				if (e.x > checkRight){
+					scaleX = e.handler.getWidth() - 35;
+					scaleY = e.y - e.handler.getGameCamera().getyOffset();
+					offScreen = true;
+					marker = ">";
+				}
+				if (e.y > checkBottom){
+					scaleX = e.x - e.handler.getGameCamera().getxOffset();;
+					scaleY = e.handler.getHeight() - 25;
+					offScreen = true;
+					marker = "V";
+				}
+				if (e.x < checkLeft){
+					scaleX = 10;
+					scaleY = e.y - e.handler.getGameCamera().getyOffset();;
+					offScreen = true;
+					marker = "<";
+				}
+				if (e.y < checkTop) {
+					scaleX = e.x - e.handler.getGameCamera().getxOffset();
+					scaleY = 45;
+					offScreen = true;
+					marker = "^";
+				}
+
+				if (offScreen && e.type === 'monster')
+					_g.fillText(marker,  scaleX, scaleY);
+
+				if (!offScreen)
 					e.render(_g);
 			});
 		},
