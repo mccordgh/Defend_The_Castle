@@ -8,7 +8,7 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
 		init:function(_handler){
 			this._super(_handler);
 			endScore = this.handler.getWorld().getEntityManager().getPlayer().score;
-      console.log("endScore", endScore);
+
       this.assets = Assets.getAssets('gameOver');
       endRank = getRankByScore(endScore);
             //Load Leaderboards
@@ -104,7 +104,6 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
 	});
 
   function getRankByScore(_score){
-    console.log("_score", _score);
     let rankPosition = Math.floor(_score / 50000);
     if (rankPosition > 6)
       rankPosition = 6;
@@ -124,7 +123,7 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
       case 6:
         return 'Emporer';
       default:
-        console.log("default rank");
+        console.log("default rank error");
         return 'error -> default';
       }
   }
@@ -153,7 +152,6 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
       };
       let secondHalf = leaderboards.slice(breakPosition, (leaderboards.length - 1));
       let tempLB = firstHalf.concat(newGuy).concat(secondHalf);
-      console.log("tempLB", tempLB);
       //SAVING NEW LEADERBOARD
       $.ajax({
         url: 'https://defend-the-castle.firebaseio.com/leaderboards/.json',
