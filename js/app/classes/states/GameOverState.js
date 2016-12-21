@@ -11,7 +11,23 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
       console.log("endScore", endScore);
       this.assets = Assets.getAssets('gameOver');
       endRank = getRankByScore(endScore);
-      LBPosition = getLeaderBoardPosition(endScore, this.handler);
+            //Load Leaderboards
+      $.ajax({
+        url: 'https://defend-the-castle.firebaseio.com/leaderboards.json',
+        type: "GET",
+        dataType: 'json',
+        success: function(data){
+          leaderBoard = data;
+          // setLeaderBoards(leaderBoard);
+          leaderboardsLoaded = true; 
+          // console.log("success:", data);
+		      LBPosition = getLeaderBoardPosition(endScore, leaderBoard);
+        },
+        error: function(data){
+          console.log("error!!!:", data);
+        }
+      });
+
 		},
 		tick: function(_dt){
 			timeCounter += 1;
@@ -113,8 +129,8 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
       }
   }
 
-  function getLeaderBoardPosition(_endScore, _handlerRef){
-    let leaderboards = _handlerRef.getLeaderBoards();
+  function getLeaderBoardPosition(_endScore, _leaderboardObj){
+    let leaderboards = _leaderboardObj;
     let newName = "";
     let breakPosition = 11;
     leaderboards.forEach((item, index) => {
