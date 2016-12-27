@@ -36,14 +36,14 @@ define(['Class', 'Rectangle', 'Tile'], function(Class, Rectangle, Tile){
 					marker = ">";
 				}
 				if (e.y > checkBottom){
-					scaleX = e.x - e.handler.getGameCamera().getxOffset();;
+					scaleX = e.x - e.handler.getGameCamera().getxOffset();
 					scaleY = e.handler.getHeight() - 25;
 					offScreen = true;
 					marker = "V";
 				}
 				if (e.x < checkLeft){
 					scaleX = 10;
-					scaleY = e.y - e.handler.getGameCamera().getyOffset();;
+					scaleY = e.y - e.handler.getGameCamera().getyOffset();
 					offScreen = true;
 					marker = "<";
 				}
