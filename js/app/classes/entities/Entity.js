@@ -37,13 +37,23 @@ var dying;
 		checkEntityCollisions: function(xOffset, yOffset){
 			var candidates =  this.handler.getWorld().getSpatialGrid().retrieve(new Rectangle(this.x + this.bounds.x + xOffset, this.y + this.bounds.y + yOffset, this.bounds.width, this.bounds.height), this);
 
+					//*************************************
+					// console.log(`${this.type} > ${e.type}`);
+					//PLAYER > MONSTER
+					//*************************************
+
 			for(var i = 0; i < candidates.length; i++){
 				var e = candidates[i];
+				if (this.type === 'player' && e.type === 'monster'){
+					// if (e.getCollisionBounds(0, 0).intersects(this.getWeaponCollisionBounds(xOffset, yOffset))){
+						e.takeDamage(this.damage);
+					// }
+				}
 				if (e != this && e.health > 0 || e.health === undefined){
+						// if (e.type === 'monster' && this.type === 'player'){
+						// 	e.takeDamage(this.damage);
+						// }
 					if (e.getCollisionBounds(0, 0).intersects(this.getCollisionBounds(xOffset, yOffset)) && !(this.type === 'monster' && e.type === 'monster')){
-						if (e.type === 'monster' && this.type === 'player'){
-							e.takeDamage(this.damage);
-						}
 						if (e.type === 'castle' && this.type === 'monster'){
 							if (this.targetType && this.dead < 1)
 								if(this.targetType === 'castle')

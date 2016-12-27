@@ -1,4 +1,4 @@
-define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar){
+define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Assets, HealthBar, Rectangle){
 
 	var lastAnimation = "walk_right", attackCounter = 0, lastAttackCounter = 0;
 
@@ -9,14 +9,20 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 			this.x = _x;
 			this.y = _y;
 			this.speed = 200;
-			this.bounds.x = 11;
-			this.bounds.y = 18;
-			this.bounds.width = 12;
-			this.bounds.height = 18;
+			this.bounds.x = 10;
+			this.bounds.y = 17;
+			this.bounds.width = 14;
+			this.bounds.height = 19;
 			this.type = 'player';
 			this.damage = 60;
 			this.score = 0;
 			this.weapon = Assets.getAssets('sword');
+			this.weapon.bounds = {
+				x: 0,
+				y: 0,
+				width: 0,
+				height: 0
+			};
 			// this.portrait = Assets.getAssets('Portraits');
 			// this.healthbar = new HealthBar(_handler, this, {
 			// 						nodes: 100,
@@ -67,17 +73,17 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 		render: function(_g){
 			//DRAW SWORD BEFORE PLAYER IF WALKING UP OR LEFT
 			if (lastAnimation === 'walk_up'){
-				this.bounds.x = -6;
-				this.bounds.y = -32;
-				this.bounds.width = 25;
-				this.bounds.height = 50;
+				this.weapon.bounds.x = -6;
+				this.weapon.bounds.y = -32;
+				this.weapon.bounds.width = 25;
+				this.weapon.bounds.height = 50;
 				_g.myDrawImage(this.weapon.walk_up, this.x - this.handler.getGameCamera().getxOffset() - 9, this.y - this.handler.getGameCamera().getyOffset() - 33, 32, 64);				
 			}
 			if (lastAnimation === 'walk_left'){
-				this.bounds.x = -37;
-				this.bounds.y = 15;
-				this.bounds.width = 50;
-				this.bounds.height = 25;
+				this.weapon.bounds.x = -37;
+				this.weapon.bounds.y = 15;
+				this.weapon.bounds.width = 50;
+				this.weapon.bounds.height = 25;
 				_g.myDrawImage(this.weapon.walk_left, this.x - this.handler.getGameCamera().getxOffset() - 40, this.y - this.handler.getGameCamera().getyOffset() + 11, 64, 32);				
 			}
 			
@@ -86,17 +92,17 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 
 			//DRAW SWORD AFTER PLAYER IF WALKING DOWN OR RIGHT
 			if (lastAnimation === 'walk_down'){
-				this.bounds.x = -5;
-				this.bounds.y = 35;
-				this.bounds.width = 25;
-				this.bounds.height = 50;
+				this.weapon.bounds.x = -5;
+				this.weapon.bounds.y = 35;
+				this.weapon.bounds.width = 25;
+				this.weapon.bounds.height = 50;
 				_g.myDrawImage(this.weapon.walk_down, this.x - this.handler.getGameCamera().getxOffset() - 9, this.y - this.handler.getGameCamera().getyOffset() + 25, 32, 64);				
 			}
 			if (lastAnimation === 'walk_right'){
-				this.bounds.x = 19;
-				this.bounds.y = 15;
-				this.bounds.width = 50;
-				this.bounds.height = 25;
+				this.weapon.bounds.x = 19;
+				this.weapon.bounds.y = 15;
+				this.weapon.bounds.width = 50;
+				this.weapon.bounds.height = 25;
 				_g.myDrawImage(this.weapon.walk_right, this.x - this.handler.getGameCamera().getxOffset() + 7, this.y - this.handler.getGameCamera().getyOffset() + 11, 64, 32);				
 			}
 			
@@ -116,6 +122,11 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 			// ****** DRAW BOUNDING BOX DON'T DELETE!!
 			// _g.fillStyle = "blue";
 			// _g.fillRect(this.bounds.x + this.x - this.handler.getGameCamera().getxOffset(), this.bounds.y + this.y - this.handler.getGameCamera().getyOffset(), this.bounds.width, this.bounds.height);
+			// ****** DRAW BOUNDING BOX DON'T DELETE!!
+
+			// ****** DRAW WEAPON BOUNDING BOX DON'T DELETE!!
+			// _g.fillStyle = "green";
+			// _g.fillRect(this.weapon.bounds.x + this.x - this.handler.getGameCamera().getxOffset(), this.weapon.bounds.y + this.y - this.handler.getGameCamera().getyOffset(), this.weapon.bounds.width, this.weapon.bounds.height);
 			// ****** DRAW BOUNDING BOX DON'T DELETE!!
 		},
 		getInput: function(_dt){
@@ -162,7 +173,13 @@ define(['Creature', 'Assets', 'HealthBar'], function(Creature, Assets, HealthBar
 		},
 		getHealthBar: function() {
 			return this.healthbar;
-		}
+		},
+		getWeaponCollisionBounds: function(xOffset, yOffset){
+			return new Rectangle(this.weapon.bounds.x + this.x - this.handler.getGameCamera().getxOffset(),
+														this.weapon.bounds.y + this.y - this.handler.getGameCamera().getyOffset(),
+														this.weapon.bounds.width, this.weapon.bounds.height);			
+
+		},
 	});
 
 	return Player;
