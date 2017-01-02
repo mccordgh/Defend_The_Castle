@@ -5,7 +5,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 	var leaderBoard = [], credits = [], handlerRef;
   var rankIcons = Assets.getAssets('rankIcons');
   var musicSound, selectSound, startSound, soundsLoaded = false
-  var loadingText = "leaderboards", loadingFill = "orange";
+  var loadingText = "loading leaderboards...", loadingFill = "orange";
 
 	var MainMenu = MenuState.extend({
 		init:function(_handler){
@@ -20,7 +20,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
           leaderBoard = data;
           // setLeaderBoards(leaderBoard);
           leaderboardsLoaded = true; 
-          loadingText = "sounds";
+          loadingText = "loading sounds...";
 					//Load the sounds
 					sounds.load([
 					  `${CURRENT_PATH}/res/sound/ItaloUnlimited.mp3`,
@@ -139,19 +139,17 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 						//title screen
 						_g.myDrawImage(this.assets.mainMenu, 0, 0, 1024, 640);
 						//draw cursor
-						if (loadingText === "press enter key...")
+						if (loadingText === "press enter key!")
 							_g.myDrawImage(this.assets.pointer, 260, 410 + (choicePosition * 65), 32, 32);
-						if (loadingText !== ""){
 			      	_g.drawText({
 				      	borderColor: 'white',
 				      	fillColor: loadingFill,
-				      	text: `loading ${loadingText}...`,
+				      	text: loadingText,
 				      	fontSize: 48,
 				      	font: 'serif',
 				      	x: function() {return 470;},
 				      	y: function() {return 445;},
 			      	});
-			      }
 	      		break;
 	      	
 	      	case 'test':
@@ -208,7 +206,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 	                alert ("Leader Boards are still loading. Give it a few more seconds or refresh the page!");
 	              }
 								break;		
-							case 'credits':dw
+							case 'credits':
 								this.view = 'credits';
 								break;		
 						} else {
@@ -239,7 +237,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 		sm.setSounds();
 		handlerRef.setSoundManager(sm);
 		soundsLoaded = true;
-		loadingText = "press enter key...";
+		loadingText = "press enter key!";
 		handlerRef.getSoundManager().fadeIn("gameMusic", 3);
 	}
 
