@@ -35,7 +35,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			if (this.health <= 0){
 				this.handler.getWorld().getEntityManager().getPlayer().score += 11;
 				this.dead++;
-				if (this.dead === 15){
+				if (this.dead === 60){
 					this.handler.getSoundManager().play("monster");
 					this.dead = 666;
 					this.handler.getWorld().getEntityManager().removeEntity(this);

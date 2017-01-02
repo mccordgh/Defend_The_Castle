@@ -120,7 +120,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			// lastAttackCounter++;
 			
 			// ****** DRAW BOUNDING BOX DON'T DELETE!!
-			// _g.fillStyle = "blue";
+			// _g.fillStyle = "red";
 			// _g.fillRect(this.bounds.x + this.x - this.handler.getGameCamera().getxOffset(), this.bounds.y + this.y - this.handler.getGameCamera().getyOffset(), this.bounds.width, this.bounds.height);
 			// ****** DRAW BOUNDING BOX DON'T DELETE!!
 

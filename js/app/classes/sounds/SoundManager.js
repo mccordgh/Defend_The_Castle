@@ -24,13 +24,14 @@ define(['Class'], function(Class){
 			this.musicSound.volume = 0.5;
 			this.selectSound.volume = 0.7;
 			this.startSound.volume = 0.7;
-			this.explode.volume = 0.7;
-			this.gameMusic.volume = 0.5;
+			this.explode.volume = 0.5;
+			this.gameMusic.volume = 0.3;
 			this.lvlup.volume = 0.7;
 			this.lvldown.volume = 0.7;
 			this.spawn.volume = 0.7;
 			this.monster.volume = 0.7;
-			this.sword.volume = 0.7;
+			this.sword.volume = 0.3;
+			this.explode.playbackRate = 0.2;
 			this.sword.playbackRate = 0.5;
 			this.spawn.playbackRate = 0.5;
 			this.gameMusic.loop = true;

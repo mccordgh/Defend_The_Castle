@@ -1,6 +1,6 @@
 define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverState', 'State'], function(StaticEntity, Tile, Assets, HealthBar, Rectangle, GameOverState, State){
 
-	var assets = Assets.getAssets("castle");
+	var assets = Assets.getAssets("castle"), deathCleanup = true;
 
 	var Castle = StaticEntity.extend({
 		init: function(_handler, _x, _y){
@@ -41,10 +41,15 @@ define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverSta
 		},
 		render: function(_g){
 			if (this.health <= 0){
+				if (deathCleanup){
+					this.handler.getSoundManager().setLoop("gameMusic", false);
+					this.handler.getSoundManager().fadeOut("gameMusic", 3);
+					this.handler.getSoundManager().play("explode");
+					deathCleanup = false;
+				}
 				assets.animations.explode.tick();
 				this.handler.getWorld().setRoundOver(true);
 				this.handler.getWorld().getEntityManager().removeAllMonsters();
-				this.handler.getSoundManager().play("explode");
 				_g.myDrawImage(assets.animations.explode.getCurrentFrame(), 
 								this.x - this.handler.getGameCamera().getxOffset(),
 								this.y - this.handler.getGameCamera().getyOffset(), 

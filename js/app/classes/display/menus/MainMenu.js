@@ -244,6 +244,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 		handlerRef.setSoundManager(sm);
 		soundsLoaded = true;
 		loadingText = "";
+		handlerRef.getSoundManager().fadeIn("musicSound", 3);
 	}
 
   // function setLeaderBoards(_LB){
