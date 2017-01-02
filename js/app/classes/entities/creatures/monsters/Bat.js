@@ -1,4 +1,5 @@
 define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Assets, HealthBar, Rectangle){
+
 	var Bat = Creature.extend({
 		init: function(_handler, _x, _y){
 			this._super(_handler, _x, _y, 64, 64);
@@ -13,6 +14,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			this.health = 80;
 			this.damage = 1;
 			this.targetType = 'castle';
+			this.deathCleanup = true;
 			var healthbar_properties = {
 				color: "#0c0",
 				bgColor: "#a00",
@@ -35,8 +37,11 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			if (this.health <= 0){
 				this.handler.getWorld().getEntityManager().getPlayer().score += 11;
 				this.dead++;
-				if (this.dead === 60){
+				if (this.deathCleanup) {
 					this.handler.getSoundManager().play("monster");
+					this.deathCleanup = false;
+				}
+				if (this.dead === 60){
 					this.dead = 666;
 					this.handler.getWorld().getEntityManager().removeEntity(this);
 					this.handler.getWorld().getSpatialGrid().remove(new Rectangle(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height), this);

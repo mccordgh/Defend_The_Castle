@@ -37,7 +37,6 @@ define(['Class'],function(Class){
 			return soundManager;
 		},
 		setSoundManager(_sm){
-			console.log("_sm", _sm);
 			soundManager = _sm;
 		}
 	

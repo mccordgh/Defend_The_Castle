@@ -4,7 +4,6 @@ define(['Class'], function(Class){
 
 	var SoundManager = Class.extend({
 		init: function(){			
-			console.log("sm init");
 		},
 		play: function(_sound){
 			this[_sound].play();
@@ -19,20 +18,18 @@ define(['Class'], function(Class){
 			this.sword = sounds[`${CURRENT_PATH}/res/sound/sword.wav`];
 			this.selectSound = sounds[`${CURRENT_PATH}/res/sound/select.wav`];
 			this.startSound = sounds[`${CURRENT_PATH}/res/sound/start.wav`];
-			this.musicSound = sounds[`${CURRENT_PATH}/res/sound/HighStakes.mp3`];
-			this.musicSound.loop = true;
-			this.musicSound.volume = 0.5;
 			this.selectSound.volume = 0.7;
 			this.startSound.volume = 0.7;
-			this.explode.volume = 0.5;
-			this.gameMusic.volume = 0.3;
+			this.explode.volume = 0.6;
+			this.gameMusic.volume = 0.2;
 			this.lvlup.volume = 0.7;
 			this.lvldown.volume = 0.7;
 			this.spawn.volume = 0.7;
-			this.monster.volume = 0.7;
-			this.sword.volume = 0.3;
+			this.monster.volume = 1;
+			this.sword.volume = 1;
 			this.explode.playbackRate = 0.2;
-			this.sword.playbackRate = 0.5;
+			this.monster.playbackRate = 0.5;
+			this.sword.playbackRate = 0.8;
 			this.spawn.playbackRate = 0.5;
 			this.gameMusic.loop = true;
 		},
