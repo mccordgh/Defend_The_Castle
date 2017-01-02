@@ -5,7 +5,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 	var leaderBoard = [], credits = [], handlerRef;
   var rankIcons = Assets.getAssets('rankIcons');
   var musicSound, selectSound, startSound, soundsLoaded = false
-  var loadingText = "loading please wait...", loadingFill = "orange";
+  var loadingText = "leaderboards", loadingFill = "orange";
 
 	var MainMenu = MenuState.extend({
 		init:function(_handler){
@@ -20,10 +20,9 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
           leaderBoard = data;
           // setLeaderBoards(leaderBoard);
           leaderboardsLoaded = true; 
-          // console.log("success:", data);
+          loadingText = "sounds";
 					//Load the sounds
 					sounds.load([
-					  `${CURRENT_PATH}/res/sound/HighStakes.mp3`,
 					  `${CURRENT_PATH}/res/sound/ItaloUnlimited.mp3`,
 					  `${CURRENT_PATH}/res/sound/explode.wav`,
 					  `${CURRENT_PATH}/res/sound/lvlup.ogg`,
@@ -146,7 +145,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 			      	_g.drawText({
 				      	borderColor: 'white',
 				      	fillColor: loadingFill,
-				      	text: loadingText,
+				      	text: `loading ${loadingText}...`,
 				      	fontSize: 48,
 				      	font: 'serif',
 				      	x: function() {return 470;},
@@ -193,14 +192,12 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 			if(this.handler.getKeyManager().enter) {
 				countSinceInput = 0;
 				if (!soundsLoaded || !leaderboardsLoaded){
-					loadingFill = 'red';
+					loadingFill = `#${Math.floor(Math.random() *7 + 3)}${Math.floor(Math.random() * 7 + 3)}${Math.floor(Math.random() *7 + 3)}${Math.floor(Math.random() *7 + 3)}${Math.floor(Math.random() *7 + 3)}${Math.floor(Math.random() *7 + 3)}`;
 				} else {
 					this.handler.getSoundManager().play("startSound");
 					if (this.view === 'menu')
 						switch(this.choices[choicePosition]){
 							case 'play':
-								handlerRef.getSoundManager().setLoop("musicSound", false);
-								handlerRef.getSoundManager().fadeOut("musicSound", 3);
 								var gameState = new GameState(this.handler);
 								State.setState(gameState);	
 								break;		
@@ -211,7 +208,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 	                alert ("Leader Boards are still loading. Give it a few more seconds or refresh the page!");
 	              }
 								break;		
-							case 'credits':
+							case 'credits':dw
 								this.view = 'credits';
 								break;		
 						} else {
@@ -238,13 +235,12 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 	}
 
 	function initSounds() {
-		console.log("callback");
 		let sm = new SoundManager();
 		sm.setSounds();
 		handlerRef.setSoundManager(sm);
 		soundsLoaded = true;
 		loadingText = "";
-		handlerRef.getSoundManager().fadeIn("musicSound", 3);
+		handlerRef.getSoundManager().fadeIn("gameMusic", 3);
 	}
 
   // function setLeaderBoards(_LB){
