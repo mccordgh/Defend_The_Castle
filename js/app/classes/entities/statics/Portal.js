@@ -58,6 +58,7 @@ define(['StaticEntity', 'Tile', 'Assets', 'Bat', 'World'], function(StaticEntity
 					}				
 					// Spawning a BAT!
 					this.handler.getWorld().getEntityManager().addEntity(new Bat(this.handler, spawnX, spawnY));
+					this.handler.getSoundManager().play("spawn");
 					this.spawnTimer = 0;
 				}
 			}

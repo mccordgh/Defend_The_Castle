@@ -30,6 +30,7 @@ requirejs.config({
 		"Player":"app/classes/entities/creatures/Player",
 		"Portal":"app/classes/entities/statics/Portal",
 		"Rectangle":"app/classes/gfx/shapes/Rectangle",
+		"SoundManager":"app/classes/sounds/SoundManager",
 		"SpatialGrid":"app/classes/utils/SpatialGrid",
 		"SpriteSheet":"app/classes/gfx/SpriteSheet",
 		"State":"app/classes/states/State",

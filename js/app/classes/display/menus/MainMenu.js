@@ -1,9 +1,11 @@
-define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(MenuState, GameState, KeyManager, Assets, State){
+define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager'], function(MenuState, GameState, KeyManager, Assets, State, SoundManager){
 
 	const CURRENT_PATH = window.location.href;
 	var fontSize = 0, countSinceInput = 11, choicePosition = 0, leaderboardsLoaded = false;
 	var leaderBoard = [], credits = [], handlerRef;
   var rankIcons = Assets.getAssets('rankIcons');
+  var musicSound, selectSound, startSound, soundsLoaded = false
+  var loadingText = "loading please wait...", loadingFill = "orange";
 
 	var MainMenu = MenuState.extend({
 		init:function(_handler){
@@ -19,6 +21,24 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
           // setLeaderBoards(leaderBoard);
           leaderboardsLoaded = true; 
           // console.log("success:", data);
+					//Load the sounds
+					sounds.load([
+					  `${CURRENT_PATH}/res/sound/HighStakes.mp3`,
+					  `${CURRENT_PATH}/res/sound/ItaloUnlimited.mp3`,
+					  `${CURRENT_PATH}/res/sound/explode.wav`,
+					  `${CURRENT_PATH}/res/sound/lvlup.ogg`,
+					  `${CURRENT_PATH}/res/sound/lvldown.ogg`,
+					  `${CURRENT_PATH}/res/sound/select.wav`,
+					  `${CURRENT_PATH}/res/sound/spawn.ogg`,
+					  `${CURRENT_PATH}/res/sound/start.wav`,
+					  `${CURRENT_PATH}/res/sound/monster.wav`,
+					  `${CURRENT_PATH}/res/sound/sword.wav`,
+					]);
+
+					//Assign the callback function that should run
+					//when the sounds have loaded
+					console.log("set callback");
+					sounds.whenLoaded = initSounds;
         },
         error: function(data){
           console.log("error!!!:", data);
@@ -120,7 +140,19 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 						//title screen
 						_g.myDrawImage(this.assets.mainMenu, 0, 0, 1024, 640);
 						//draw cursor
-						_g.myDrawImage(this.assets.pointer, 260, 410 + (choicePosition * 65), 32, 32);
+						if (loadingText === "")
+							_g.myDrawImage(this.assets.pointer, 260, 410 + (choicePosition * 65), 32, 32);
+						if (loadingText !== ""){
+			      	_g.drawText({
+				      	borderColor: 'white',
+				      	fillColor: loadingFill,
+				      	text: loadingText,
+				      	fontSize: 48,
+				      	font: 'serif',
+				      	x: function() {return 470;},
+				      	y: function() {return 445;},
+			      	});
+			      }
 	      		break;
 	      	
 	      	case 'test':
@@ -142,12 +174,16 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 			if (this.view === 'menu') {
 				if(this.handler.getKeyManager().up || this.handler.getKeyManager().upArrow) {
 					choicePosition -= 1;
+					if (soundsLoaded)
+						this.handler.getSoundManager().play("selectSound");
 					if(choicePosition === -1)
 						choicePosition = this.choices.length - 1;
 					countSinceInput = 0;
 				} 
 				if (this.handler.getKeyManager().down || this.handler.getKeyManager().downArrow) {
 					choicePosition += 1;
+					if (soundsLoaded)
+						this.handler.getSoundManager().play("selectSound");
 					if(choicePosition === this.choices.length)
 						choicePosition = 0;
 					countSinceInput = 0;
@@ -156,43 +192,59 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State'], function(Men
 			
 			if(this.handler.getKeyManager().enter) {
 				countSinceInput = 0;
-				if (this.view === 'menu')
-					switch(this.choices[choicePosition]){
-						case 'play':
-							var gameState = new GameState(this.handler);
-							State.setState(gameState);	
-							break;		
-						case 'leaderboards':
-              if (leaderboardsLoaded){
-							this.view = 'leaderboards';
-              } else {
-                alert ("Leader Boards are still loading. Give it a few more seconds or refresh the page!");
-              }
-							break;		
-						case 'credits':
-							this.view = 'credits';
-							break;		
-					} else {
-						this.view = 'menu';
+				if (!soundsLoaded || !leaderboardsLoaded){
+					loadingFill = 'red';
+				} else {
+					this.handler.getSoundManager().play("startSound");
+					if (this.view === 'menu')
+						switch(this.choices[choicePosition]){
+							case 'play':
+								handlerRef.getSoundManager().setLoop("musicSound", false);
+								handlerRef.getSoundManager().fadeOut("musicSound", 3);
+								var gameState = new GameState(this.handler);
+								State.setState(gameState);	
+								break;		
+							case 'leaderboards':
+	              if (leaderboardsLoaded){
+								this.view = 'leaderboards';
+	              } else {
+	                alert ("Leader Boards are still loading. Give it a few more seconds or refresh the page!");
+	              }
+								break;		
+							case 'credits':
+								this.view = 'credits';
+								break;		
+						} else {
+							this.view = 'menu';
+						}
+					}
 				}
 			}
-		}
 	});
 
 	function getCredits(){
 		return [
-			'Programming:',
-			'     Matthew McCord',
-			'Artwork:',
-			'     http://www.opengameart.org/',
-			'          characters: Antifarea(PC)',
-			'          tiles: Chris Hamons / Medicine Storm	',
-			'          tiles: Buch / Keith Karnage',
-			'          castle: Alucard',
-			'Thanks to:',
-			'     Jamie Nichols for JS game',
-			'     engine Youtube tutorial'
+			'Programming: Matthew McCord',
+			'Artwork: http://www.opengameart.org/',
+			'    Player: Antifarea(PC)',
+			'    Tiles: Project Untumno (Chris Hamons / Medicine Storm)',
+			'    Tiles: Buch / Keith Karnage',
+			'    Music: OveMelaa',
+			'    Sound FX: artisticdude / OveMelaa',
+			'    Castle: Alucard',
+			'Thanks: Jamie Nichols // JS game engine',
+			'                         Youtube tutorial'
 		];
+	}
+
+	function initSounds() {
+		console.log("callback");
+		let sm = new SoundManager();
+		sm.setSounds();
+		handlerRef.setSoundManager(sm);
+		soundsLoaded = true;
+		loadingText = "";
+		handlerRef.getSoundManager().fadeIn("musicSound", 3);
 	}
 
   // function setLeaderBoards(_LB){

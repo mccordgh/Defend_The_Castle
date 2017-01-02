@@ -2,13 +2,13 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
 
   const CURRENT_PATH = window.location.href;
 	var fontSize, timeCounter = 0, endRank, LBPosition, endScore = null, LBinfo = "Getting Leaderboard information...", LBinfo2 = "";
-  var rankIcons = Assets.getAssets('rankIcons');
+  var rankIcons = Assets.getAssets('rankIcons'), handlerRef;
 
 	var GameOverState = State.extend({
 		init:function(_handler){
 			this._super(_handler);
 			endScore = this.handler.getWorld().getEntityManager().getPlayer().score;
-
+      handlerRef = _handler;
       this.assets = Assets.getAssets('gameOver');
       endRank = getRankByScore(endScore);
             //Load Leaderboards
@@ -141,6 +141,7 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
       }
     });
     if (breakPosition < 11){
+      handlerRef.getSoundManager().play("lvlup");
       while (newName === "" || newName.length > 10) {
         newName = prompt(`You fought bravely! Please enter your name, warrior, in 10 CHARACTERS OR LESS.`);
       }
@@ -165,6 +166,7 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
       });
     } else {
       //DIDNT MAKE LEADERBOARDS. SCORE TOO LOW
+      handlerRef.getSoundManager().play("lvldown");
         LBinfo = "You didn't place on the leaderboards...";
         LBinfo2 = "Better luck next time, warrior!";
     }

@@ -5,6 +5,7 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'Spat
 
 	var World = Class.extend({
 		init:function(_path, _handler){
+			
 			this.tiles = [];
 			this.handler = _handler;
 			_handler.setWorld(this);
