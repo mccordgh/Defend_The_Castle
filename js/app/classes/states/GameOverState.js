@@ -141,6 +141,7 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
       }
     });
     if (breakPosition < 11){
+      this.handler.getSoundManager().play("lvlup");
       while (newName === "" || newName.length > 10) {
         newName = prompt(`You fought bravely! Please enter your name, warrior, in 10 CHARACTERS OR LESS.`);
       }
@@ -165,6 +166,7 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
       });
     } else {
       //DIDNT MAKE LEADERBOARDS. SCORE TOO LOW
+      this.handler.getSoundManager().play("lvldown");
         LBinfo = "You didn't place on the leaderboards...";
         LBinfo2 = "Better luck next time, warrior!";
     }

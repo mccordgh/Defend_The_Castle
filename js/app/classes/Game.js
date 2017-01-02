@@ -1,9 +1,9 @@
-define(['Class', 'Display', 'State', 'MainMenu', 'KeyManager', 'Handler', 'GameCamera'], function(Class,Display,State,MainMenu, KeyManager, Handler, GameCamera){
+define(['Class', 'Display', 'State', 'MainMenu', 'KeyManager', 'Handler', 'GameCamera', 'SoundManager'], function(Class,Display,State,MainMenu, KeyManager, Handler, GameCamera, SoundManager){
 
 	var _this;
 	var running = false;
-	var title, width, height, g, display, keyManager, handler, gameCamera;
-	var gameState, menuState, settingsState;
+	var title, width, height, g, display, keyManager, handler, gameCamera, soundManager;
+	var gameState, menuState, settingsState;//, bgmPlaying = false;
 
 
 	var Game = Class.extend({
@@ -22,7 +22,7 @@ define(['Class', 'Display', 'State', 'MainMenu', 'KeyManager', 'Handler', 'GameC
 			var lastTime = Date.now();
 			var timer = 0;
 			var ticks = 0;
-			
+
 			function loop(){
 				if(running) {
 					now = Date.now();

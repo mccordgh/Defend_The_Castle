@@ -35,7 +35,8 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			if (this.health <= 0){
 				this.handler.getWorld().getEntityManager().getPlayer().score += 11;
 				this.dead++;
-				if (this.dead === 60){
+				if (this.dead === 15){
+					this.handler.getSoundManager().play("monster");
 					this.dead = 666;
 					this.handler.getWorld().getEntityManager().removeEntity(this);
 					this.handler.getWorld().getSpatialGrid().remove(new Rectangle(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height), this);

@@ -44,6 +44,7 @@ define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverSta
 				assets.animations.explode.tick();
 				this.handler.getWorld().setRoundOver(true);
 				this.handler.getWorld().getEntityManager().removeAllMonsters();
+				this.handler.getSoundManager().play("explode");
 				_g.myDrawImage(assets.animations.explode.getCurrentFrame(), 
 								this.x - this.handler.getGameCamera().getxOffset(),
 								this.y - this.handler.getGameCamera().getyOffset(), 

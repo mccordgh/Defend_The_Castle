@@ -1,6 +1,6 @@
 define(['Class'],function(Class){
 
-	var game, world, leaderBoards = [];
+	var game, world, leaderBoards = [], soundManager;
 
 	var Handler = Class.extend({
 		init:function(_game){
@@ -24,14 +24,21 @@ define(['Class'],function(Class){
 		setWorld: function(_world){
 			world = _world;
 		},
-		getStateByName: function(_name){
-			return game.getStateByName(_name);
+		getGame: function(_name){
+			return game;
 		},
 		getLeaderBoards(){
 			return leaderBoards;
 		},
 		setLeaderBoards(_LB){
 			leaderBoards = _LB;
+		},
+		getSoundManager(){
+			return soundManager;
+		},
+		setSoundManager(_sm){
+			console.log("_sm", _sm);
+			soundManager = _sm;
 		}
 	
 	});

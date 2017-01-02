@@ -1,6 +1,6 @@
-define(['Class', 'Rectangle'], function(Class, Rectangle){
+define(['Class', 'Rectangle', 'SoundManager'], function(Class, Rectangle, SoundManager){
 
-var dying;
+var dying, handlerRef;
 
 	var Entity = Class.extend({
 		init: function(_handler, _x, _y, _width, _height){
@@ -9,6 +9,7 @@ var dying;
 			this.width = _width;
 			this.height = _height;
 			this.handler = _handler;
+			handlerRef = this.handler;
 			this.bounds = new Rectangle(0, 0, _width, _height);
 			this.target = null;
 		},
@@ -44,8 +45,9 @@ var dying;
 
 			for(var i = 0; i < candidates.length; i++){
 				var e = candidates[i];
-				if (this.type === 'player' && e.type === 'monster'){
+				if (this.type === 'player' && e.type === 'monster' && e.health > 0){
 					// if (e.getCollisionBounds(0, 0).intersects(this.getWeaponCollisionBounds(xOffset, yOffset))){
+						handlerRef.getSoundManager().play("sword");
 						e.takeDamage(this.damage);
 					// }
 				}
