@@ -1,8 +1,8 @@
 define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState, KeyManager, Assets){
 
   const CURRENT_PATH = window.location.href;
-	var fontSize, timeCounter = 0, endRank, LBPosition, endScore = null, LBinfo = "Getting Leaderboard information...", LBinfo2 = "";
-  var rankIcons = Assets.getAssets('rankIcons'), handlerRef;
+	var fontSize, endRank, LBPosition, endScore = null, LBinfo = "Getting Leaderboard information...", LBinfo2 = "";
+  var rankIcons = Assets.getAssets('rankIcons'), handlerRef, finishCleanup = false;
 
 	var GameOverState = State.extend({
 		init:function(_handler){
@@ -30,9 +30,7 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
 
 		},
 		tick: function(_dt){
-			timeCounter += 1;
-      if (timeCounter > 60)
-        this.getInput(_dt);
+      this.getInput(_dt);
 			this.render();
 		},
 		render: function(_g){
@@ -83,7 +81,7 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
         y: function() {return 450;},
         });
 
-        if (timeCounter > 90) {
+        if (finishCleanup) {
            _g.drawText({
           borderColor: 'orange',
            fillColor: 'white',
@@ -97,7 +95,7 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
       }
 		},
 		getInput: function(_dt){
-      if(this.handler.getKeyManager().enter) {
+      if(this.handler.getKeyManager().enter && finishCleanup) {
         window.location.reload();
 		  }
     }
@@ -163,12 +161,14 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
       .done(() => {
         LBinfo = "You've placed on the leaderboards!";
         LBinfo2 = "";
+        finishCleanup = true;
       });
     } else {
       //DIDNT MAKE LEADERBOARDS. SCORE TOO LOW
       handlerRef.getSoundManager().play("lvldown");
         LBinfo = "You didn't place on the leaderboards...";
         LBinfo2 = "Better luck next time, warrior!";
+        finishCleanup = true;
     }
   }
 
