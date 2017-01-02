@@ -42,6 +42,7 @@ define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverSta
 		render: function(_g){
 			if (this.health <= 0){
 				if (deathCleanup){
+					console.log("castle death cleanup");
 					this.handler.getSoundManager().setLoop("gameMusic", false);
 					this.handler.getSoundManager().fadeOut("gameMusic", 3);
 					this.handler.getSoundManager().play("explode");

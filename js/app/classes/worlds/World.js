@@ -95,7 +95,9 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'Spat
 			// tree.render(_g);
 		},
 		getTile: function(_x, _y){
-			return Tile.tiles[this.tiles[_x][_y]];
+			let tmpTile = Tile.tiles[this.tiles[_x][_y]];
+			if (tmpTile)
+				return Tile.tiles[this.tiles[_x][_y]];
 		},
 		getWidth: function(){
 			return this.width;
