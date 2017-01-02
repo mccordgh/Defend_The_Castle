@@ -139,7 +139,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 						//title screen
 						_g.myDrawImage(this.assets.mainMenu, 0, 0, 1024, 640);
 						//draw cursor
-						if (loadingText === "")
+						if (loadingText === "press enter key...")
 							_g.myDrawImage(this.assets.pointer, 260, 410 + (choicePosition * 65), 32, 32);
 						if (loadingText !== ""){
 			      	_g.drawText({
@@ -239,7 +239,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 		sm.setSounds();
 		handlerRef.setSoundManager(sm);
 		soundsLoaded = true;
-		loadingText = "";
+		loadingText = "press enter key...";
 		handlerRef.getSoundManager().fadeIn("gameMusic", 3);
 	}
 
