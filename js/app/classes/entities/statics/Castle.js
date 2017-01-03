@@ -12,6 +12,7 @@ define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverSta
 			this.height = 81;
 			this.width = 80;
 			this.type = 'castle';
+			this.damage = 100;
 			this.health = 2000;
 			let tempX = this.handler.getWidth() / 2 - 100,
 					tempY = 45;
