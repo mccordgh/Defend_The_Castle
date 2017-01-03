@@ -52,7 +52,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 
       this.assets = Assets.getAssets('title');
       this.choices = ['play', 'leaderboards', 'credits'];
-			this.view = 'menu';
+			this.view = 'test';
 		},
 		tick: function(_dt){
 			countSinceInput++;
@@ -153,8 +153,10 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 	      		break;
 	      	
 	      	case 'test':
-            let tiles = Assets.getAssets('tiles');
-            _g.myDrawImage(tiles.water, 100, 100, 32, 32);
+            let castle = Assets.getAssets('castle');
+            _g.myDrawImage(castle.sprite1, 100, 100, 160, 160);
+            // _g.myDrawImage(castle.sprite2, 300, 200, 32, 32);
+            // _g.myDrawImage(castle.sprite3, 600, 400, 32, 32);
 	      		break;
 	      	
 	      	default:

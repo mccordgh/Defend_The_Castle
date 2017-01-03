@@ -240,8 +240,10 @@ for(let i = 0; i < portalanimationLength; i++){
 	// var icons = new Assets("icons", "res/textures/ui_pieces.png", 185, 55);
 	// icons.sword = icons.sheet.crop(14, 90, icons.width, icons.height);
 
-	var castle = new Assets("castle",  CURRENT_PATH + "res/textures/castle.png", 160, 160);
-	castle.sprite = castle.sheet.crop(0, 0, castle.width, castle.height);
+	var castle = new Assets("castle",  CURRENT_PATH + "res/textures/castle.png", 480, 160);
+	castle.sprite1 = castle.sheet.crop(0, 0, 0, castle.height);
+	castle.sprite2 = castle.sheet.crop(0, 0, 160, castle.height);
+	castle.sprite3 = castle.sheet.crop(0, 0, 320, castle.height);
 
 	//CASTLE animation
 	var castleExplode = new Assets("castleExplode",  CURRENT_PATH + "res/textures/tiles.png", DEFAULT_WIDTH,  DEFAULT_HEIGHT);
