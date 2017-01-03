@@ -1,4 +1,4 @@
-define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState, KeyManager, Assets){
+ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState, KeyManager, Assets){
 
   const CURRENT_PATH = window.location.href;
 	var fontSize, endRank, LBPosition, endScore = null, LBinfo = "Getting Leaderboard information...", LBinfo2 = "";
@@ -140,7 +140,7 @@ define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState
     });
     if (breakPosition < 11){
       handlerRef.getSoundManager().play("lvlup");
-      while (newName === "" || newName.length > 10) {
+      while (newName === null || newName === "" || newName.length > 10) {
         newName = prompt(`You fought bravely! Please enter your name, warrior, in 10 CHARACTERS OR LESS.`);
       }
       let firstHalf = leaderboards.slice(0, breakPosition);

@@ -22,6 +22,10 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'Spat
 			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 84, Tile.TILE_HEIGHT * 12));
 			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 12, Tile.TILE_HEIGHT * 74));
 			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 84, Tile.TILE_HEIGHT * 74));
+			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 48, Tile.TILE_HEIGHT * 8));
+			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 48, Tile.TILE_HEIGHT * 78));
+			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 8, Tile.TILE_HEIGHT * 44));
+			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 88, Tile.TILE_HEIGHT * 44));
 
 			//TOP LEFT TREE TROVE
 			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 7, Tile.TILE_HEIGHT * 7));
