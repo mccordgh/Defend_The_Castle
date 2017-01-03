@@ -18,42 +18,50 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'Spat
 			this.entityManager.addEntity(new Castle(_handler, Tile.TILE_WIDTH * 47, Tile.TILE_HEIGHT * 42));
 
 			//PORTALS!
-			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 12, Tile.TILE_HEIGHT * 12));
-			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 84, Tile.TILE_HEIGHT * 12));
-			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 12, Tile.TILE_HEIGHT * 74));
-			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 84, Tile.TILE_HEIGHT * 74));
-			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 48, Tile.TILE_HEIGHT * 8));
-			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 48, Tile.TILE_HEIGHT * 78));
+				//top left
+			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 8, Tile.TILE_HEIGHT * 8));
+				//top right	
+			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 88, Tile.TILE_HEIGHT * 8));
+				//bottom left
+			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 8, Tile.TILE_HEIGHT * 78));
+				//bottom right
+			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 88, Tile.TILE_HEIGHT * 78));
+				//top middle
+			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 47, Tile.TILE_HEIGHT * 8));
+				//bottom middle
+			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 47, Tile.TILE_HEIGHT * 78));
+				//left middle
 			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 8, Tile.TILE_HEIGHT * 44));
+				//right middle
 			this.entityManager.addEntity(new Portal(_handler, Tile.TILE_WIDTH * 88, Tile.TILE_HEIGHT * 44));
 
 			//TOP LEFT TREE TROVE
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 7, Tile.TILE_HEIGHT * 7));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 11, Tile.TILE_HEIGHT * 7));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 15, Tile.TILE_HEIGHT * 7));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 7, Tile.TILE_HEIGHT * 11));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 7, Tile.TILE_HEIGHT * 15));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 7, Tile.TILE_HEIGHT * 7));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 11, Tile.TILE_HEIGHT * 7));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 15, Tile.TILE_HEIGHT * 7));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 7, Tile.TILE_HEIGHT * 11));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 7, Tile.TILE_HEIGHT * 15));
 
 			//TOP RIGHT TREE TROVE
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 89, Tile.TILE_HEIGHT * 7));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 85, Tile.TILE_HEIGHT * 7));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 81, Tile.TILE_HEIGHT * 7));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 89, Tile.TILE_HEIGHT * 11));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 89, Tile.TILE_HEIGHT * 15));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 89, Tile.TILE_HEIGHT * 7));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 85, Tile.TILE_HEIGHT * 7));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 81, Tile.TILE_HEIGHT * 7));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 89, Tile.TILE_HEIGHT * 11));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 89, Tile.TILE_HEIGHT * 15));
 
 			//BOTTOM RIGHT TREE TROVE
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 89, Tile.TILE_HEIGHT * 79));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 85, Tile.TILE_HEIGHT * 79));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 81, Tile.TILE_HEIGHT * 79));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 89, Tile.TILE_HEIGHT * 75));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 89, Tile.TILE_HEIGHT * 71));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 89, Tile.TILE_HEIGHT * 79));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 85, Tile.TILE_HEIGHT * 79));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 81, Tile.TILE_HEIGHT * 79));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 89, Tile.TILE_HEIGHT * 75));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 89, Tile.TILE_HEIGHT * 71));
 
 			//BOTTOM LEFT TREE TROVE
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 7, Tile.TILE_HEIGHT * 71));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 7, Tile.TILE_HEIGHT * 75));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 7, Tile.TILE_HEIGHT * 79));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 11, Tile.TILE_HEIGHT * 79));
-			this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 15, Tile.TILE_HEIGHT * 79));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 7, Tile.TILE_HEIGHT * 71));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 7, Tile.TILE_HEIGHT * 75));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 7, Tile.TILE_HEIGHT * 79));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 11, Tile.TILE_HEIGHT * 79));
+			// this.entityManager.addEntity(new Tree(_handler, Tile.TILE_WIDTH * 15, Tile.TILE_HEIGHT * 79));
 
 			//PLAYER SET SPAWN
 			this.entityManager.getPlayer().setX(this.spawnX);
