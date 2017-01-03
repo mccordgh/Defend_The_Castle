@@ -4,7 +4,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 	var fontSize = 0, countSinceInput = 11, choicePosition = 0, leaderboardsLoaded = false;
 	var leaderBoard = [], credits = [], handlerRef;
   var rankIcons = Assets.getAssets('rankIcons');
-  var musicSound, selectSound, startSound, soundsLoaded = false
+  var musicSound, selectSound, startSound, soundsLoaded = false;
   var loadingText = "loading leaderboards...", loadingFill = "orange";
 
 	var MainMenu = MenuState.extend({
@@ -52,7 +52,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 
       this.assets = Assets.getAssets('title');
       this.choices = ['play', 'leaderboards', 'credits'];
-			this.view = 'test';
+			this.view = 'menu';
 		},
 		tick: function(_dt){
 			countSinceInput++;
@@ -153,10 +153,6 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 	      		break;
 	      	
 	      	case 'test':
-            let castle = Assets.getAssets('castle');
-            _g.myDrawImage(castle.sprite1, 100, 100, 160, 160);
-            // _g.myDrawImage(castle.sprite2, 300, 200, 32, 32);
-            // _g.myDrawImage(castle.sprite3, 600, 400, 32, 32);
 	      		break;
 	      	
 	      	default:
