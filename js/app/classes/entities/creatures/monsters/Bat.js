@@ -12,7 +12,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			this.bounds.height = 24;
 			this.type = 'monster';
 			this.health = 80;
-			this.damage = 1;
+			this.damage = 55;
 			this.targetType = 'castle';
 			this.deathCleanup = true;
 			var healthbar_properties = {
@@ -35,13 +35,13 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 		},
 		tick: function(_dt){
 			if (this.health <= 0){
-				this.handler.getWorld().getEntityManager().getPlayer().score += 11;
+				this.handler.getWorld().getEntityManager().getPlayer().score += 333;
 				this.dead++;
 				if (this.deathCleanup) {
 					this.handler.getSoundManager().play("monster");
 					this.deathCleanup = false;
 				}
-				if (this.dead === 60){
+				if (this.dead === 8){
 					this.dead = 666;
 					this.handler.getWorld().getEntityManager().removeEntity(this);
 					this.handler.getWorld().getSpatialGrid().remove(new Rectangle(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height), this);
@@ -53,15 +53,19 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			this.target = this.handler.getWorld().getEntityManager().getSingleEntity(this.targetType);		
 			if (this.target) {
 				if(this.target.y < this.y) {
-					this.yMove = -this.speed * _dt;
+					if (this.target.y - this.y > 10 || this.target.y - this.y < -10)
+						this.yMove = -this.speed * _dt;
 				} 
 				if (this.target.y > this.y) {
-					this.yMove = this.speed * _dt;
+					if (this.target.y - this.y > 10 || this.target.y - this.y < -10)
+						this.yMove = this.speed * _dt;
 				}
 				if(this.target.x < this.x) {
+					if (this.target.x - this.x > 10 || this.target.x - this.x < -10)
 					this.xMove = -this.speed * _dt;
 				} 
 				if (this.target.x > this.x) {
+					if (this.target.x - this.x > 10 || this.target.x - this.x < -10)
 					this.xMove = this.speed * _dt;
 				}
 			}		

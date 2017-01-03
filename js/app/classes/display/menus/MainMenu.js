@@ -25,6 +25,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 					sounds.load([
 					  `${CURRENT_PATH}/res/sound/ItaloUnlimited.mp3`,
 					  `${CURRENT_PATH}/res/sound/explode.wav`,
+					  `${CURRENT_PATH}/res/sound/explode2.wav`,
 					  `${CURRENT_PATH}/res/sound/lvlup.ogg`,
 					  `${CURRENT_PATH}/res/sound/lvldown.ogg`,
 					  `${CURRENT_PATH}/res/sound/select.wav`,
@@ -56,7 +57,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 		},
 		tick: function(_dt){
 			countSinceInput++;
-			if (countSinceInput > 6)
+			if (countSinceInput > 4)
 				this.getInput(_dt);
 			this.render();
 		},
@@ -169,6 +170,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 			if (this.view === 'menu') {
 				if(this.handler.getKeyManager().up || this.handler.getKeyManager().upArrow) {
 					choicePosition -= 1;
+					loadingFill = `#${Math.floor(Math.random() *7 + 3)}${Math.floor(Math.random() * 7 + 3)}${Math.floor(Math.random() *7 + 3)}${Math.floor(Math.random() *7 + 3)}${Math.floor(Math.random() *7 + 3)}${Math.floor(Math.random() *7 + 3)}`;
 					if (soundsLoaded)
 						this.handler.getSoundManager().play("selectSound");
 					if(choicePosition === -1)
@@ -177,6 +179,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 				} 
 				if (this.handler.getKeyManager().down || this.handler.getKeyManager().downArrow) {
 					choicePosition += 1;
+					loadingFill = `#${Math.floor(Math.random() *7 + 3)}${Math.floor(Math.random() * 7 + 3)}${Math.floor(Math.random() *7 + 3)}${Math.floor(Math.random() *7 + 3)}${Math.floor(Math.random() *7 + 3)}${Math.floor(Math.random() *7 + 3)}`;
 					if (soundsLoaded)
 						this.handler.getSoundManager().play("selectSound");
 					if(choicePosition === this.choices.length)

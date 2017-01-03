@@ -8,7 +8,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			this.assets = Assets.getAssets('player');
 			this.x = _x;
 			this.y = _y;
-			this.speed = 200;
+			this.speed = 250;
 			this.bounds.x = 10;
 			this.bounds.y = 17;
 			this.bounds.width = 14;

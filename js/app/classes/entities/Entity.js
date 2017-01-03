@@ -59,6 +59,8 @@ var dying, handlerRef;
 						if (e.type === 'castle' && this.type === 'monster'){
 							if (this.targetType && this.dead < 1)
 								if(this.targetType === 'castle')
+									handlerRef.getSoundManager().play("explodeBat");
+									this.takeDamage(e.damage);
 									e.takeDamage(this.damage);
 						}
 						return true;
