@@ -58,11 +58,11 @@ define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverSta
 								this.width, 
 								this.height);
 			} else {
-				if (this.health > 1000)
+				if (this.health > 1250)
 					castleSprite = assets.sprite1;
-				if (this.health > 500 && this.health < 1000)
+				if (this.health > 750 && this.health < 1250)
 					castleSprite = assets.sprite2;
-				if (this.health > 0 && this.health < 500)
+				if (this.health > 0 && this.health < 750)
 					castleSprite = assets.sprite3;
 					_g.myDrawImage(castleSprite, 
 									this.x - this.handler.getGameCamera().getxOffset(),
