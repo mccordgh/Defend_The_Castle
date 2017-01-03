@@ -53,15 +53,19 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			this.target = this.handler.getWorld().getEntityManager().getSingleEntity(this.targetType);		
 			if (this.target) {
 				if(this.target.y < this.y) {
-					this.yMove = -this.speed * _dt;
+					if (this.target.y - this.y > 10 || this.target.y - this.y < -10)
+						this.yMove = -this.speed * _dt;
 				} 
 				if (this.target.y > this.y) {
-					this.yMove = this.speed * _dt;
+					if (this.target.y - this.y > 10 || this.target.y - this.y < -10)
+						this.yMove = this.speed * _dt;
 				}
 				if(this.target.x < this.x) {
+					if (this.target.x - this.x > 10 || this.target.x - this.x < -10)
 					this.xMove = -this.speed * _dt;
 				} 
 				if (this.target.x > this.x) {
+					if (this.target.x - this.x > 10 || this.target.x - this.x < -10)
 					this.xMove = this.speed * _dt;
 				}
 			}		
