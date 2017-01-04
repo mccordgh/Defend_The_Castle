@@ -165,7 +165,7 @@
       });
     } else {
       //DIDNT MAKE LEADERBOARDS. SCORE TOO LOW
-      handlerRef.getSoundManager().play("lvldown");
+      handlerRef.getSoundManager().play("evilLaugh");
         LBinfo = "You didn't place on the leaderboards...";
         LBinfo2 = "Better luck next time, warrior!";
         finishCleanup = true;
