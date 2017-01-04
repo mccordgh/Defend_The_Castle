@@ -15,6 +15,7 @@
 ## Libraries Used
 1. Class.js
 2. Require.js
+3. Sound.js
 
 ## Special Thanks
 [Jamie Nichols youtube tutorial](https://www.youtube.com/watch?v=w86CZ79IHj8)
