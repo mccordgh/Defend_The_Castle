@@ -23,7 +23,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
           loadingText = "loading sounds...";
 					//Load the sounds
 					sounds.load([
-					  `${CURRENT_PATH}/res/sound/ItaloUnlimited.mp3`,
+					  `${CURRENT_PATH}/res/sound/ItaloUnlimited.ogg`,
 					  `${CURRENT_PATH}/res/sound/explode.wav`,
 					  `${CURRENT_PATH}/res/sound/explode2.wav`,
 					  `${CURRENT_PATH}/res/sound/lvlup.ogg`,

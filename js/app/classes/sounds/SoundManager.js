@@ -11,7 +11,7 @@ define(['Class'], function(Class){
 		setSounds: function(){
 			this.explode = sounds[`${CURRENT_PATH}/res/sound/explode.wav`];
 			this.explodeBat = sounds[`${CURRENT_PATH}/res/sound/explode2.wav`];
-			this.gameMusic = sounds[`${CURRENT_PATH}/res/sound/ItaloUnlimited.mp3`];
+			this.gameMusic = sounds[`${CURRENT_PATH}/res/sound/ItaloUnlimited.ogg`];
 			this.lvlup = sounds[`${CURRENT_PATH}/res/sound/lvlup.ogg`];
 			this.lvldown = sounds[`${CURRENT_PATH}/res/sound/lvldown.ogg`];
 			this.spawn = sounds[`${CURRENT_PATH}/res/sound/spawn.ogg`];
