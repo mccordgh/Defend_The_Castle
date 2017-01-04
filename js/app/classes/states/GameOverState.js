@@ -102,7 +102,7 @@
 	});
 
   function getRankByScore(_score){
-    let rankPosition = Math.floor(_score / 50000);
+    let rankPosition = Math.floor(_score / 150000);
     if (rankPosition > 6)
       rankPosition = 6;
     switch (rankPosition){

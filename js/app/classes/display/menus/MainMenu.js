@@ -154,8 +154,6 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 	      		break;
 	      	
 	      	case 'test':
-            let tiles = Assets.getAssets('tiles');
-            _g.myDrawImage(tiles.water, 100, 100, 32, 32);
 	      		break;
 	      	
 	      	default:

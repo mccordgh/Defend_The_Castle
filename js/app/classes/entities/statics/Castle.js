@@ -58,11 +58,17 @@ define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverSta
 								this.width, 
 								this.height);
 			} else {
-				_g.myDrawImage(assets.sprite, 
-								this.x - this.handler.getGameCamera().getxOffset(),
-								this.y - this.handler.getGameCamera().getyOffset(), 
-								this.width, 
-								this.height);
+				if (this.health > 1250)
+					castleSprite = assets.sprite1;
+				if (this.health > 750 && this.health < 1250)
+					castleSprite = assets.sprite2;
+				if (this.health > 0 && this.health < 750)
+					castleSprite = assets.sprite3;
+					_g.myDrawImage(castleSprite, 
+									this.x - this.handler.getGameCamera().getxOffset(),
+									this.y - this.handler.getGameCamera().getyOffset(), 
+									this.width, 
+									this.height);
 				this.healthbar.render(_g);
 			}
 			// ****** DRAW BOUNDING BOX DON'T DELETE!!

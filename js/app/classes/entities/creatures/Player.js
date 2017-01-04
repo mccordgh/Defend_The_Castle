@@ -1,6 +1,6 @@
 define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Assets, HealthBar, Rectangle){
 
-	var lastAnimation = "walk_right", attackCounter = 0, lastAttackCounter = 0;
+	var lastAnimation = "walk_down";//, attackCounter = 0, lastAttackCounter = 0;
 
 	var Player = Creature.extend({
 		init: function(_handler, _x, _y){
