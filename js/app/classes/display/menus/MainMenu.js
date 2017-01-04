@@ -2,9 +2,9 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 
 	const CURRENT_PATH = window.location.href;
 	var fontSize = 0, countSinceInput = 11, choicePosition = 0, leaderboardsLoaded = false;
-	var leaderBoard = [], credits = [], handlerRef;
+	var leaderBoard = [], credits = [], handlerRef, introStep = 1;;
   var rankIcons = Assets.getAssets('rankIcons');
-  var musicSound, selectSound, startSound, soundsLoaded = false;
+  var musicSound, selectSound, startSound, soundsLoaded = false, introAlpha = 0.99;
   var loadingText = "loading leaderboards...", loadingFill = "orange";
 
 	var MainMenu = MenuState.extend({
@@ -27,17 +27,17 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 					  `${CURRENT_PATH}/res/sound/explode.wav`,
 					  `${CURRENT_PATH}/res/sound/explode2.wav`,
 					  `${CURRENT_PATH}/res/sound/lvlup.ogg`,
-					  `${CURRENT_PATH}/res/sound/lvldown.ogg`,
+					  // `${CURRENT_PATH}/res/sound/lvldown.ogg`,
 					  `${CURRENT_PATH}/res/sound/select.wav`,
-					  `${CURRENT_PATH}/res/sound/spawn.ogg`,
 					  `${CURRENT_PATH}/res/sound/start.wav`,
+					  `${CURRENT_PATH}/res/sound/spawn.ogg`,
+					  `${CURRENT_PATH}/res/sound/evillaugh.ogg`,
 					  `${CURRENT_PATH}/res/sound/monster.wav`,
 					  `${CURRENT_PATH}/res/sound/sword.wav`,
 					]);
 
 					//Assign the callback function that should run
 					//when the sounds have loaded
-					console.log("set callback");
 					sounds.whenLoaded = initSounds;
         },
         error: function(data){
@@ -51,9 +51,10 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
       //Load Credits
       credits = getCredits();
 
+      this.introAssets = Assets.getAssets('mccordinator');
       this.assets = Assets.getAssets('title');
       this.choices = ['play', 'leaderboards', 'credits'];
-			this.view = 'menu';
+			this.view = 'intro';
 		},
 		tick: function(_dt){
 			countSinceInput++;
@@ -67,6 +68,61 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 				_g.fillStyle = "#000";
 				_g.fillRect(0, 0, this.handler.getWidth(), this.handler.getHeight());
 	      switch(this.view){
+	      	case 'intro':
+						switch (introStep){
+							case 1:
+			      		_g.globalAlpha = 1;
+			      		_g.myDrawImage(this.introAssets.logo, 0, 0, this.handler.getWidth(), this.handler.getHeight());
+			      		_g.globalAlpha = introAlpha;
+			      		_g.fillStyle = 'black';
+			      		_g.fillRect(0, 0, this.handler.getWidth(), this.handler.getHeight());
+			      		introAlpha -= 0.01;
+			      		if (introAlpha <= 0){
+			      			introAlpha = 0;
+			      			_g.globalAlpha = 1;
+			      			introStep = 2;
+			      		}
+			      		break;
+			      	case 2:
+			      	_g.globalAlpha = 1;
+			      	_g.myDrawImage(this.introAssets.logo, 0, 0, this.handler.getWidth(), this.handler.getHeight());
+			      	_g.globalAlpha = introAlpha;
+			      	_g.fillStyle = 'black';
+			      	_g.fillRect(0, 0, this.handler.getWidth(), this.handler.getHeight());
+			      	introAlpha += 0.01;
+			      	if (introAlpha >= 1){
+			      		introAlpha = 1;
+			      		_g.globalAlpha = 1;
+			      		introStep = 3;
+			      	}
+
+			      		break;
+			      	case 3:
+							_g.globalAlpha = 1;
+							_g.myDrawImage(this.assets.mainMenu, 0, 0, 1024, 640);
+			      	_g.drawText({
+				      	borderColor: 'white',
+				      	fillColor: loadingFill,
+				      	text: loadingText,
+				      	fontSize: 48,
+				      	font: 'serif',
+				      	x: function() {return 470;},
+				      	y: function() {return 440;},
+			      	});
+							_g.globalAlpha = introAlpha;
+							_g.fillStyle = 'black';
+							_g.fillRect(0, 0, this.handler.getWidth(), this.handler.getHeight());
+							introAlpha -= 0.01;
+							if (introAlpha <= 0){
+								_g.globalAlpha = 1;
+								// introStep = 1;
+								this.view = 'menu';
+							}
+
+			      		break;
+	      		}
+	      		break;
+
 	      	case 'leaderboards':
 	      		let spaces = "xxx";
             for (let i = 0; i < leaderBoard.length; i++){
@@ -149,11 +205,12 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 				      	fontSize: 48,
 				      	font: 'serif',
 				      	x: function() {return 470;},
-				      	y: function() {return 445;},
+				      	y: function() {return 440;},
 			      	});
 	      		break;
 	      	
 	      	case 'test':
+
 	      		break;
 	      	
 	      	default:
@@ -193,14 +250,16 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 				if (!soundsLoaded || !leaderboardsLoaded){
 					loadingFill = `#${Math.floor(Math.random() *7 + 3)}${Math.floor(Math.random() * 7 + 3)}${Math.floor(Math.random() *7 + 3)}${Math.floor(Math.random() *7 + 3)}${Math.floor(Math.random() *7 + 3)}${Math.floor(Math.random() *7 + 3)}`;
 				} else {
-					this.handler.getSoundManager().play("startSound");
 					if (this.view === 'menu')
 						switch(this.choices[choicePosition]){
 							case 'play':
+								this.handler.getSoundManager().play("evilLaugh");
 								var gameState = new GameState(this.handler);
+								handlerRef.getSoundManager().fadeIn("gameMusic", 5);
 								State.setState(gameState);	
 								break;		
 							case 'leaderboards':
+								this.handler.getSoundManager().play("startSound");
 	              if (leaderboardsLoaded){
 								this.view = 'leaderboards';
 	              } else {
@@ -208,6 +267,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 	              }
 								break;		
 							case 'credits':
+								this.handler.getSoundManager().play("startSound");
 								this.view = 'credits';
 								break;		
 						} else {
@@ -239,7 +299,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 		handlerRef.setSoundManager(sm);
 		soundsLoaded = true;
 		loadingText = "press enter key!";
-		handlerRef.getSoundManager().fadeIn("gameMusic", 3);
+		handlerRef.getSoundManager().play("evilLaugh");
 	}
 
   // function setLeaderBoards(_LB){

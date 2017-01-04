@@ -102,8 +102,8 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'Spat
 					}
 				}
 
-				this.entityManager.render(_g);
 				this.hud.render(_g);
+				this.entityManager.render(_g);
 			// tree.render(_g);
 		},
 		getTile: function(_x, _y){

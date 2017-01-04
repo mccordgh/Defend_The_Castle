@@ -1,6 +1,6 @@
 define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverState', 'State'], function(StaticEntity, Tile, Assets, HealthBar, Rectangle, GameOverState, State){
 
-	var assets = Assets.getAssets("castle"), deathCleanup = true;
+	var assets = Assets.getAssets("castle"), deathCleanup = true, exploderCount = 0;
 
 	var Castle = StaticEntity.extend({
 		init: function(_handler, _x, _y){
@@ -14,7 +14,7 @@ define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverSta
 			this.type = 'castle';
 			this.damage = 100;
 			this.health = 2000;
-			let tempX = this.handler.getWidth() / 2 - 100,
+			let tempX = this.handler.getWidth() - 220,
 					tempY = 45;
 			var hb_properties = {
 				nodes: 100,
@@ -32,7 +32,7 @@ define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverSta
 				this.handler.getGameCamera().slowCenterOnEntity(this);
 				this.dead++;
 				if (this.dead === 100){
-					this.handler.getSoundManager().explode.pause();
+					this.handler.getSoundManager().pause("explode");
 					this.dead = 666;
 					this.handler.getWorld().getEntityManager().removeEntity(this);
 					this.handler.getWorld().getSpatialGrid().remove(new Rectangle(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height), this);
@@ -48,7 +48,11 @@ define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverSta
 					this.handler.getSoundManager().fadeOut("gameMusic", 3);
 					deathCleanup = false;
 				}
-				this.handler.getSoundManager().play("explode");
+				exploderCount++;
+				if (exploderCount > 10){
+					this.handler.getSoundManager().play("explode");
+					exploderCount = 0;
+				}
 				assets.animations.explode.tick();
 				this.handler.getWorld().setRoundOver(true);
 				this.handler.getWorld().getEntityManager().removeAllMonsters();

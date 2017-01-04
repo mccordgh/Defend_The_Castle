@@ -74,6 +74,11 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 	var titleScreenAssets = new Assets("title", CURRENT_PATH + "res/textures/dtc_title.png", 1024, 672);
 	titleScreenAssets.mainMenu = titleScreenAssets.sheet.crop(0, 0, 1024, 640);
 	titleScreenAssets.pointer = titleScreenAssets.sheet.crop(0, 641, 32, 32);
+
+	//MCCORDINATOR GAMES LOGO
+	var mccordinatorAssets = new Assets("mccordinator", CURRENT_PATH + "res/textures/mccordinator.jpg", 1200, 859);
+	mccordinatorAssets.logo = mccordinatorAssets.sheet.crop(0,0, mccordinatorAssets.width, mccordinatorAssets.height)
+
 	//Leaderboard Logo
 	titleScreenAssets.LBLogo = titleScreenAssets.sheet.crop(309, 476, 410, 47);
 	//Credits Logo

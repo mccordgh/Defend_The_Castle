@@ -20,7 +20,14 @@ define(['Helper', 'HealthBar', 'Assets'], function(Helper, HealthBar, Assets){
 					tempX = 20,
 					tempY = 45;
 
+			//Black Transparent Bar at Top
+			// _g.fillStyle = 'black';
+			// _g.globalAlpha = 0.5;
+			// _g.fillRect(0, 0, this.handler.getWidth(), 65);
+			// _g.globalAlpha = 1;
+
 			//Text: Score
+				tempY = 40;
 			_g.drawText({
 				border: true,
 				borderHeight: 80,

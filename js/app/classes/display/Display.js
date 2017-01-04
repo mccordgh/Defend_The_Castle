@@ -61,13 +61,13 @@ define(['Jquery', 'Class', 'Assets'],function($, Class, Assets){
 	CanvasRenderingContext2D.prototype.drawText = function(_textObject){
 		graphics.font = `${_textObject.fontSize}px VT323`;
 		let borderWidth = _textObject.additionalWidth || graphics.measureText(_textObject.text).width;
-		if (_textObject.border) {
+		// if (_textObject.border) {
 			//Drawing score partial transparent background frame
-			graphics.globalAlpha = 0.4;
-			graphics.fillStyle = "black";
-			graphics.fillRect(_textObject.x() - 10, _textObject.y() - _textObject.fontSize, borderWidth + 20, _textObject.borderHeight);
-			graphics.globalAlpha = 1;
-		}
+		// 	graphics.globalAlpha = 0.4;
+		// 	graphics.fillStyle = "black";
+		// 	graphics.fillRect(_textObject.x() - 10, _textObject.y() - _textObject.fontSize, borderWidth + 20, _textObject.borderHeight);
+		// 	graphics.globalAlpha = 1;
+		// }
 
 		graphics.strokeStyle = _textObject.borderColor;
 		graphics.fillStyle = _textObject.fillColor;
