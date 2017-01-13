@@ -71,18 +71,22 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 
 
 	//Title Screen
-	var titleScreenAssets = new Assets("title", CURRENT_PATH + "res/textures/dtc_title.png", 1024, 672);
+	var titleScreenAssets = new Assets("title", CURRENT_PATH + "res/textures/new_main_menu.png", 1024, 700);
 	titleScreenAssets.mainMenu = titleScreenAssets.sheet.crop(0, 0, 1024, 640);
-	titleScreenAssets.pointer = titleScreenAssets.sheet.crop(0, 641, 32, 32);
+	titleScreenAssets.pointer = titleScreenAssets.sheet.crop(0, 641, 128, 41);
+
+	//How to Screen
+	var howToAssets = new Assets("howTo", CURRENT_PATH + "res/textures/how_to.png", 1024, 640);
+	howToAssets.howToScreen = howToAssets.sheet.crop(0, 0, 1024, 640);
 
 	//MCCORDINATOR GAMES LOGO
 	var mccordinatorAssets = new Assets("mccordinator", CURRENT_PATH + "res/textures/mccordinator.jpg", 1200, 859);
 	mccordinatorAssets.logo = mccordinatorAssets.sheet.crop(0,0, mccordinatorAssets.width, mccordinatorAssets.height)
 
 	//Leaderboard Logo
-	titleScreenAssets.LBLogo = titleScreenAssets.sheet.crop(309, 476, 410, 47);
+	titleScreenAssets.LBLogo = titleScreenAssets.sheet.crop(261, 560, 674, 62);
 	//Credits Logo
-	titleScreenAssets.creditsLogo = titleScreenAssets.sheet.crop(309, 540, 214, 47);
+	titleScreenAssets.creditsLogo = titleScreenAssets.sheet.crop(260, 484, 394, 59);
 
 	//Game Over Assets
 	var gameOverAssets = new Assets('gameOver', CURRENT_PATH + "res/textures/gameover.png", 499, 182);
