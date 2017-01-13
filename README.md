@@ -1,17 +1,17 @@
 # [Defend the Castle](https://mccordgh.github.io/Defend_The_Castle)
 
-![alt text](https://github.com/mccordgh/Defend_The_Castle/res/textures/readme/main_menu_markdown.png "Defend The Castle Main Menu")
+![alt text](http://imgur.com/a/u4Q66 "Defend The Castle Main Menu")
 
 * [Defend the Castle](https://mccordgh.github.io/Defend_The_Castle) is a video game with a twist on the classic [tower defense](https://en.wikipedia.org/wiki/Tower_defense) genre.
 * The engine and game are written from scratch in JavaScript, and it runs right in your browser.
 
 In Game Screenshot:
 
-![alt text](https://github.com/mccordgh/Defend_The_Castle/res/textures/readme/in_game_markdown.png "Defend The Castle Main Menu")
+![alt text](http://imgur.com/a/XKBVb "Defend The Castle In Game Screenshot")
 
 ## How To Play
 
-![alt text](https://github.com/mccordgh/Defend_The_Castle/res/textures/readme/how_to_markdown.png "Defend The Castle Main Menu")
+![alt text]http://imgur.com/a/v63IF "Defend The Castle How To Play")
 
 ## Running it locally
 
