@@ -17,7 +17,6 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
         type: "GET",
         dataType: 'json',
         success: function(data){
-          console.log(data);
           leaderBoard = data;
           // setLeaderBoards(leaderBoard);
           leaderboardsLoaded = true; 
