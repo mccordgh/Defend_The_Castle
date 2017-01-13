@@ -55,7 +55,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
       this.introAssets = Assets.getAssets('mccordinator');
       this.assets = Assets.getAssets('title');
       this.choices = ['start', 'how to', 'credits', 'leaderboards'];
-			this.view = 'how to';
+			this.view = 'intro';
 		},
 		tick: function(_dt){
 			countSinceInput++;
