@@ -31,3 +31,5 @@ http-server will automatically load the index.html from that directory.
 * Feel free to download this code, play with it, and add to the game, etc!
 
 * res/textures/tiles.png and snow_expansion.png have a ton of extra assets to crop and insert in to the game!
+
+* If the leaderboards ever gets fubar, use res/leaderboard/leaderboard.json as a template. (and/or submit an issue so that I know!)
