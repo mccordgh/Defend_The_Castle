@@ -2,7 +2,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 
 	const CURRENT_PATH = window.location.href;
 	var fontSize = 0, countSinceInput = 11, choicePosition = 0, leaderboardsLoaded = false;
-	var leaderBoard = [], credits = [], handlerRef, introStep = 1;;
+	var leaderBoard = [], credits = [], handlerRef, introStep = 1;
   var rankIcons = Assets.getAssets('rankIcons');
   var musicSound, selectSound, startSound, soundsLoaded = false, introAlpha = 0.99;
   var loadingText = "loading leaderboards...", loadingFill = "orange";
@@ -17,6 +17,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
         type: "GET",
         dataType: 'json',
         success: function(data){
+          console.log(data);
           leaderBoard = data;
           // setLeaderBoards(leaderBoard);
           leaderboardsLoaded = true; 
@@ -42,6 +43,26 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
         },
         error: function(data){
           console.log("error!!!:", data);
+          leaderboardsLoaded = true;
+          loadingText = "loading sounds...";
+					//Load the sounds
+					sounds.load([
+					  `${CURRENT_PATH}/res/sound/ItaloUnlimited.ogg`,
+					  `${CURRENT_PATH}/res/sound/explode.wav`,
+					  `${CURRENT_PATH}/res/sound/explode2.wav`,
+					  `${CURRENT_PATH}/res/sound/lvlup.ogg`,
+					  // `${CURRENT_PATH}/res/sound/lvldown.ogg`,
+					  `${CURRENT_PATH}/res/sound/select.wav`,
+					  `${CURRENT_PATH}/res/sound/start.wav`,
+					  `${CURRENT_PATH}/res/sound/spawn.ogg`,
+					  `${CURRENT_PATH}/res/sound/evillaugh.ogg`,
+					  `${CURRENT_PATH}/res/sound/monster.wav`,
+					  `${CURRENT_PATH}/res/sound/sword.wav`,
+					]);
+
+					//Assign the callback function that should run
+					//when the sounds have loaded
+					sounds.whenLoaded = initSounds;
         }
       });
       // .done(function(data) {
@@ -51,7 +72,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
       //Load Credits
       credits = getCredits();
 
-      this.howToAssets = Assets.getAssets('howTo')
+      this.howToAssets = Assets.getAssets('howTo');
       this.introAssets = Assets.getAssets('mccordinator');
       this.assets = Assets.getAssets('title');
       this.choices = ['start', 'how to', 'credits', 'leaderboards'];
@@ -126,7 +147,18 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 
 	      	case 'leaderboards':
 	      		let spaces = "xxx";
-            for (let i = 0; i < leaderBoard.length; i++){
+            if (leaderBoard[0] === undefined){
+            	_g.drawText({
+            	borderColor: 'orange',
+            	fillColor: 'white',
+            	text: `There was an error loading leader boards :(`,
+            	fontSize: 48,
+            	font: 'serif',
+            	x: function() {return 100;},
+            	y: function() {return 300;},
+            	});
+            } else {
+	            for (let i = 0; i < leaderBoard.length; i++){
                 let nameSpaces = (" ").repeat(10 - leaderBoard[i].name.length);
 			      		let yDraw = 100 + (i * 54);
 			      		if (i < 9) {
@@ -156,7 +188,8 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
                 x: function() {return 350;},
                 y: function() {return yDraw;},
                 });
-		      	}
+	            }
+			      }
 		      	_g.drawText({
 		      	borderColor: 'orange',
 		      	fillColor: 'white',
@@ -326,6 +359,61 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
   //   handlerRef.setLeaderBoards(leaderBoard);
   // }
 
-	return MainMenu;
 
+	function backupLeaderboard() {
+		return [
+		{
+			"name": "AAA",
+			"score": 1000000,
+			"rank": "Lord"
+		}, 
+		{
+			"name": "BBB",
+			"score": 900000,
+			"rank": "Lord"
+		},
+		{
+			"name": "CCC",
+			"score": 800000,
+			"rank": "Duke"
+		},
+		{
+			"name": "DDD",
+			"score": 700000,
+			"rank": "Duke"
+		},
+		{
+			"name": "EEE",
+			"score": 600000,
+			"rank": "Baron"
+		},
+		{
+			"name": "FFF",
+			"score": 500000,
+			"rank": "Baron"
+		},
+		{
+			"name": "GGG",
+			"score": 400000,
+			"rank": "Knight Captain"
+		},
+		{
+			"name": "XXX",
+			"score": 300000,
+			"rank": "Knight Captain"
+		},
+		{
+			"name": "YYY",
+			"score": 200000,
+			"rank": "Knight"
+		},
+		{
+			"name": "ZZZ",
+			"score": 100000,
+			"rank": "Knight"
+		}
+		];
+	}
+
+	return MainMenu;
 });

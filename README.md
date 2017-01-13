@@ -28,4 +28,6 @@ http-server will automatically load the index.html from that directory.
 
 ## Getting involved
 
-Feel free to download this code, play with it, and add to the game, etc!
+* Feel free to download this code, play with it, and add to the game, etc!
+
+* res/textures/tiles.png and snow_expansion.png have a ton of extra assets to crop and insert in to the game!
