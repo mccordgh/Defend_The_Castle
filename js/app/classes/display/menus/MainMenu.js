@@ -107,8 +107,8 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 				      	text: loadingText,
 				      	fontSize: 48,
 				      	font: 'serif',
-				      	x: function() {return 470;},
-				      	y: function() {return 440;},
+				      	x: function() {return 40;},
+				      	y: function() {return 310;},
 			      	});
 							_g.globalAlpha = introAlpha;
 							_g.fillStyle = 'black';
