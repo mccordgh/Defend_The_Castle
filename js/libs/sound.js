@@ -210,7 +210,7 @@ var sounds = {
   //`assets.load(["images/anyImage.png", "fonts/anyFont.otf"]);`.
 
   load: function(sources) {
-    console.log("Loading sounds..");
+    // console.log("Loading sounds..");
 
     //Get a reference to this asset object so we can
     //refer to it in the `forEach` loop ahead.
@@ -254,13 +254,13 @@ var sounds = {
   loadHandler: function () {
     var self = this;
     self.loaded += 1;
-    console.log(self.loaded);
+    // console.log(self.loaded);
 
     //Check whether everything has loaded.
     if (self.toLoad === self.loaded) {
 
       //If it has, run the callback function that was assigned to the `whenLoaded` property
-      console.log("Sounds finished loading");
+      // console.log("Sounds finished loading");
 
       //Reset `loaded` and `toLoaded` so we can load more assets
       //later if we want to.
@@ -732,7 +732,7 @@ function soundEffect(
   //above or below the target frequency.
   var frequency;
   var randomInt = function(min, max){
-    return Math.floor(Math.random() * (max - min + 1)) + min
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   };
   if (randomValue > 0) {
     frequency = randomInt(
