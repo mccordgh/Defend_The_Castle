@@ -1,21 +1,31 @@
-# [Defend the Castle](https://mccordgh.github.io/project_NSS_game/)
+# [Defend the Castle](https://mccordgh.github.io/Defend_The_Castle)
 
-## Instructions
-1. Defend the Castle from the attacking bats
-2. Use WASD or arrow keys to move
-3. Run your sword right in to the bats to kill them.
-4. Get a high score to make the leaderboard!
+![alt text](https://github.com/mccordgh/Defend_The_Castle/res/textures/readme/main_menu_markdown.png "Defend The Castle Main Menu")
 
+* [Defend the Castle](https://mccordgh.github.io/Defend_The_Castle) is a video game with a twist on the classic [tower defense](https://en.wikipedia.org/wiki/Tower_defense) genre.
+* The engine and game are written from scratch in JavaScript, and it runs right in your browser.
 
-## Project Goals
-1. Create a game from scratch, that can run in a web browser independent of a third party game engine.
-2. Become more familiar with classes and prototypal inheritance.
-3. Attain a better feel for how a game engine works under the hood.
+In Game Screenshot:
 
-## Libraries Used
-1. Class.js
-2. Require.js
-3. Sound.js
+![alt text](https://github.com/mccordgh/Defend_The_Castle/res/textures/readme/in_game_markdown.png "Defend The Castle Main Menu")
 
-## Special Thanks
-[Jamie Nichols youtube tutorial](https://www.youtube.com/watch?v=w86CZ79IHj8)
+## How To Play
+
+![alt text](https://github.com/mccordgh/Defend_The_Castle/res/textures/readme/how_to_markdown.png "Defend The Castle Main Menu")
+
+## Running it locally
+
+To get it up and running locally, you'll need to have a local http-server. I use [http-server](https://www.npmjs.com/package/http-server)
+
+Once you have http-server installed then:
+
+* Clone this repo.
+
+* From the root directory of it, run: $ http-server
+In your browser, open: http://localhost:8080 and
+http-server will automatically load the index.html from that directory.
+* Leave http-server running, and whenever you change the code, you can do a hard refresh to run the newly saved code.
+
+## Getting involved
+
+Feel free to download this code, play with it, and add to the game, etc!
