@@ -51,14 +51,15 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
       //Load Credits
       credits = getCredits();
 
+      this.howToAssets = Assets.getAssets('howTo')
       this.introAssets = Assets.getAssets('mccordinator');
       this.assets = Assets.getAssets('title');
-      this.choices = ['play', 'leaderboards', 'credits'];
-			this.view = 'intro';
+      this.choices = ['start', 'how to', 'credits', 'leaderboards'];
+			this.view = 'how to';
 		},
 		tick: function(_dt){
 			countSinceInput++;
-			if (countSinceInput > 4)
+			if (countSinceInput > 8)
 				this.getInput(_dt);
 			this.render();
 		},
@@ -133,7 +134,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 			      		} else {
 			      			spaces = " ";
 			      		}
-								_g.myDrawImage(this.assets.LBLogo, 280, 10, this.assets.LBLogo.width, this.assets.LBLogo.height);
+								_g.myDrawImage(this.assets.LBLogo, 180, 2, this.assets.LBLogo.width, this.assets.LBLogo.height);
                 _g.drawText({
                 borderColor: 'orange',
                 fillColor: 'white',
@@ -170,7 +171,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 	      	case 'credits':
 		      	for (let i = 0; i < credits.length; i++){
 			      		let yDraw = 125 + (i * 46);
-								_g.myDrawImage(this.assets.creditsLogo, 470, 20, this.assets.creditsLogo.width, this.assets.creditsLogo.height);
+								_g.myDrawImage(this.assets.creditsLogo, 300, 20, this.assets.creditsLogo.width, this.assets.creditsLogo.height);
 			      		_g.drawText({
 			      		borderColor: 'orange',
 			      		fillColor: 'white',
@@ -196,18 +197,33 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 						//title screen
 						_g.myDrawImage(this.assets.mainMenu, 0, 0, 1024, 640);
 						//draw cursor
-						if (loadingText === "press enter key!")
-							_g.myDrawImage(this.assets.pointer, 260, 410 + (choicePosition * 65), 32, 32);
+						if (loadingText === "up and down arrows to select, enter key to choose!")
+							_g.myDrawImage(this.assets.pointer, 90, 338 + (choicePosition * 78), 128, 41);
 			      	_g.drawText({
 				      	borderColor: 'white',
 				      	fillColor: loadingFill,
 				      	text: loadingText,
 				      	fontSize: 48,
 				      	font: 'serif',
-				      	x: function() {return 470;},
-				      	y: function() {return 440;},
+				      	x: function() {return 40;},
+				      	y: function() {return 310;},
 			      	});
 	      		break;
+	      	
+	      	case 'how to':
+	      		//how to instructions screen
+						_g.myDrawImage(this.howToAssets.howToScreen, 0, 0, this.howToAssets.width, this.howToAssets.height);
+		      	_g.drawText({
+		      	borderColor: 'orange',
+		      	fillColor: 'white',
+		      	text: `press enter key to return to main menu...`,
+		      	fontSize: 48,
+		      	font: 'serif',
+		      	x: function() {return 100;},
+		      	y: function() {return 625;},
+		      	});
+
+	    			break;
 	      	
 	      	case 'test':
 
@@ -252,7 +268,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 				} else {
 					if (this.view === 'menu')
 						switch(this.choices[choicePosition]){
-							case 'play':
+							case 'start':
 								this.handler.getSoundManager().play("evilLaugh");
 								var gameState = new GameState(this.handler);
 								handlerRef.getSoundManager().fadeIn("gameMusic", 5);
@@ -270,6 +286,10 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 								this.handler.getSoundManager().play("startSound");
 								this.view = 'credits';
 								break;		
+							case 'how to':
+								this.handler.getSoundManager().play("startSound");
+								this.view = 'how to';
+								break;		
 						} else {
 							this.view = 'menu';
 						}
@@ -283,7 +303,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 			'Programming: Matthew McCord',
 			'Artwork: http://www.opengameart.org/',
 			'    Player: Antifarea(PC)',
-			'    Tiles: Project Untumno (Chris Hamons / Medicine Storm)',
+			'    Tiles: Chris Hamons / Medicine Storm',
 			'    Tiles: Buch / Keith Karnage',
 			'    Music: OveMelaa',
 			'    Sound FX: artisticdude / OveMelaa',
@@ -298,7 +318,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 		sm.setSounds();
 		handlerRef.setSoundManager(sm);
 		soundsLoaded = true;
-		loadingText = "press enter key!";
+		loadingText = "up and down arrows to select, enter key to choose!";
 		handlerRef.getSoundManager().play("evilLaugh");
 	}
 
