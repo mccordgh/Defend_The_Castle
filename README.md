@@ -11,6 +11,13 @@ In Game Screenshot:
 
 ## How To Play
 
+* movement: WASD or Arrow Keys (up, down, left, right)
+* to attack: run sword in to a bat!
+* portals will spawn more bats
+* bats will charge the castle
+* red arrows indicate offscreen enemies approaching
+* game over when Castle Strength depletes
+
 ![alt text](http://imgur.com/Obq5rkh.gif "Defend The Castle How To Play")
 
 ## Running it locally
