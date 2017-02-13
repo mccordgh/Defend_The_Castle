@@ -293,7 +293,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 				}
 			}
 			
-			if(this.handler.getKeyManager().enter) {
+			if(this.handler.getKeyManager().enter && this.view !== 'intro') {
 				countSinceInput = 0;
 				if (!soundsLoaded || !leaderboardsLoaded){
 					loadingFill = `#${Math.floor(Math.random() *7 + 3)}${Math.floor(Math.random() * 7 + 3)}${Math.floor(Math.random() *7 + 3)}${Math.floor(Math.random() *7 + 3)}${Math.floor(Math.random() *7 + 3)}${Math.floor(Math.random() *7 + 3)}`;
