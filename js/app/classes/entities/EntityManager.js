@@ -26,32 +26,32 @@ define(['Class', 'Rectangle', 'Tile'], function(Class, Rectangle, Tile){
 				let scaleX = 0, scaleY = 0, marker;
 				let offScreen = false;
 
-				_g.font = `48px WingDings`;
+				_g.font = "48px Arial";
 				_g.fillStyle = "red";
 
 				if (e.x > checkRight){
 					scaleX = e.handler.getWidth() - 55;
 					scaleY = e.y - e.handler.getGameCamera().getyOffset();
 					offScreen = true;
-					marker = "è";
+					marker = ">";
 				}
 				if (e.y > checkBottom){
 					scaleX = e.x - e.handler.getGameCamera().getxOffset();
 					scaleY = e.handler.getHeight() - 25;
 					offScreen = true;
-					marker = "ê";
+					marker = "V";
 				}
 				if (e.x < checkLeft){
 					scaleX = 10;
 					scaleY = e.y - e.handler.getGameCamera().getyOffset();
 					offScreen = true;
-					marker = "ç";
+					marker = "<";
 				}
 				if (e.y < checkTop) {
 					scaleX = e.x - e.handler.getGameCamera().getxOffset();
 					scaleY = 45;
 					offScreen = true;
-					marker = "é";
+					marker = "/\\";
 				}
 
 				if (offScreen && e.type === 'monster')

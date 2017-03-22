@@ -3,7 +3,7 @@ define(['Class', 'Display', 'State', 'MainMenu', 'KeyManager', 'Handler', 'GameC
 	var _this;
 	var running = false;
 	var title, width, height, g, display, keyManager, handler, gameCamera, soundManager;
-	var gameState, menuState, settingsState;//, bgmPlaying = false;
+	var gameState, menuState, settingsState;
 
 
 	var Game = Class.extend({
@@ -15,7 +15,7 @@ define(['Class', 'Display', 'State', 'MainMenu', 'KeyManager', 'Handler', 'GameC
 		},
 		run: function(){
 			init();
-			var fps = 30;
+			var fps = 60;
 			var timePerTick = 1000/fps;
 			var delta = 0;
 			var now;
