@@ -29,7 +29,6 @@ define(['Jquery', 'Class', 'Assets'],function($, Class, Assets){
 		myCanvas.setAttribute("height", height);
 		myCanvas.setAttribute("width", width);
 		graphics = myCanvas.getContext("2d");
-		graphics.font = '16px arial';
 	}
 
 	CanvasRenderingContext2D.prototype.myDrawImage = function(asset, _x, _y, _width, _height){
@@ -61,14 +60,6 @@ define(['Jquery', 'Class', 'Assets'],function($, Class, Assets){
 	CanvasRenderingContext2D.prototype.drawText = function(_textObject){
 		graphics.font = `${_textObject.fontSize}px VT323`;
 		let borderWidth = _textObject.additionalWidth || graphics.measureText(_textObject.text).width;
-		// if (_textObject.border) {
-			//Drawing score partial transparent background frame
-		// 	graphics.globalAlpha = 0.4;
-		// 	graphics.fillStyle = "black";
-		// 	graphics.fillRect(_textObject.x() - 10, _textObject.y() - _textObject.fontSize, borderWidth + 20, _textObject.borderHeight);
-		// 	graphics.globalAlpha = 1;
-		// }
-
 		graphics.strokeStyle = _textObject.borderColor;
 		graphics.fillStyle = _textObject.fillColor;
 		graphics.strokeText(_textObject.text, _textObject.x(), _textObject.y());

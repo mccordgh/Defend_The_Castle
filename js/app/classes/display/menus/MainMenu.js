@@ -7,6 +7,9 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
   var musicSound, selectSound, startSound, soundsLoaded = false, introAlpha = 0.99;
   var loadingText = "loading leaderboards...", loadingFill = "orange";
 
+	var textXX = 300;
+	var textYY = 300;
+
 	var MainMenu = MenuState.extend({
 		init:function(_handler){
       this.handler = _handler;
@@ -75,7 +78,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
       this.introAssets = Assets.getAssets('mccordinator');
       this.assets = Assets.getAssets('title');
       this.choices = ['start', 'how to', 'credits', 'leaderboards'];
-			this.view = 'intro';
+			this.view = 'menu';
 		},
 		tick: function(_dt){
 			countSinceInput++;
@@ -258,8 +261,8 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 	    			break;
 	      	
 	      	case 'test':
-
-	      		break;
+			       // For DEV TESTING PURPOSES
+			 	  	break;
 	      	
 	      	default:
 	      		console.log("default case, why?");

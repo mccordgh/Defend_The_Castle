@@ -19,6 +19,46 @@ define(['Class'], function(Class){
 			this.f = keys[70];
 			this.j = keys[74];
 			this.enter = keys[13];
+			let gamepad = navigator.getGamepads()[0];
+
+      if(gamepad){
+        let joystickX = applyDeadzone(gamepad.axes[0], 0.25);
+        let joystickY = applyDeadzone(gamepad.axes[1], 0.25);
+
+        if (joystickX > 0) {
+      		//JOYSTICK IS RIGHT
+      		this.right = true;
+      		this.left = false;
+        } else if (joystickX < 0) {
+        	//JOYSTICK IS LEFT
+        	this.left = true;
+        	this.right = false;
+        } else {
+        	// JOYSTICK HORIZONTAL AXIS IS NEUTRAL
+					this.left = false;
+        	this.right = false;
+        }
+
+        if (joystickY > 0) {
+      		//JOYSTICK IS DOWN
+      		this.down = true;
+      		this.up = false;
+        } else if (joystickY < 0) {
+        	//JOYSTICK IS UP
+        	this.up = true;
+        	this.down = false;
+        } else {
+        	// JOYSTICK VERTICAL AXIS IS NEUTRAL
+        	this.up = false;
+        	this.down = false;
+        }
+
+        if(gamepad.buttons[0].value > 0.5){
+          this.enter = true;
+        } else {
+        	this.enter = false;
+        }
+      }
 		}
 	});
 
@@ -31,6 +71,15 @@ define(['Class'], function(Class){
 		keys[e.keyCode] = false;
 	};
 
-	return KeyManager;
+	function applyDeadzone(number, threshold){
+   percentage = (Math.abs(number) - threshold) / (1 - threshold);
+
+   if(percentage < 0)
+      percentage = 0;
+
+   return percentage * (number > 0 ? 1 : -1);
+	}
+
+return KeyManager;
 
 });
