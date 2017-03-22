@@ -6,6 +6,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
   var rankIcons = Assets.getAssets('rankIcons');
   var musicSound, selectSound, startSound, soundsLoaded = false, introAlpha = 0.99;
   var loadingText = "loading leaderboards...", loadingFill = "orange";
+  var loadingTextTop = "Now supports wired xbox", loadingTextTopTwo = "360 and PS4 controllers!";
 
 	var textXX = 300;
 	var textYY = 300;
@@ -23,22 +24,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
           leaderBoard = data;
           // setLeaderBoards(leaderBoard);
           leaderboardsLoaded = true; 
-          loadingText = "loading sounds...";
-					//Load the sounds
-					sounds.load([
-					  `${CURRENT_PATH}/res/sound/ItaloUnlimited.ogg`,
-					  `${CURRENT_PATH}/res/sound/explode.wav`,
-					  `${CURRENT_PATH}/res/sound/explode2.wav`,
-					  `${CURRENT_PATH}/res/sound/lvlup.ogg`,
-					  // `${CURRENT_PATH}/res/sound/lvldown.ogg`,
-					  `${CURRENT_PATH}/res/sound/select.wav`,
-					  `${CURRENT_PATH}/res/sound/start.wav`,
-					  `${CURRENT_PATH}/res/sound/spawn.ogg`,
-					  `${CURRENT_PATH}/res/sound/evillaugh.ogg`,
-					  `${CURRENT_PATH}/res/sound/monster.wav`,
-					  `${CURRENT_PATH}/res/sound/sword.wav`,
-					]);
-
+          loadSounds();
 					//Assign the callback function that should run
 					//when the sounds have loaded
 					sounds.whenLoaded = initSounds;
@@ -46,22 +32,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
         error: function(data){
           console.log("error!!!:", data);
           leaderboardsLoaded = true;
-          loadingText = "loading sounds...";
-					//Load the sounds
-					sounds.load([
-					  `${CURRENT_PATH}/res/sound/ItaloUnlimited.ogg`,
-					  `${CURRENT_PATH}/res/sound/explode.wav`,
-					  `${CURRENT_PATH}/res/sound/explode2.wav`,
-					  `${CURRENT_PATH}/res/sound/lvlup.ogg`,
-					  // `${CURRENT_PATH}/res/sound/lvldown.ogg`,
-					  `${CURRENT_PATH}/res/sound/select.wav`,
-					  `${CURRENT_PATH}/res/sound/start.wav`,
-					  `${CURRENT_PATH}/res/sound/spawn.ogg`,
-					  `${CURRENT_PATH}/res/sound/evillaugh.ogg`,
-					  `${CURRENT_PATH}/res/sound/monster.wav`,
-					  `${CURRENT_PATH}/res/sound/sword.wav`,
-					]);
-
+          loadSounds();
 					//Assign the callback function that should run
 					//when the sounds have loaded
 					sounds.whenLoaded = initSounds;
@@ -232,7 +203,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 						//title screen
 						_g.myDrawImage(this.assets.mainMenu, 0, 0, 1024, 640);
 						//draw cursor
-						if (loadingText === "up and down arrows to select, enter key to choose!")
+						if (loadingText === "up/down to select, enter or   /   button to choose")
 							_g.myDrawImage(this.assets.pointer, 90, 338 + (choicePosition * 78), 128, 41);
 			      	_g.drawText({
 				      	borderColor: 'white',
@@ -242,6 +213,24 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 				      	font: 'serif',
 				      	x: function() {return 40;},
 				      	y: function() {return 310;},
+			      	});
+			      	_g.drawText({
+				      	borderColor: 'white',
+				      	fillColor: 'white',
+				      	text: loadingTextTop,
+				      	fontSize: 48,
+				      	font: 'serif',
+				      	x: function() {return 30;},
+				      	y: function() {return 140;},
+			      	});
+			      	_g.drawText({
+				      	borderColor: 'white',
+				      	fillColor: 'white',
+				      	text: loadingTextTopTwo,
+				      	fontSize: 48,
+				      	font: 'serif',
+				      	x: function() {return 550;},
+				      	y: function() {return 140;},
 			      	});
 	      		break;
 	      	
@@ -353,7 +342,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 		sm.setSounds();
 		handlerRef.setSoundManager(sm);
 		soundsLoaded = true;
-		loadingText = "up and down arrows to select, enter key to choose!";
+		loadingText = "up/down to select, enter or   /   button to choose";
 		handlerRef.getSoundManager().play("evilLaugh");
 	}
 
@@ -415,6 +404,23 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 			"rank": "Knight"
 		}
 		];
+	}
+
+	function loadSounds(){
+    loadingText = "loading sounds...";
+		//Load the sounds
+		sounds.load([
+		  `${CURRENT_PATH}/res/sound/ItaloUnlimited.ogg`,
+		  `${CURRENT_PATH}/res/sound/explode.wav`,
+		  `${CURRENT_PATH}/res/sound/explode2.wav`,
+		  `${CURRENT_PATH}/res/sound/lvlup.ogg`,
+		  `${CURRENT_PATH}/res/sound/select.wav`,
+		  `${CURRENT_PATH}/res/sound/start.wav`,
+		  `${CURRENT_PATH}/res/sound/spawn.ogg`,
+		  `${CURRENT_PATH}/res/sound/evillaugh.ogg`,
+		  `${CURRENT_PATH}/res/sound/monster.wav`,
+		  `${CURRENT_PATH}/res/sound/sword.wav`,
+		]);
 	}
 
 	return MainMenu;
