@@ -50,7 +50,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
       this.introAssets = Assets.getAssets('mccordinator');
       this.assets = Assets.getAssets('title');
       this.choices = ['start', 'how to', 'credits', 'leaderboards'];
-			this.view = 'menu';
+			this.view = 'intro';
 		},
 		tick: function(_dt){
 			countSinceInput++;
@@ -282,6 +282,8 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
       }
 		},
 		getInput: function(_dt){
+			if (this.view === 'intro') return;
+			
 			if (this.view === 'menu') {
 				if(this.handler.getKeyManager().up || this.handler.getKeyManager().upArrow) {
 					choicePosition -= 1;
