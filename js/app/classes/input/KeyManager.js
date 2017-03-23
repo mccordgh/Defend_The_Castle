@@ -19,7 +19,8 @@ define(['Class'], function(Class){
 			this.f = keys[70];
 			this.j = keys[74];
 			this.enter = keys[13];
-			let gamepad = navigator.getGamepads()[0];
+			
+      let gamepad = navigator.getGamepads()[0];
 
       if(gamepad){
         let joystickX = applyDeadzone(gamepad.axes[0], 0.25);
@@ -70,7 +71,6 @@ define(['Class'], function(Class){
 	};
 
 	window.onkeyup = function(e){
-		// console.log("e.keyCode", e.keyCode);
 		keys[e.keyCode] = false;
 	};
 

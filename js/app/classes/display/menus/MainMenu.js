@@ -7,6 +7,10 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
   var musicSound, selectSound, startSound, soundsLoaded = false, introAlpha = 0.99;
   var loadingText = "loading leaderboards...", loadingFill = "orange";
   var loadingTextTop = "Now supports wired xbox", loadingTextTopTwo = "360 and PS4 controllers!";
+	var imgXbox = new Image(), imgPS4 = new Image();
+					    
+	imgXbox.src = 'res/textures/360_a_button.png';
+	imgPS4.src = 'res/textures/ps3_x_button.png';
 
 	var textXX = 300;
 	var textYY = 300;
@@ -38,9 +42,6 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 					sounds.whenLoaded = initSounds;
         }
       });
-      // .done(function(data) {
-      //     // console.log("done", data);
-      // });
 
       //Load Credits
       credits = getCredits();
@@ -202,6 +203,24 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 	      	case 'menu':
 						//title screen
 						_g.myDrawImage(this.assets.mainMenu, 0, 0, 1024, 640);
+						
+						// Draw Green A button icon for xbox 360
+						_g.drawImage(imgXbox, 580, 280);
+						_g.drawImage(imgPS4, 643, 281);
+
+						// Draw Blue X button icon for ps4 controller
+						// _g.strokeStyle = 'blue';
+						// _g.fillStyle = 'blue';
+						// _g.beginPath();
+    		// 		_g.moveTo(645, 276);
+    		// 		_g.lineTo(670, 315);
+    		// 		_g.lineTo(675, 310);
+    		// 		_g.lineTo(650, 271);
+    		// 		_g.lineTo(645, 276);
+    		// 		_g.fill();
+    		// 		_g.stroke();
+    				// _g.lineTo(100, 25);
+
 						//draw cursor
 						if (loadingText === "up/down to select, enter or   /   button to choose")
 							_g.myDrawImage(this.assets.pointer, 90, 338 + (choicePosition * 78), 128, 41);
@@ -254,7 +273,6 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 			 	  	break;
 	      	
 	      	default:
-	      		console.log("default case, why?");
 	      		break;
 	      }
 
