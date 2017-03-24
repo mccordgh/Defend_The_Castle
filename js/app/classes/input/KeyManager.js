@@ -54,7 +54,7 @@ define(['Class'], function(Class){
         	this.down = false;
         }
 
-        if (gamepad.buttons[0].value === undefined) {
+        if (gamepad.buttons === undefined || gamepad.buttons === []) {
         	alert("There is a problem with your controller and the Gamepad API. Please reconnect or reboot and try again!");
         }
         if(gamepad.buttons[0].value > 0.5 || gamepad.buttons[1].value > 0.5 || gamepad.buttons[9].value > 0.5){
