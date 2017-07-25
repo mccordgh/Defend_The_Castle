@@ -1,6 +1,6 @@
 define(['StaticEntity', 'Tile', 'Assets', 'Bat', 'World'], function(StaticEntity, Tile, Assets, Bat, World){
 
-	var Portal = StaticEntity.extend({
+	let Portal = StaticEntity.extend({
 		init: function(_handler, _x, _y){
 			this._super(_handler, _x, _y, Tile.TILE_WIDTH * 4, Tile.TILE_HEIGHT * 4);
 			this.bounds.x = 0;

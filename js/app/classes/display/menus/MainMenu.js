@@ -1,21 +1,21 @@
 define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager'], function(MenuState, GameState, KeyManager, Assets, State, SoundManager){
 
 	const CURRENT_PATH = window.location.href;
-	var fontSize = 0, countSinceInput = 11, choicePosition = 0, leaderboardsLoaded = false;
-	var leaderBoard = [], credits = [], handlerRef, introStep = 1;
-  var rankIcons = Assets.getAssets('rankIcons');
-  var musicSound, selectSound, startSound, soundsLoaded = false, introAlpha = 0.99;
-  var loadingText = "loading leaderboards...", loadingFill = "orange";
-  var loadingTextTop = "Now supports wired xbox", loadingTextTopTwo = "360 and PS4 controllers!";
-	var imgXbox = new Image(), imgPS4 = new Image();
+	let fontSize = 0, countSinceInput = 11, choicePosition = 0, leaderboardsLoaded = false;
+	let leaderBoard = [], credits = [], handlerRef, introStep = 1;
+  let rankIcons = Assets.getAssets('rankIcons');
+  let musicSound, selectSound, startSound, soundsLoaded = false, introAlpha = 0.99;
+  let loadingText = "loading leaderboards...", loadingFill = "orange";
+  let loadingTextTop = "Now supports wired xbox", loadingTextTopTwo = "360 and PS4 controllers!";
+	let imgXbox = new Image(), imgPS4 = new Image();
 					    
 	imgXbox.src = 'res/textures/360_a_button.png';
 	imgPS4.src = 'res/textures/ps3_x_button.png';
 
-	var textXX = 300;
-	var textYY = 300;
+	let textXX = 300;
+	let textYY = 300;
 
-	var MainMenu = MenuState.extend({
+	let MainMenu = MenuState.extend({
 		init:function(_handler){
       this.handler = _handler;
       handlerRef = _handler;
@@ -50,7 +50,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
       this.introAssets = Assets.getAssets('mccordinator');
       this.assets = Assets.getAssets('title');
       this.choices = ['start', 'how to', 'credits', 'leaderboards'];
-			this.view = 'intro';
+			this.view = 'menu';
 		},
 		tick: function(_dt){
 			countSinceInput++;
@@ -314,7 +314,7 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 						switch(this.choices[choicePosition]){
 							case 'start':
 								this.handler.getSoundManager().play("evilLaugh");
-								var gameState = new GameState(this.handler);
+								let gameState = new GameState(this.handler);
 								handlerRef.getSoundManager().fadeIn("gameMusic", 5);
 								State.setState(gameState);	
 								break;		

@@ -1,8 +1,8 @@
 define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverState', 'State'], function(StaticEntity, Tile, Assets, HealthBar, Rectangle, GameOverState, State){
 
-	var assets = Assets.getAssets("castle"), deathCleanup = true, exploderCount = 0;
+	let assets = Assets.getAssets("castle"), deathCleanup = true, exploderCount = 0;
 
-	var Castle = StaticEntity.extend({
+	let Castle = StaticEntity.extend({
 		init: function(_handler, _x, _y){
 			this._super(_handler, _x, _y, Tile.TILE_WIDTH * 4, Tile.TILE_HEIGHT * 4);
 			this.bounds.x = 0;
@@ -16,7 +16,7 @@ define(['StaticEntity', 'Tile', 'Assets', 'HealthBar', 'Rectangle', 'GameOverSta
 			this.health = 2000;
 			let tempX = this.handler.getWidth() - 220,
 					tempY = 45;
-			var hb_properties = {
+			let hb_properties = {
 				nodes: 100,
 				fixed: true,
 				fixedX: tempX,

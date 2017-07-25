@@ -1,7 +1,7 @@
 define(['Helper', 'HealthBar', 'Assets'], function(Helper, HealthBar, Assets){
 
 
-	var HUD = Helper.extend({
+	let HUD = Helper.extend({
 		init: function(_handler, _player){
 			this.handler = _handler;
 			this.player = _player;
@@ -15,7 +15,7 @@ define(['Helper', 'HealthBar', 'Assets'], function(Helper, HealthBar, Assets){
 			this.icons = Assets.getAssets('icons');
 		},
 		render(_g){
-			//needed variables for score
+			//needed letiables for score
 			let score = this.handler.getWorld().getEntityManager().getPlayer().score,
 					tempX = 20,
 					tempY = 45;

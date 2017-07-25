@@ -1,9 +1,9 @@
 define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'SpatialGrid', 'HUD', "Bat", 'Castle', 'Portal', 'Assets'], function(Class, Tile, Utils, Tree, EntityManager, Player, SpatialGrid, HUD, Bat, Castle, Portal, Assets){
 
 	const CURRENT_PATH = window.location.href;
-	var tree,	roundOver = false;
+	let tree,	roundOver = false;
 
-	var World = Class.extend({
+	let World = Class.extend({
 		init:function(_path, _handler){
 			
 			this.tiles = [];
@@ -71,8 +71,8 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'Spat
 			this.hud = new HUD(_handler, this.entityManager.getPlayer());
 		},
 		loadWorld: function(_path){
-			var file = Utils.loadFileAsString(_path);
-			var tokens = file.replace(/\n/g, " ").split(" ");
+			let file = Utils.loadFileAsString(_path);
+			let tokens = file.replace(/\n/g, " ").split(" ");
 			this.width = tokens[0];
 			this.height = tokens[1];
 			this.spawnX = tokens[2] * Tile.TILE_WIDTH;
@@ -90,10 +90,10 @@ define(['Class', 'TileLoader', 'Utils', 'Tree', 'EntityManager', 'Player', 'Spat
 		},
 		render: function(_g){
 
-				var xStart = parseInt(Math.max(0, this.handler.getGameCamera().getxOffset() / Tile.TILE_WIDTH));
-				var xEnd = parseInt(Math.min(this.width, (this.handler.getGameCamera().getxOffset() + this.handler.getWidth()) / Tile.TILE_WIDTH + 1));
-				var yStart = parseInt(Math.max(0, this.handler.getGameCamera().getyOffset() / Tile.TILE_HEIGHT));
-				var yEnd = parseInt(Math.min(this.height, (this.handler.getGameCamera().getyOffset() + this.handler.getHeight()) / Tile.TILE_HEIGHT + 1));			
+				let xStart = parseInt(Math.max(0, this.handler.getGameCamera().getxOffset() / Tile.TILE_WIDTH));
+				let xEnd = parseInt(Math.min(this.width, (this.handler.getGameCamera().getxOffset() + this.handler.getWidth()) / Tile.TILE_WIDTH + 1));
+				let yStart = parseInt(Math.max(0, this.handler.getGameCamera().getyOffset() / Tile.TILE_HEIGHT));
+				let yEnd = parseInt(Math.min(this.height, (this.handler.getGameCamera().getyOffset() + this.handler.getHeight()) / Tile.TILE_HEIGHT + 1));
 
 				for(y = yStart; y < yEnd; y++){
 					for(x = xStart; x < xEnd; x++){

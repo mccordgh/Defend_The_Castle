@@ -1,6 +1,6 @@
 define(['Class'], function(Class){
 	
-	var Animation = Class.extend({
+	let Animation = Class.extend({
 		init:function(_frames){
 			this.frames = _frames;
 			this.index = 0;

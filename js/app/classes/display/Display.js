@@ -1,8 +1,8 @@
 define(['Jquery', 'Class', 'Assets'],function($, Class, Assets){
-	//Private Variables
-	var myFont = Assets.getAssets('pixelFont')
+	//Private letiables
+	let myFont = Assets.getAssets('pixelFont')
 
-	var Display = Class.extend({
+	let Display = Class.extend({
 		init:function(_title, _width, _height){
 			title = _title;
 			width = _width;

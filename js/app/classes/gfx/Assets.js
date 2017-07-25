@@ -1,9 +1,9 @@
 define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,ImageLoader,SpriteSheet, Animation){
 
 	const CURRENT_PATH = window.location.href;
-	var DEFAULT_WIDTH = 32, DEFAULT_HEIGHT = 32, assets = {};
+	let DEFAULT_WIDTH = 32, DEFAULT_HEIGHT = 32, assets = {};
 
-	var Assets = Class.extend({
+	let Assets = Class.extend({
 		init:function(_name, _path, _width, _height){
 			assets[_name] = this;
 			this.name = _name;
@@ -27,10 +27,10 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 	};
 
 	//***** DECLARING ASSETS TEMPLATE
-	//var X = new Assets(name, url, width, height);
+	//let X = new Assets(name, url, width, height);
 
 	//RANK ICONS
-	var rankIcons = new Assets('rankIcons', CURRENT_PATH + "res/textures/LB_icons.png", 96, 96);
+	let rankIcons = new Assets('rankIcons', CURRENT_PATH + "res/textures/LB_icons.png", 96, 96);
 	rankIcons.Squire = rankIcons.sheet.crop(0, 96, 96, 96);
 	rankIcons.Knight = rankIcons.sheet.crop(96, 96, 96, 96);
 	rankIcons.Captain = rankIcons.sheet.crop(192, 96, 96, 96);
@@ -41,7 +41,7 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 
 	//PIXEL FONT FOR A-Z
 	//letters are 42x68	
-	// var pixelFont = new Assets("pixelFont", CURRENT_PATH + "res/textures/pixel_font_a_to_z.png", 1362, 182);
+	// let pixelFont = new Assets("pixelFont", CURRENT_PATH + "res/textures/pixel_font_a_to_z.png", 1362, 182);
 	// pixelFont.a = pixelFont.sheet.crop(31, 43, 25, 35);
 	// pixelFont.b = pixelFont.sheet.crop(57, 43, 24, 35);
 	// pixelFont.c = pixelFont.sheet.crop(82, 43, 24, 35);
@@ -71,16 +71,16 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 
 
 	//Title Screen
-	var titleScreenAssets = new Assets("title", CURRENT_PATH + "res/textures/new_main_menu.png", 1024, 700);
+	let titleScreenAssets = new Assets("title", CURRENT_PATH + "res/textures/new_main_menu.png", 1024, 700);
 	titleScreenAssets.mainMenu = titleScreenAssets.sheet.crop(0, 0, 1024, 640);
 	titleScreenAssets.pointer = titleScreenAssets.sheet.crop(0, 641, 128, 41);
 
 	//How to Screen
-	var howToAssets = new Assets("howTo", CURRENT_PATH + "res/textures/how_to.png", 1024, 640);
+	let howToAssets = new Assets("howTo", CURRENT_PATH + "res/textures/how_to.png", 1024, 640);
 	howToAssets.howToScreen = howToAssets.sheet.crop(0, 0, 1024, 640);
 
 	//MCCORDINATOR GAMES LOGO
-	var mccordinatorAssets = new Assets("mccordinator", CURRENT_PATH + "res/textures/mccordinator.jpg", 1200, 859);
+	let mccordinatorAssets = new Assets("mccordinator", CURRENT_PATH + "res/textures/mccordinator.jpg", 1200, 859);
 	mccordinatorAssets.logo = mccordinatorAssets.sheet.crop(0,0, mccordinatorAssets.width, mccordinatorAssets.height)
 
 	//Leaderboard Logo
@@ -89,19 +89,19 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 	titleScreenAssets.creditsLogo = titleScreenAssets.sheet.crop(260, 484, 394, 59);
 
 	//Game Over Assets
-	var gameOverAssets = new Assets('gameOver', CURRENT_PATH + "res/textures/gameover.png", 499, 182);
+	let gameOverAssets = new Assets('gameOver', CURRENT_PATH + "res/textures/gameover.png", 499, 182);
 	gameOverAssets.logo = gameOverAssets.sheet.crop(24, 46, 467, 119);
 
 	//Player Sword
-	var sword = new Assets('sword', CURRENT_PATH + "res/textures/4swords.png", 1160, 689);
+	let sword = new Assets('sword', CURRENT_PATH + "res/textures/4swords.png", 1160, 689);
 	sword.walk_up = sword.sheet.crop(0, 0, 42, 128);
 	sword.walk_down = sword.sheet.crop(43, 0, 43, 128);
 	sword.walk_left = sword.sheet.crop(87, 15, 128, 43);
 	sword.walk_right = sword.sheet.crop(87, 61, 128, 43);
 
 	//BAT
-	var bat = new Assets("bat", CURRENT_PATH + "res/textures/bat-sprite.png", DEFAULT_WIDTH,  DEFAULT_HEIGHT );
-	var batframespeed = 200,
+	let bat = new Assets("bat", CURRENT_PATH + "res/textures/bat-sprite.png", DEFAULT_WIDTH,  DEFAULT_HEIGHT );
+	let batframespeed = 200,
 			batwdframes = [], //walk right frames
 			batwrframes = [], //walk left frames
 			batwuframes = [], //walk up frames
@@ -114,7 +114,7 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 			// deathrow = 4, //death animation row on spritesheet
 			batanimationLength = 4; //how many frames in animation
 
-	for(var i = 1; i < batanimationLength; i++){
+	for(let i = 1; i < batanimationLength; i++){
 		batwrframes.push({
 			frame: bat.sheet.crop(bat.width * i, bat.height * batwrrow, bat.width, bat.height),
 			speed: batframespeed
@@ -133,7 +133,7 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 		});
 	}
 
-	var batdeathframes = [
+	let batdeathframes = [
 		{frame: bat.sheet.crop(0,0, bat.width, bat.height),speed: batframespeed},
 		{frame: bat.sheet.crop(0, bat.width * 1, bat.width, bat.height),speed: batframespeed},
 		{frame: bat.sheet.crop(0, bat.width * 2, bat.width, bat.height),speed: batframespeed},
@@ -148,9 +148,9 @@ define(['Class', 'ImageLoader', 'SpriteSheet', 'Animation'], function(Class,Imag
 	bat.addAnimation("death", new Animation(batdeathframes));
 
 	//PORTAL
-	var portal = new Assets("portal",  CURRENT_PATH + "res/textures/tiles.png", DEFAULT_WIDTH,  DEFAULT_HEIGHT);
+	let portal = new Assets("portal",  CURRENT_PATH + "res/textures/tiles.png", DEFAULT_WIDTH,  DEFAULT_HEIGHT);
 	// portal.sprite = portal.sheet.crop(portal.width * 30, portal.height * 10, portal.width, portal.height);
-	var portframespeed = 200,
+	let portframespeed = 200,
 			portalframes = [], //portal idle spin frames
 			portframesX = 30, //X on spritesheet
 			portframesY = 10, //Y on spritesheet
@@ -165,8 +165,8 @@ for(let i = 0; i < portalanimationLength; i++){
 	portal.addAnimation("idle", new Animation(portalframes));
 
 	//PLAYER
-	var player = new Assets("player",  CURRENT_PATH + "res/textures/warrior_m.png", DEFAULT_WIDTH,  36);
-	var framespeed = 200,
+	let player = new Assets("player",  CURRENT_PATH + "res/textures/warrior_m.png", DEFAULT_WIDTH,  36);
+	let framespeed = 200,
 			wrframes = [], //walk right frames
 			wlframes = [], //walk left frames
 			wuframes = [], //walk up frames
@@ -202,7 +202,7 @@ for(let i = 0; i < portalanimationLength; i++){
 		});
 	}
 
-	// var idleframes = [
+	// let idleframes = [
 	// 	{frame: player.sheet.crop(0, 2 * player.height, player.width, player.height),speed: framespeed},
 	// 	{frame: player.sheet.crop(1 * player.width, 2 * player.height, player.width, player.height),speed: framespeed},
 	// 	{frame: player.sheet.crop(2 * player.width, 2 * player.height, player.width, player.height),speed: framespeed}
@@ -217,46 +217,46 @@ for(let i = 0; i < portalanimationLength; i++){
 
 
 	// Player asset
-	// var player = new Assets("player", "res/textures/warrior_m.png", 32, 36);
+	// let player = new Assets("player", "res/textures/warrior_m.png", 32, 36);
 	// player.idle = player.sheet.crop(player.width * 1, player.height * 1, player.width, player.height );
 
 	//Tree Asset
-	var tree = new Assets("tree",  CURRENT_PATH + "res/textures/snow-expansion.png", 48, 55);
+	let tree = new Assets("tree",  CURRENT_PATH + "res/textures/snow-expansion.png", 48, 55);
 	tree.redwood = tree.sheet.crop(304, 68, tree.width, tree.height);
 
 	//Tile Asset
-	var tiles = new Assets("tiles",  CURRENT_PATH + "res/textures/tiles.png", DEFAULT_WIDTH, DEFAULT_HEIGHT);
+	let tiles = new Assets("tiles",  CURRENT_PATH + "res/textures/tiles.png", DEFAULT_WIDTH, DEFAULT_HEIGHT);
 	tiles.grass = tiles.sheet.crop(tiles.width * 1, tiles.height * 15, tiles.width, tiles.height);
 	tiles.dirt = tiles.sheet.crop(tiles.width * 7, tiles.height * 15, tiles.width, tiles.height);
 	tiles.stone = tiles.sheet.crop(tiles.width * 39, tiles.height * 17, tiles.width, tiles.height);
 	tiles.water = tiles.sheet.crop(tiles.width * 34, tiles.height * 19, tiles.width, tiles.height);
 
 	//Player Portrait
-	// var Portraits = new Assets("Portraits", "res/textures/player_portrait.png", 48, 48);
+	// let Portraits = new Assets("Portraits", "res/textures/player_portrait.png", 48, 48);
 	// Portraits.player = Portraits.sheet.crop(0, 0, 50, 50);
 
 	//HUD
-	var hudLayout = new Assets("hudLayout",  CURRENT_PATH + "res/textures/sleekbars.png", 127, 31);
+	let hudLayout = new Assets("hudLayout",  CURRENT_PATH + "res/textures/sleekbars.png", 127, 31);
 	hudLayout.emptyBar = hudLayout.sheet.crop(0, 0, hudLayout.width, hudLayout.height);
 	hudLayout.redBar = hudLayout.sheet.crop(5, hudLayout.height + 5, hudLayout.width - 10, hudLayout.height - 10);
 	//HealthBars
-	// var healthBars = new Assets("healthBars", "res/textures/ui_pieces.png", 200, 70);
+	// let healthBars = new Assets("healthBars", "res/textures/ui_pieces.png", 200, 70);
 	// healthBars.redBar = healthBars.sheet.crop(240, 23, 102, 9);
 	// healthBars.GreenBar = healthBars.sheet.crop(240, 43, 102, 9);
 	// healthBars.BlueBar = healthBars.sheet.crop(240, 63, 102, 9);
 
 	//Item Icons
-	// var icons = new Assets("icons", "res/textures/ui_pieces.png", 185, 55);
+	// let icons = new Assets("icons", "res/textures/ui_pieces.png", 185, 55);
 	// icons.sword = icons.sheet.crop(14, 90, icons.width, icons.height);
 
-	var castle = new Assets("castle",  CURRENT_PATH + "res/textures/castle.png", 480, 160);
+	let castle = new Assets("castle",  CURRENT_PATH + "res/textures/castle.png", 480, 160);
 	castle.sprite1 = castle.sheet.crop(0, 0, 160, castle.height);
 	castle.sprite2 = castle.sheet.crop(160, 0, 160, castle.height);
 	castle.sprite3 = castle.sheet.crop(320, 0, 160, castle.height);
 
 	//CASTLE animation
-	var castleExplode = new Assets("castleExplode",  CURRENT_PATH + "res/textures/tiles.png", DEFAULT_WIDTH,  DEFAULT_HEIGHT);
-	var castleExplodeFramespeed = 300,
+	let castleExplode = new Assets("castleExplode",  CURRENT_PATH + "res/textures/tiles.png", DEFAULT_WIDTH,  DEFAULT_HEIGHT);
+	let castleExplodeFramespeed = 300,
 			castleExplodeFrames = [], //castle idle spin frames
 			castleExplodeFramesX = 20, //X on spritesheet
 			castleExplodeFramesY = 10, //Y on spritesheet

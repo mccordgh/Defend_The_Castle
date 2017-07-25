@@ -1,8 +1,8 @@
 define(['Class', 'Rectangle', 'Tile'], function(Class, Rectangle, Tile){
 
-	var handler, player, entities;
+	let handler, player, entities;
 	
-	var EntityManager = Class.extend({
+	let EntityManager = Class.extend({
 		init: function(_handler, _player){
 			handler = _handler;
 			player = _player;
@@ -10,8 +10,8 @@ define(['Class', 'Rectangle', 'Tile'], function(Class, Rectangle, Tile){
 		},
 		tick: function(_dt){
 			entities.sort(compare);
-			for(var i = 0; i < entities.length; i++){
-				var e = entities[i];
+			for(let i = 0; i < entities.length; i++){
+				let e = entities[i];
 				e.tick(_dt);
 			}
 		},
@@ -78,8 +78,11 @@ define(['Class', 'Rectangle', 'Tile'], function(Class, Rectangle, Tile){
 					entityObj = {
 						type: item.type,
 						x: item.x,
-						y: item.y
+						y: item.y,
+						width: item.width,
+						height: item.height,
 					};
+					return;
 				}
 			});
 
@@ -91,7 +94,7 @@ define(['Class', 'Rectangle', 'Tile'], function(Class, Rectangle, Tile){
 		},
 		removeEntity: function(_entity){
 			for (let i = 0; i < entities.length; i++){
-				var e = entities[i];
+				let e = entities[i];
 				if (e === _entity){
 					entities.splice(i, 1);
 				}
@@ -99,7 +102,7 @@ define(['Class', 'Rectangle', 'Tile'], function(Class, Rectangle, Tile){
 		},
 		removeAllMonsters: function(){
 			for (let i = 0; i < entities.length; i++){
-				var e = entities[i];
+				let e = entities[i];
 				if (e.type === 'monster'){
 					entities.splice(i, 1);
 				}

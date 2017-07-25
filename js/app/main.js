@@ -1,4 +1,4 @@
 require(['Launcher'], function(Launcher){
 
-	var launcher = new Launcher("Defend The Castle!", 1024, 640);
+	let launcher = new Launcher("Defend The Castle!", 1024, 640);
 });

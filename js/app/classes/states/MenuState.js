@@ -1,8 +1,8 @@
 define(['State', 'GameState', 'KeyManager', 'Assets', 'MainMenu'], function(State, GameState, KeyManager, Assets, MainMenu){
 
-	var fontSize = 0;
+	let fontSize = 0;
 
-	var MenuState = State.extend({
+	let MenuState = State.extend({
 		init:function(_handler){
 			this._super(_handler);
 			this.menu = new MainMenu(_handler);

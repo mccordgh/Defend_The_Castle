@@ -1,12 +1,12 @@
 define(['Class', 'Display', 'State', 'MainMenu', 'KeyManager', 'Handler', 'GameCamera', 'SoundManager'], function(Class,Display,State,MainMenu, KeyManager, Handler, GameCamera, SoundManager){
 
-	var _this;
-	var running = false;
-	var title, width, height, g, display, keyManager, handler, gameCamera, soundManager;
-	var gameState, menuState, settingsState;
+	let _this;
+	let running = false;
+	let title, width, height, g, display, keyManager, handler, gameCamera, soundManager;
+	let gameState, menuState, settingsState;
 
 
-	var Game = Class.extend({
+	let Game = Class.extend({
 		init:function(_title, _width, _height){
 			_this = this;
 			title = _title;
@@ -15,13 +15,13 @@ define(['Class', 'Display', 'State', 'MainMenu', 'KeyManager', 'Handler', 'GameC
 		},
 		run: function(){
 			init();
-			var fps = 60;
-			var timePerTick = 1000/fps;
-			var delta = 0;
-			var now;
-			var lastTime = Date.now();
-			var timer = 0;
-			var ticks = 0;
+			let fps = 60;
+			let timePerTick = 1000/fps;
+			let delta = 0;
+			let now;
+			let lastTime = Date.now();
+			let timer = 0;
+			let ticks = 0;
 
 			function loop(){
 				if(running) {

@@ -1,8 +1,8 @@
 define(['Class', 'Rectangle', 'SoundManager'], function(Class, Rectangle, SoundManager){
 
-var dying, handlerRef;
+let dying, handlerRef;
 
-	var Entity = Class.extend({
+	let Entity = Class.extend({
 		init: function(_handler, _x, _y, _width, _height){
 			this.x = _x;
 			this.y = _y;
@@ -36,15 +36,15 @@ var dying, handlerRef;
 														this.bounds.width, this.bounds.height);
 		},
 		checkEntityCollisions: function(xOffset, yOffset){
-			var candidates =  this.handler.getWorld().getSpatialGrid().retrieve(new Rectangle(this.x + this.bounds.x + xOffset, this.y + this.bounds.y + yOffset, this.bounds.width, this.bounds.height), this);
+			let candidates =  this.handler.getWorld().getSpatialGrid().retrieve(new Rectangle(this.x + this.bounds.x + xOffset, this.y + this.bounds.y + yOffset, this.bounds.width, this.bounds.height), this);
 
 					//*************************************
 					// console.log(`${this.type} > ${e.type}`);
 					//PLAYER > MONSTER
 					//*************************************
 
-			for(var i = 0; i < candidates.length; i++){
-				var e = candidates[i];
+			for(let i = 0; i < candidates.length; i++){
+				let e = candidates[i];
 				if (this.type === 'player' && e.type === 'monster' && e.health > 0){
 					// if (e.getCollisionBounds(0, 0).intersects(this.getWeaponCollisionBounds(xOffset, yOffset))){
 						handlerRef.getSoundManager().play("sword");

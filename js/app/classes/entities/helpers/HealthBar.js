@@ -1,7 +1,7 @@
 define(['Helper', 'Assets'], function(Helper, Assets){
 
 
-	var HealthBar = Helper.extend({
+	let HealthBar = Helper.extend({
 		init: function(_handler, _entity, _properties){
 			this.handler = _handler;
 			this.entity = _entity;

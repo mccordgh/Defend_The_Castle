@@ -1,6 +1,6 @@
 define(['Class'], function(Class){
 
-	var SpriteSheet = Class.extend({
+	let SpriteSheet = Class.extend({
 		init:function(_sheet){
 			this.sheet = _sheet;
 

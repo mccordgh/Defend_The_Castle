@@ -1,8 +1,8 @@
 define(['Class', 'Tile'], function(Class, Tile){
 
-	var xOffset, yOffset, handler;
+	let xOffset, yOffset, handler;
 	
-	var GameCamera = Class.extend({
+	let GameCamera = Class.extend({
 		init: function(_handler, _xOffset, _yOffset){
 			xOffset = _xOffset;
 			yOffset = _yOffset;

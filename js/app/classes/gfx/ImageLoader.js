@@ -1,8 +1,8 @@
 define(function() {
-	var ImageLoader = {};
+	let ImageLoader = {};
 
 	ImageLoader.loadImage = function(_path){
-		var image = new Image();
+		let image = new Image();
 		image.src = _path;
 		return image;
 	};

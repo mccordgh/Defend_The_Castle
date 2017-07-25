@@ -1,11 +1,11 @@
 define(['Class', 'Assets'], function(Class, Assets){
 
-	var TILE_WIDTH = 16;
-	var TILE_HEIGHT = 16;
+	let TILE_WIDTH = 16;
+	let TILE_HEIGHT = 16;
 
-	var tiles = [];
+	let tiles = [];
 
-	var Tile = Class.extend({
+	let Tile = Class.extend({
 		init: function(_texture, _id){
 			this.texture = _texture;
 			this.id = _id;

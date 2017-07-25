@@ -2,7 +2,7 @@ define(['Class'], function(Class){
 
 	const CURRENT_PATH = window.location.href;
 
-	var SoundManager = Class.extend({
+	let SoundManager = Class.extend({
 		init: function(){			
 		},
 		play: function(_sound){

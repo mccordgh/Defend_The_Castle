@@ -1,8 +1,9 @@
 define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Assets, HealthBar, Rectangle){
 
-	var lastAnimation = "walk_down";//, attackCounter = 0, lastAttackCounter = 0;
+	let lastAnimation = "walk_down";//, attackCounter = 0, lastAttackCounter = 0;
+	let playerLeap = {};
 
-	var Player = Creature.extend({
+	let Player = Creature.extend({
 		init: function(_handler, _x, _y){
 			this._super(_handler, _x, _y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
 			this.assets = Assets.getAssets('player');
@@ -35,7 +36,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			// 						width: 104,
 			// 						height: 12
 			// });
-			// 	color: "#0c0",			// var healthbar_properties = {
+			// 	color: "#0c0",			// let healthbar_properties = {
 
 			// 	bgColor: "#a00",
 			// 	yOffset: 10,
@@ -55,20 +56,38 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 		},
 		tick: function(_dt){
 			if (!this.handler.getWorld().getRoundOver()) {
-				this.getInput(_dt);
-				this.move();
-				this.handler.getGameCamera().centerOnEntity(this);
-				if (this.yMove < 0)
-					this.assets.animations.walk_up.tick();
-				if (this.yMove > 0)
-					this.assets.animations.walk_down.tick();
-				if (this.xMove > 0)
-					this.assets.animations.walk_right.tick();
-				if (this.xMove < 0)
-					this.assets.animations.walk_left.tick();
-				// this.assets.animations.idle.tick();
-				if (this.health <= 0)
-					this.assets.animations.death.tick();
+				if (this.state === 'moving') {
+					this.getInput(_dt);
+					this.move();
+					this.handler.getGameCamera().centerOnEntity(this);
+					if (this.yMove < 0)
+						this.assets.animations.walk_up.tick();
+					if (this.yMove > 0)
+						this.assets.animations.walk_down.tick();
+					if (this.xMove > 0)
+						this.assets.animations.walk_right.tick();
+					if (this.xMove < 0)
+						this.assets.animations.walk_left.tick();
+					// this.assets.animations.idle.tick();
+					if (this.health <= 0)
+						this.assets.animations.death.tick();
+				}
+
+				if (this.state === 'jumping') {
+					this.xMove = playerLeap.xSpeed;
+					this.yMove = playerLeap.ySpeed;
+					console.log({
+						xMove: this.xMove,
+						yMove: this.yMove,
+					});
+					this.leap();
+					console.log({
+						x: this.x,
+						y: this.y,
+					})
+					if (this.x === playerLeap.endX || this.y === playerLeap.endY)
+						this.state === 'moving';
+				}
 			}
 		},
 		render: function(_g){
@@ -110,7 +129,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			}
 
 			if (this.state === 'jumping') {
-
+				_g.myDrawImage(this.getCurrentAnimationFrame(), this.x - this.handler.getGameCamera().getxOffset(), this.y - this.handler.getGameCamera().getyOffset(), this.assets.width, this.assets.height);
 			}
 			// if (this.attacking){
 			// 	attackCounter++;
@@ -124,7 +143,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			// }
 
 			// lastAttackCounter++;
-			
+
 			// ****** DRAW BOUNDING BOX DON'T DELETE!!
 			// _g.fillStyle = "red";
 			// _g.fillRect(this.bounds.x + this.x - this.handler.getGameCamera().getxOffset(), this.bounds.y + this.y - this.handler.getGameCamera().getyOffset(), this.bounds.width, this.bounds.height);
@@ -153,7 +172,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 					this.xMove = this.speed * _dt;
 				}
 				if(this.handler.getKeyManager().space){
-					this.state = 'jumping';
+					this.jump();
 				}
 				return;
 			}
@@ -184,9 +203,54 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 		getWeaponCollisionBounds: function(xOffset, yOffset){
 			return new Rectangle(this.weapon.bounds.x + this.x - this.handler.getGameCamera().getxOffset(),
 														this.weapon.bounds.y + this.y - this.handler.getGameCamera().getyOffset(),
-														this.weapon.bounds.width, this.weapon.bounds.height);			
+														this.weapon.bounds.width, this.weapon.bounds.height);
 
 		},
+		jump: function () {
+			const theCastle = this.handler.getWorld().getEntityManager().getSingleEntity('castle');
+			const castleCenterX = Math.round(theCastle.x + (theCastle.width / 2));
+			const castleCenterY = Math.round(theCastle.y + (theCastle.height / 2));
+			const playerCenterX = Math.round(this.x + (this.width / 2));
+			const playerCenterY = Math.round(this.y + (this.height / 2));
+
+			console.log({
+				theCastle,
+				castleX: theCastle.x,
+				castleY: theCastle.y,
+				castleWidth: theCastle.width,
+				castleHeight: theCastle.height,
+				castleCenterX,
+				castleCenterY,
+			});
+
+			playerLeap.beginX = playerCenterX;
+			playerLeap.beginY = playerCenterY;
+
+			//X-AXIS If you are not within 100 yards of the castle, then leap NEXT to it
+			if ((playerCenterX > (castleCenterX + 99)) || playerCenterX < (castleCenterX - 99) && (playerCenterY > (castleCenterY + 99)) || (playerCenterY < (castleCenterY - 99))) {
+				console.log("NOT WITHIN 100 OF CASTLE");
+				playerLeap.endX = (castleCenterX + theCastle.x) * Math.sign(castleCenterX - this.x);
+				//X-AXIS else if you are within 100 yards of the castle, leap OVER it.
+			} else {
+				console.log("YES WITHIN 100 OF CASTLE");
+				playerLeap.endX = ((this.x - castleCenterX) - theCastle.x) * Math.sign(castleCenterX - this.x);
+			}
+
+			//Y-AXIS If you are not within 100 yards of the castle, then leap NEXT to it
+			if ((playerCenterY > (castleCenterY + 99)) || playerCenterY < (castleCenterY - 99) && (playerCenterY > (castleCenterY + 99)) || (playerCenterY < (castleCenterY - 99))) {
+				console.log("NOT WITHIN 100 OF CASTLE");
+				playerLeap.endY = (castleCenterY + theCastle.y) * Math.sign(castleCenterY - this.y);
+				//Y-AYIS else if you are within 100 yards of the castle, leap OVER it.
+			} else {
+				console.log("YES WITHIN 100 OF CASTLE");
+				playerLeap.endY = ((this.y - castleCenterY) - theCastle.y) * Math.sign(castleCenterY - this.y);
+			}
+
+			const leapSteps = 50;
+			playerLeap.xSpeed = Math.abs(Math.round((playerLeap.beginX - playerLeap.endX) / 50));
+			playerLeap.ySpeed = Math.abs(Math.round((playerLeap.beginY - playerLeap.endY) / 50));
+			this.state = 'jumping';
+		}
 	});
 
 	return Player;

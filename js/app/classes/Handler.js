@@ -1,8 +1,8 @@
 define(['Class'],function(Class){
 
-	var game, world, leaderBoards = [], soundManager;
+	let game, world, leaderBoards = [], soundManager;
 
-	var Handler = Class.extend({
+	let Handler = Class.extend({
 		init:function(_game){
 			game = _game;
 		},

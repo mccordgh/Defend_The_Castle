@@ -1,9 +1,9 @@
 define(['Jquery'], function($){
 
-	var Utils = {};
+	let Utils = {};
 
 	Utils.loadFileAsString = function(_path){
-		var string = "";
+		let string = "";
 		$.ajax({
 			url: _path,
 			type: "get",

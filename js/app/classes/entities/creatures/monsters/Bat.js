@@ -1,6 +1,6 @@
 define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Assets, HealthBar, Rectangle){
 
-	var Bat = Creature.extend({
+	let Bat = Creature.extend({
 		init: function(_handler, _x, _y){
 			this._super(_handler, _x, _y, 64, 64);
 			this.assets = Assets.getAssets("bat");
@@ -15,7 +15,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			this.damage = 55;
 			this.targetType = 'castle';
 			this.deathCleanup = true;
-			var healthbar_properties = {
+			let healthbar_properties = {
 				color: "#0c0",
 				bgColor: "#a00",
 				yOffset: 10,

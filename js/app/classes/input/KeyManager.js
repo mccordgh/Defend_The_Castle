@@ -1,8 +1,8 @@
 define(['Class'], function(Class){
 
-	var keys = [];
+	let keys = [];
 
-	var KeyManager = Class.extend({
+	let KeyManager = Class.extend({
 		init:function(){
 
 		},

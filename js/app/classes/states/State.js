@@ -1,8 +1,8 @@
 define(['Class'],function(Class){
 
-    var currentState = null;
+    let currentState = null;
 
-    var State = Class.extend({
+    let State = Class.extend({
         init:function(_handler){
             this.handler = _handler;
         },

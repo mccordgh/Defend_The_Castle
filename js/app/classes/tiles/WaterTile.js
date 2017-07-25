@@ -1,6 +1,6 @@
 define(['Tile'], function(Tile){
 
-	var WaterTile = Tile.extend({
+	let WaterTile = Tile.extend({
 		init: function(_id){
 			this._super(Tile.assets.water, _id);
 		},

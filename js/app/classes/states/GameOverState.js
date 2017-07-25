@@ -1,10 +1,10 @@
  define(['State', 'GameState', 'KeyManager', 'Assets'], function(State, GameState, KeyManager, Assets){
 
   const CURRENT_PATH = window.location.href;
-	var fontSize, endRank, LBPosition, endScore = null, LBinfo = "Getting Leaderboard information...", LBinfo2 = "";
-  var rankIcons = Assets.getAssets('rankIcons'), handlerRef, finishCleanup = false, leaderBoard = [];
+	let fontSize, endRank, LBPosition, endScore = null, LBinfo = "Getting Leaderboard information...", LBinfo2 = "";
+  let rankIcons = Assets.getAssets('rankIcons'), handlerRef, finishCleanup = false, leaderBoard = [];
 
-	var GameOverState = State.extend({
+	let GameOverState = State.extend({
 		init:function(_handler){
 			this._super(_handler);
 			endScore = this.handler.getWorld().getEntityManager().getPlayer().score;

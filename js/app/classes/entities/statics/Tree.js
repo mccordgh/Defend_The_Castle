@@ -1,8 +1,8 @@
 define(['StaticEntity', 'Tile', 'Assets'], function(StaticEntity, Tile, Assets){
 
-	var assets = Assets.getAssets("tree");
+	let assets = Assets.getAssets("tree");
 
-	var Tree = StaticEntity.extend({
+	let Tree = StaticEntity.extend({
 		init: function(_handler, _x, _y){
 			this._super(_handler, _x, _y, Tile.TILE_WIDTH * 4, Tile.TILE_HEIGHT * 4);
 			this.bounds.x = 21;

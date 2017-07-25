@@ -1,6 +1,6 @@
 define(['Entity', 'Tile', 'Rectangle'], function(Entity, Tile, Rectangle){
 
-	var DEFAULT_SPEED = 90,
+	let DEFAULT_SPEED = 90,
 			DEFAULT_HEALTH = 200,
 			DEFAULT_CREATURE_WIDTH = 32,
 			DEFAULT_CREATURE_HEIGHT = 32,
@@ -8,7 +8,7 @@ define(['Entity', 'Tile', 'Rectangle'], function(Entity, Tile, Rectangle){
 			tempEntity = null,
 			deathInterval;
 
-	var Creature = Entity.extend({
+	let Creature = Entity.extend({
 		init: function(_handler, _x, _y, _width, _height){
 			this._super(_handler, _x, _y, _width, _height);
 			this.health = DEFAULT_HEALTH;
@@ -16,6 +16,16 @@ define(['Entity', 'Tile', 'Rectangle'], function(Entity, Tile, Rectangle){
 			this.xMove = 0;
 			this.yMove = 0;
 			this.dead = 0;
+		},
+		leap: function(){
+			if(Math.abs(this.xMove) > 0 || Math.abs(this.yMove) > 0){
+				this.handler.getWorld().getSpatialGrid().remove(new Rectangle(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height), this);
+				this.x += this.xMove;
+				this.y += this.yMove;
+				// this.moveX();
+				// this.moveY();
+				this.handler.getWorld().getSpatialGrid().insert(new Rectangle(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height), this);
+			}
 		},
 		move: function(){
 			if(Math.abs(this.xMove) > 0 || Math.abs(this.yMove) > 0){
@@ -28,7 +38,7 @@ define(['Entity', 'Tile', 'Rectangle'], function(Entity, Tile, Rectangle){
 			}
 		},
 		moveX: function(){
-			var tempX;
+			let tempX;
 			if (this.xMove > 0) {
 				tempX = parseInt((this.x + this.xMove + this.bounds.x + this.bounds.width) / Tile.TILE_WIDTH);
 				if(!this.collisionWithTile(tempX, parseInt((this.y + this.bounds.y) / Tile.TILE_HEIGHT)) && 
@@ -48,7 +58,7 @@ define(['Entity', 'Tile', 'Rectangle'], function(Entity, Tile, Rectangle){
 			}
 		},
 		moveY: function(){
-			var tempY;
+			let tempY;
 			if (this.yMove > 0) {
 				tempY = parseInt((this.y + this.yMove + this.bounds.y + this.bounds.height) / Tile.TILE_HEIGHT);
 				if(!this.collisionWithTile(parseInt((this.x + this.bounds.x) / Tile.TILE_WIDTH), tempY) && 
