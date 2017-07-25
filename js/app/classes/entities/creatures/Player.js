@@ -16,6 +16,7 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 			this.type = 'player';
 			this.damage = 60;
 			this.score = 0;
+			this.state = 'moving';
 			this.weapon = Assets.getAssets('sword');
 			this.weapon.bounds = {
 				x: 0,
@@ -72,40 +73,45 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 		},
 		render: function(_g){
 			//DRAW SWORD BEFORE PLAYER IF WALKING UP OR LEFT
-			if (lastAnimation === 'walk_up'){
-				this.weapon.bounds.x = -6;
-				this.weapon.bounds.y = -32;
-				this.weapon.bounds.width = 25;
-				this.weapon.bounds.height = 50;
-				_g.myDrawImage(this.weapon.walk_up, this.x - this.handler.getGameCamera().getxOffset() - 9, this.y - this.handler.getGameCamera().getyOffset() - 33, 32, 64);				
-			}
-			if (lastAnimation === 'walk_left'){
-				this.weapon.bounds.x = -37;
-				this.weapon.bounds.y = 15;
-				this.weapon.bounds.width = 50;
-				this.weapon.bounds.height = 25;
-				_g.myDrawImage(this.weapon.walk_left, this.x - this.handler.getGameCamera().getxOffset() - 40, this.y - this.handler.getGameCamera().getyOffset() + 11, 64, 32);				
-			}
-			
-			//Draw PLAYER
-			_g.myDrawImage(this.getCurrentAnimationFrame(), this.x - this.handler.getGameCamera().getxOffset(), this.y - this.handler.getGameCamera().getyOffset(), this.assets.width, this.assets.height);
+			if (this.state === 'moving') {
+				if (lastAnimation === 'walk_up') {
+					this.weapon.bounds.x = -6;
+					this.weapon.bounds.y = -32;
+					this.weapon.bounds.width = 25;
+					this.weapon.bounds.height = 50;
+					_g.myDrawImage(this.weapon.walk_up, this.x - this.handler.getGameCamera().getxOffset() - 9, this.y - this.handler.getGameCamera().getyOffset() - 33, 32, 64);
+				}
+				if (lastAnimation === 'walk_left') {
+					this.weapon.bounds.x = -37;
+					this.weapon.bounds.y = 15;
+					this.weapon.bounds.width = 50;
+					this.weapon.bounds.height = 25;
+					_g.myDrawImage(this.weapon.walk_left, this.x - this.handler.getGameCamera().getxOffset() - 40, this.y - this.handler.getGameCamera().getyOffset() + 11, 64, 32);
+				}
 
-			//DRAW SWORD AFTER PLAYER IF WALKING DOWN OR RIGHT
-			if (lastAnimation === 'walk_down'){
-				this.weapon.bounds.x = -5;
-				this.weapon.bounds.y = 35;
-				this.weapon.bounds.width = 25;
-				this.weapon.bounds.height = 50;
-				_g.myDrawImage(this.weapon.walk_down, this.x - this.handler.getGameCamera().getxOffset() - 9, this.y - this.handler.getGameCamera().getyOffset() + 25, 32, 64);				
+				//Draw PLAYER
+				_g.myDrawImage(this.getCurrentAnimationFrame(), this.x - this.handler.getGameCamera().getxOffset(), this.y - this.handler.getGameCamera().getyOffset(), this.assets.width, this.assets.height);
+
+				//DRAW SWORD AFTER PLAYER IF WALKING DOWN OR RIGHT
+				if (lastAnimation === 'walk_down') {
+					this.weapon.bounds.x = -5;
+					this.weapon.bounds.y = 35;
+					this.weapon.bounds.width = 25;
+					this.weapon.bounds.height = 50;
+					_g.myDrawImage(this.weapon.walk_down, this.x - this.handler.getGameCamera().getxOffset() - 9, this.y - this.handler.getGameCamera().getyOffset() + 25, 32, 64);
+				}
+				if (lastAnimation === 'walk_right') {
+					this.weapon.bounds.x = 19;
+					this.weapon.bounds.y = 15;
+					this.weapon.bounds.width = 50;
+					this.weapon.bounds.height = 25;
+					_g.myDrawImage(this.weapon.walk_right, this.x - this.handler.getGameCamera().getxOffset() + 7, this.y - this.handler.getGameCamera().getyOffset() + 11, 64, 32);
+				}
 			}
-			if (lastAnimation === 'walk_right'){
-				this.weapon.bounds.x = 19;
-				this.weapon.bounds.y = 15;
-				this.weapon.bounds.width = 50;
-				this.weapon.bounds.height = 25;
-				_g.myDrawImage(this.weapon.walk_right, this.x - this.handler.getGameCamera().getxOffset() + 7, this.y - this.handler.getGameCamera().getyOffset() + 11, 64, 32);				
+
+			if (this.state === 'jumping') {
+
 			}
-			
 			// if (this.attacking){
 			// 	attackCounter++;
 			// 	console.log("increment");
@@ -132,23 +138,24 @@ define(['Creature', 'Assets', 'HealthBar', 'Rectangle'], function(Creature, Asse
 		getInput: function(_dt){
 			this.xMove = 0;
 			this.yMove = 0;
-			// if((this.handler.getKeyManager().f || this.handler.getKeyManager().j) && lastAttackCounter > 30){
-			// 	this.attacking = true;
-			// }
-			if(this.handler.getKeyManager().space){
-				console.log("SPACE: JUMP!!");
-			}
-			if(this.handler.getKeyManager().up || this.handler.getKeyManager().upArrow) {
-				this.yMove = -this.speed * _dt;
-			} 
-			if (this.handler.getKeyManager().down || this.handler.getKeyManager().downArrow) {
-				this.yMove = this.speed * _dt;
-			}
-			if(this.handler.getKeyManager().left || this.handler.getKeyManager().leftArrow) {
-				this.xMove = -this.speed * _dt;
-			} 
-			if (this.handler.getKeyManager().right || this.handler.getKeyManager().rightArrow) {
-				this.xMove = this.speed * _dt;
+
+			if (this.state === 'moving') {
+				if (this.handler.getKeyManager().up || this.handler.getKeyManager().upArrow) {
+					this.yMove = -this.speed * _dt;
+				}
+				if (this.handler.getKeyManager().down || this.handler.getKeyManager().downArrow) {
+					this.yMove = this.speed * _dt;
+				}
+				if (this.handler.getKeyManager().left || this.handler.getKeyManager().leftArrow) {
+					this.xMove = -this.speed * _dt;
+				}
+				if (this.handler.getKeyManager().right || this.handler.getKeyManager().rightArrow) {
+					this.xMove = this.speed * _dt;
+				}
+				if(this.handler.getKeyManager().space){
+					this.state = 'jumping';
+				}
+				return;
 			}
 		},
 		getCurrentAnimationFrame: function(){

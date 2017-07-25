@@ -79,16 +79,13 @@ define(['Class', 'Display', 'State', 'MainMenu', 'KeyManager', 'Handler', 'GameC
 	
 	function tick(_dt) {
 		keyManager.tick();
-		if(State.getState() !== null){
-			State.getState().tick(_dt);
-		}
+		if(State.getState() !== null) State.getState().tick(_dt);
 	}
 
 	function render(){
 		g.clearRect(0,0,width,height);
-		if(State.getState() !== null){
-				State.getState().render(g);
-			}
+
+		if(State.getState() !== null) State.getState().render(g);
 	}
 
 	return Game;
