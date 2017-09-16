@@ -3,7 +3,7 @@
 ![alt text](http://imgur.com/u7MWF6a.gif "Defend The Castle Main Menu")
 
 * [Defend the Castle](https://mccordgh.github.io/Defend_The_Castle) is a fast-paced arcade-style video game, with a twist on the classic [tower defense](https://en.wikipedia.org/wiki/Tower_defense) genre.
-* " "An evil wizard has opened portals that are spawning malicious creatures on your King's island. Defend the castle from attacking bats at all costs."
+* An evil wizard has opened portals that are spawning malicious creatures on your King's island. Defend the castle from attacking bats at all costs!
 * The engine and game are written from scratch in JavaScript, and it runs right in your browser.
 
 In Game Screenshot:
