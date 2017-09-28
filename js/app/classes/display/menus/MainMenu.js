@@ -406,12 +406,12 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
 		{
 			"name": "GGG",
 			"score": 400000,
-			"rank": "Knight Captain"
+			"rank": "Captain"
 		},
 		{
 			"name": "XXX",
 			"score": 300000,
-			"rank": "Knight Captain"
+			"rank": "Captain"
 		},
 		{
 			"name": "YYY",
