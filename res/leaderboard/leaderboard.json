@@ -2,54 +2,54 @@
 	"leaderboards":
 	[
 		{
-			"name": "AAA",
-			"score": 1000000,
-			"rank": "Lord"
-		}, 
-		{
-			"name": "BBB",
-			"score": 900000,
-			"rank": "Lord"
-		},
-		{
-			"name": "CCC",
-			"score": 800000,
-			"rank": "Duke"
-		},
-		{
-			"name": "DDD",
-			"score": 700000,
-			"rank": "Duke"
-		},
-		{
-			"name": "EEE",
-			"score": 600000,
-			"rank": "Baron"
-		},
-		{
-			"name": "FFF",
+			"name": "AAAAAAAAA",
 			"score": 500000,
 			"rank": "Baron"
+		}, 
+		{
+			"name": "BBBBBBBBB",
+			"score": 450000,
+			"rank": "Baron"
 		},
 		{
-			"name": "GGG",
+			"name": "CCCCCCCCC",
 			"score": 400000,
 			"rank": "Captain"
 		},
 		{
-			"name": "XXX",
+			"name": "DDDDDDDDD",
+			"score": 350000,
+			"rank": "Captain"
+		},
+		{
+			"name": "EEEEEEEEE",
 			"score": 300000,
 			"rank": "Captain"
 		},
 		{
-			"name": "YYY",
+			"name": "FFFFFFFFF",
+			"score": 250000,
+			"rank": "Knight"
+		},
+		{
+			"name": "GGGGGGGGG",
 			"score": 200000,
 			"rank": "Knight"
 		},
 		{
-			"name": "ZZZ",
-			"score": 100000,
+			"name": "XXXXXXXXX",
+			"score": 150000,
 			"rank": "Knight"
+		},
+		{
+			"name": "YYYYYYYYY",
+			"score": 100000,
+			"rank": "Squire"
+		},
+		{
+			"name": "ZZZZZZZZZ",
+			"score": 50000,
+			"rank": "Squire"
 		}
 	]
 }

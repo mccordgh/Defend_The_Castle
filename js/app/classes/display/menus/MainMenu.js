@@ -162,6 +162,16 @@ define(['MenuState', 'GameState', 'KeyManager', 'Assets', 'State', 'SoundManager
                 x: function() {return 350;},
                 y: function() {return yDraw;},
                 });
+
+                _g.drawText({
+                  borderColor: 'white',
+                  fillColor: 'orange',
+                  text: leaderBoard[i].rank,
+                  fontSize: 48,
+                  font: 'serif',
+                  x: function() {return 750;},
+                  y: function() {return yDraw;},
+                });
 	            }
 			      }
 		      	_g.drawText({
